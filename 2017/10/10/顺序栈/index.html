@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Zendq&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zendq&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/顺序栈/index.html">
+<meta property="og:site_name" content="Zendq&#39;s blog">
+<meta property="og:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-30T16:49:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zendq&#39;s blog">
+<meta name="twitter:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+  
+    <link rel="alternate" href="/atom.xml" title="Zendq&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zendq&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">stay hungry, stay foolish</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-顺序栈" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/10/顺序栈/" class="article-date">
+  <time datetime="2017-10-10T13:14:50.950Z" itemprop="datePublished">2017-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="堆栈的顺序存储—顺序栈"><a href="#堆栈的顺序存储—顺序栈" class="headerlink" title="堆栈的顺序存储—顺序栈"></a>堆栈的顺序存储—顺序栈</h1><p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
+<p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
+<pre><code>顺序栈的结构描述：
+用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#define STACK_INIT_SIZE 100  //顺序栈（默认的）的初始分配最大容量</div><div class="line">#define STACKINCREMENT		//（默认的）增补控件	</div><div class="line">typedef struct&#123;</div><div class="line">	ElemType *stack;				//存储数据元素的一维数组</div><div class="line">	int top;                 //栈顶指针</div><div class="line">	int stacksize;           //当前分配的数组容量</div><div class="line">	int incrementsize;       //增补空间量（以ElemType为单位）</div><div class="line">&#125;SqStack;//顺序栈</div></pre></td></tr></table></figure>
+<p>这里对比一下顺序表的结构描述</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">typedef struct&#123;</div><div class="line">	ElemType *elem;        //存储数据元素的一维数组</div><div class="line">	int length;            //线性表的当前长度</div><div class="line">	int listsize;          //当前分配的数组容量</div><div class="line">	int incrementsize;       //增补空间量（以ElemType为单位）</div><div class="line">&#125;SqList;//顺序表的动态分配</div></pre></td></tr></table></figure>
+<p><em>两个结构的描述经过对比，区别一清二楚</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/10/顺序栈/" data-id="cj8lnp43f0001r8uditfnz7dl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/10/闭包/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/10/顺序栈的基本操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/10/闭包/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/10/顺序栈/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/10/顺序栈的基本操作/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zendeqin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
