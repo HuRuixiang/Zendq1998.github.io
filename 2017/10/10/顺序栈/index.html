@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-30T16:49:56.000Z">
+<meta property="og:updated_time" content="2017-10-11T08:18:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zendq&#39;s blog">
 <meta name="twitter:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
@@ -84,15 +84,15 @@
 <p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
 <pre><code>顺序栈的结构描述：
 用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#define STACK_INIT_SIZE 100  //顺序栈（默认的）的初始分配最大容量</div><div class="line">#define STACKINCREMENT		//（默认的）增补控件	</div><div class="line">typedef struct&#123;</div><div class="line">	ElemType *stack;				//存储数据元素的一维数组</div><div class="line">	int top;                 //栈顶指针</div><div class="line">	int stacksize;           //当前分配的数组容量</div><div class="line">	int incrementsize;       //增补空间量（以ElemType为单位）</div><div class="line">&#125;SqStack;//顺序栈</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INIT_SIZE 100  <span class="comment">//顺序栈（默认的）的初始分配最大容量</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACKINCREMENT		<span class="comment">//（默认的）增补控件	</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	ElemType *<span class="built_in">stack</span>;				<span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> top;                 <span class="comment">//栈顶指针</span></div><div class="line">	<span class="keyword">int</span> stacksize;           <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqStack;<span class="comment">//顺序栈</span></div></pre></td></tr></table></figure>
 <p>这里对比一下顺序表的结构描述</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">typedef struct&#123;</div><div class="line">	ElemType *elem;        //存储数据元素的一维数组</div><div class="line">	int length;            //线性表的当前长度</div><div class="line">	int listsize;          //当前分配的数组容量</div><div class="line">	int incrementsize;       //增补空间量（以ElemType为单位）</div><div class="line">&#125;SqList;//顺序表的动态分配</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>	</div><div class="line">	ElemType *elem;        <span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> length;            <span class="comment">//线性表的当前长度</span></div><div class="line">	<span class="keyword">int</span> listsize;          <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqList;<span class="comment">//顺序表的动态分配</span></div></pre></td></tr></table></figure>
 <p><em>两个结构的描述经过对比，区别一清二楚</em></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/10/顺序栈/" data-id="cj8mpg5w70001gsudcj4ck6ve" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/10/顺序栈/" data-id="cj8mrbt520001msudxuesh2b3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,6 +148,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/10/11/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /">(no title)</a>
+          </li>
         
           <li>
             <a href="/2017/10/10/闭包/">(no title)</a>
