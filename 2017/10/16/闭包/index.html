@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="==函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapV">
+<meta name="description" content="函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapVal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="闭包">
 <meta property="og:url" content="http://yoursite.com/2017/10/16/闭包/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="==函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapV">
+<meta property="og:description" content="函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapVal">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-19T07:24:06.000Z">
+<meta property="og:updated_time" content="2017-10-19T12:58:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闭包">
-<meta name="twitter:description" content="==函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapV">
+<meta name="twitter:description" content="函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapVal">
 
 
 
@@ -299,7 +299,7 @@
       
 
       
-        <p>==<br>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？</p>
+        <p>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？</p>
 <p>下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapValue</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> localVariable = n;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> localVariable;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> wrap1 = wrapValue(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> wrap2 = wrapValue(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(wrap1);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(wrap2);</div><div class="line"><span class="comment">//2</span></div></pre></td></tr></table></figure>
 <p>这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的，</p>
@@ -409,7 +409,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>

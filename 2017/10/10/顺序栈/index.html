@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta name="description" content="堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="堆栈的顺序存储---顺序栈">
 <meta property="og:url" content="http://yoursite.com/2017/10/10/顺序栈/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta property="og:description" content="堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-19T07:26:04.000Z">
+<meta property="og:updated_time" content="2017-10-19T12:58:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆栈的顺序存储---顺序栈">
-<meta name="twitter:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta name="twitter:description" content="堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化">
 
 
 
@@ -299,7 +299,7 @@
       
 
       
-        <h1 id="堆栈的顺序存储—顺序栈"><a href="#堆栈的顺序存储—顺序栈" class="headerlink" title="堆栈的顺序存储—顺序栈"></a>堆栈的顺序存储—顺序栈</h1><p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
+        <p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
 <p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
 <pre><code>顺序栈的结构描述：
 用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
@@ -391,17 +391,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -416,7 +407,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -445,22 +436,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#堆栈的顺序存储—顺序栈"><span class="nav-number">1.</span> <span class="nav-text">堆栈的顺序存储—顺序栈</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
