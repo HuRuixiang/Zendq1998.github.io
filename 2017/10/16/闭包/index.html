@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zendq&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta name="description" content="==函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="http://yoursite.com/2017/10/16/闭包/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
+<meta property="og:description" content="==函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapV">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-19T07:24:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zendq&#39;s blog">
+<meta name="twitter:title" content="闭包">
+<meta name="twitter:description" content="==函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？ 下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapV">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/16/闭包/"/>
 
 
 
 
 
-  <title>Archiv | Zendq's blog</title>
+  <title>闭包 | Zendq's blog</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,222 +218,150 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">闭包</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T00:00:00+08:00">
+                2017-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Öhm..! Insgesamt 5 Artikel. Bleib dran.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/18/自测练习之深入理解对象_1/" itemprop="url">
-              
-                <span itemprop="name">自测练习之深入理解对象(1)</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-18T00:00:00+08:00"
-              content="2017-10-18" >
-          10-18
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/16/闭包/" itemprop="url">
-              
-                <span itemprop="name">闭包</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-16T00:00:00+08:00"
-              content="2017-10-16" >
-          10-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /" itemprop="url">
-              
-                <span itemprop="name">动态存储分配（堆分配）的顺序串与顺序表在操作上的异同</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-13T00:00:00+08:00"
-              content="2017-10-13" >
-          10-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>==<br>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？</p>
+<p>下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapValue</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> localVariable = n;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> localVariable;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> wrap1 = wrapValue(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> wrap2 = wrapValue(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(wrap1);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(wrap2);</div><div class="line"><span class="comment">//2</span></div></pre></td></tr></table></figure>
+<p>这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的，</p>
+<p>我们把这种引用特定的局部变量实例的功能称为闭包。一个包装了一些局部变量的函数是一个闭包。很多高级应用可以利用闭包的特性来实现。</p>
+<p>我们可以把关键字<em>function</em> 当作一种“冻结”代码并将其打包成函数值的模型。所以当你看到“<em>return function(…){…}</em>”这样的代码时，你可以将其理解为一个句柄，其中句柄指向一段包装好的计算代码。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/12/顺序栈的基本操作/" itemprop="url">
-              
-                <span itemprop="name">顺序栈的基本操作</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-12T00:00:00+08:00"
-              content="2017-10-12" >
-          10-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/10/顺序栈/" itemprop="url">
-              
-                <span itemprop="name">堆栈的顺序存储---顺序栈</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-10T00:00:00+08:00"
-              content="2017-10-10" >
-          10-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /" rel="next" title="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同">
+                <i class="fa fa-chevron-left"></i> 动态存储分配（堆分配）的顺序串与顺序表在操作上的异同
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/18/自测练习之深入理解对象_1/" rel="prev" title="自测练习之深入理解对象(1)">
+                自测练习之深入理解对象(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -437,6 +369,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -623,6 +559,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

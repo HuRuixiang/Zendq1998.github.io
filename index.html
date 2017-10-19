@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/18/自测练习之深入理解对象_1/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2017/10/18/自测练习之深入理解对象_1/" itemprop="url">自测练习之深入理解对象(1)</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T23:34:43+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T00:00:00+08:00">
                 2017-10-18
               </time>
             
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zendeqin">
@@ -378,7 +378,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/11/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2017/10/16/闭包/" itemprop="url">闭包</a></h1>
         
 
         <div class="post-meta">
@@ -390,8 +390,133 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-11T15:34:18+08:00">
-                2017-10-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T00:00:00+08:00">
+                2017-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>==<br>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？</p>
+<p>下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapValue</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> localVariable = n;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> localVariable;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> wrap1 = wrapValue(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> wrap2 = wrapValue(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(wrap1);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(wrap2);</div><div class="line"><span class="comment">//2</span></div></pre></td></tr></table></figure>
+<p>这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的，</p>
+<p>我们把这种引用特定的局部变量实例的功能称为闭包。一个包装了一些局部变量的函数是一个闭包。很多高级应用可以利用闭包的特性来实现。</p>
+<p>我们可以把关键字<em>function</em> 当作一种“冻结”代码并将其打包成函数值的模型。所以当你看到“<em>return function(…){…}</em>”这样的代码时，你可以将其理解为一个句柄，其中句柄指向一段包装好的计算代码。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /" itemprop="url">动态存储分配（堆分配）的顺序串与顺序表在操作上的异同</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-13T00:00:00+08:00">
+                2017-10-13
               </time>
             
 
@@ -502,7 +627,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/顺序栈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/顺序栈的基本操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zendeqin">
@@ -521,7 +646,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/10/顺序栈/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2017/10/12/顺序栈的基本操作/" itemprop="url">顺序栈的基本操作</a></h1>
         
 
         <div class="post-meta">
@@ -533,260 +658,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T21:14:50+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="堆栈的顺序存储—顺序栈"><a href="#堆栈的顺序存储—顺序栈" class="headerlink" title="堆栈的顺序存储—顺序栈"></a>堆栈的顺序存储—顺序栈</h1><p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
-<p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
-<pre><code>顺序栈的结构描述：
-用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
-</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INIT_SIZE 100  <span class="comment">//顺序栈（默认的）的初始分配最大容量</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACKINCREMENT		<span class="comment">//（默认的）增补控件	</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	ElemType *<span class="built_in">stack</span>;				<span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> top;                 <span class="comment">//栈顶指针</span></div><div class="line">	<span class="keyword">int</span> stacksize;           <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqStack;<span class="comment">//顺序栈</span></div></pre></td></tr></table></figure>
-<p>这里对比一下顺序表的结构描述</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>	</div><div class="line">	ElemType *elem;        <span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> length;            <span class="comment">//线性表的当前长度</span></div><div class="line">	<span class="keyword">int</span> listsize;          <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqList;<span class="comment">//顺序表的动态分配</span></div></pre></td></tr></table></figure>
-<p><em>两个结构的描述经过对比，区别一清二楚</em></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/闭包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zendeqin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zendq's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/闭包/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T21:14:50+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？</p>
-<p>下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapValue</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> localVariable = n;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> localVariable;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> wrap1 = wrapValue(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> wrap2 = wrapValue(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(wrap1);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(wrap2);</div><div class="line"><span class="comment">//2</span></div></pre></td></tr></table></figure>
-<p>这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的，</p>
-<p>我们把这种引用特定的局部变量实例的功能称为闭包。一个包装了一些局部变量的函数是一个闭包。很多高级应用可以利用闭包的特性来实现。</p>
-<p>我们可以把关键字<em>function</em> 当作一种“冻结”代码并将其打包成函数值的模型。所以当你看到“<em>return function(…){…}</em>”这样的代码时，你可以将其理解为一个句柄，其中句柄指向一段包装好的计算代码。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/顺序栈的基本操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zendeqin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zendq's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/顺序栈的基本操作/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T21:14:50+08:00">
-                2017-10-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-12T00:00:00+08:00">
+                2017-10-12
               </time>
             
 
@@ -848,6 +721,133 @@
 <li>进栈操作：S.top++;  元素进栈</li>
 <li>出栈操作：元素退栈，S.top–</li>
 </ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/顺序栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/顺序栈/" itemprop="url">堆栈的顺序存储---顺序栈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T00:00:00+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="堆栈的顺序存储—顺序栈"><a href="#堆栈的顺序存储—顺序栈" class="headerlink" title="堆栈的顺序存储—顺序栈"></a>堆栈的顺序存储—顺序栈</h1><p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
+<p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
+<pre><code>顺序栈的结构描述：
+用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
+</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INIT_SIZE 100  <span class="comment">//顺序栈（默认的）的初始分配最大容量</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACKINCREMENT		<span class="comment">//（默认的）增补控件	</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	ElemType *<span class="built_in">stack</span>;				<span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> top;                 <span class="comment">//栈顶指针</span></div><div class="line">	<span class="keyword">int</span> stacksize;           <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqStack;<span class="comment">//顺序栈</span></div></pre></td></tr></table></figure>
+<p>这里对比一下顺序表的结构描述</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>	</div><div class="line">	ElemType *elem;        <span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> length;            <span class="comment">//线性表的当前长度</span></div><div class="line">	<span class="keyword">int</span> listsize;          <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqList;<span class="comment">//顺序表的动态分配</span></div></pre></td></tr></table></figure>
+<p><em>两个结构的描述经过对比，区别一清二楚</em></p>
 
           
         

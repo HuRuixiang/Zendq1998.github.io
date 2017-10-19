@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta name="description" content="顺序栈的基本操作由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="堆栈的顺序存储---顺序栈">
-<meta property="og:url" content="http://yoursite.com/2017/10/10/顺序栈/index.html">
+<meta property="og:title" content="顺序栈的基本操作">
+<meta property="og:url" content="http://yoursite.com/2017/10/12/顺序栈的基本操作/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta property="og:description" content="顺序栈的基本操作由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-19T07:26:04.000Z">
+<meta property="og:updated_time" content="2017-10-19T07:26:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="堆栈的顺序存储---顺序栈">
-<meta name="twitter:description" content="堆栈的顺序存储—顺序栈  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为栈顶指针。  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的">
+<meta name="twitter:title" content="顺序栈的基本操作">
+<meta name="twitter:description" content="顺序栈的基本操作由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/10/顺序栈/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/12/顺序栈的基本操作/"/>
 
 
 
 
 
-  <title>堆栈的顺序存储---顺序栈 | Zendq's blog</title>
+  <title>顺序栈的基本操作 | Zendq's blog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/顺序栈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/顺序栈的基本操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zendeqin">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">堆栈的顺序存储---顺序栈</h1>
+          <h1 class="post-title" itemprop="name headline">顺序栈的基本操作</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T00:00:00+08:00">
-                2017-10-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-12T00:00:00+08:00">
+                2017-10-12
               </time>
             
 
@@ -299,14 +299,29 @@
       
 
       
-        <h1 id="堆栈的顺序存储—顺序栈"><a href="#堆栈的顺序存储—顺序栈" class="headerlink" title="堆栈的顺序存储—顺序栈"></a>堆栈的顺序存储—顺序栈</h1><p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
-<p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
-<pre><code>顺序栈的结构描述：
-用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
-</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INIT_SIZE 100  <span class="comment">//顺序栈（默认的）的初始分配最大容量</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACKINCREMENT		<span class="comment">//（默认的）增补控件	</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	ElemType *<span class="built_in">stack</span>;				<span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> top;                 <span class="comment">//栈顶指针</span></div><div class="line">	<span class="keyword">int</span> stacksize;           <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqStack;<span class="comment">//顺序栈</span></div></pre></td></tr></table></figure>
-<p>这里对比一下顺序表的结构描述</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>	</div><div class="line">	ElemType *elem;        <span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> length;            <span class="comment">//线性表的当前长度</span></div><div class="line">	<span class="keyword">int</span> listsize;          <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqList;<span class="comment">//顺序表的动态分配</span></div></pre></td></tr></table></figure>
-<p><em>两个结构的描述经过对比，区别一清二楚</em></p>
+        <h1 id="顺序栈的基本操作"><a href="#顺序栈的基本操作" class="headerlink" title="顺序栈的基本操作"></a>顺序栈的基本操作</h1><p>由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。</p>
+<hr>
+<p>（1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT)&#123;</div><div class="line">	S.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   </div><div class="line">	                                //顺序栈的初始分配最大空间</div><div class="line">	if(!S.stack)  exit(1);          //存储控件分配失败</div><div class="line">	S.top = -1;                     //置栈空</div><div class="line">	S.stacksize = maSxsize;         //顺序栈的当前容量</div><div class="line">	S.incrementsize = incresize;    //增补空间</div><div class="line">&#125;//InitStack_Sq</div></pre></td></tr></table></figure>
+<p>(2)求顺序栈的长度操作。统计顺序栈S中数据元素的个数，并返回统计结果。其主要操作是：返回顺序栈中栈顶指针的上一个位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int StackLength_Sq(SqStack S)&#123;</div><div class="line">	return S.top+1;</div><div class="line">&#125;//StackLength_Sq</div></pre></td></tr></table></figure>
+<p>(3)进栈操作。将一个新元素插入到顺序栈S的栈顶的上一个位置，作为新的栈顶元素。其主要操作是：先判断顺序栈是否已满，若已满，则重新分配空间，然后将栈顶指针加1，再将进栈元素插入到栈顶处。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">bool Push_Sq(SqStack &amp;S, ElemType e)&#123;</div><div class="line">//在顺序栈的栈顶插入元素e</div><div class="line">if(S.top==S.stacksize-1)&#123;</div><div class="line">	S.stack=(ElemType *)realloc(S.stack,(S.stacksize+incrementsize)*sizeof(ElemType));</div><div class="line">	//栈满，给顺序栈增补空间</div><div class="line">	if(!S.stack)    return false;</div><div class="line">	//存储分配空间失败</div><div class="line">	S.stacksize+=S.incrementsize;</div><div class="line">&#125;</div><div class="line">S.stack[++top]=e;</div><div class="line">	//栈顶指针上移，元素e进栈</div><div class="line">return true;</div><div class="line">&#125;//Push_Sq</div></pre></td></tr></table></figure>
+<p>(4)出栈操作。将元素S的栈顶元素删除。其主要操作是：先判断栈顶指针书否为空，若非空，则将栈顶元素取出，然后将栈顶指针减1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool Pop_Sq(SqStack &amp;S, ElemType &amp;e)&#123;</div><div class="line">//删除顺序栈栈顶元素，并让e返回其值</div><div class="line">if(S.top==-1) return false;</div><div class="line">e = S.stack[S.top--];</div><div class="line">	return false;</div><div class="line">&#125;//Pop_Sq</div></pre></td></tr></table></figure>
+<p>(5)取栈顶操作。取出顺序栈S的栈顶元素的值。其主要操作是：先判断顺序栈是否为空，若非空，则将栈顶元素取出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool 	GetTop_Sq(SqStack S,ElemType e)&#123;</div><div class="line">//取顺序栈顶元素，并让e返回其值</div><div class="line">if(S.top==-1) return false;</div><div class="line">e=S.stack[S.top];</div><div class="line">return true;</div><div class="line">&#125;//GetTop_Sq</div></pre></td></tr></table></figure>
+<p>(6)判断栈空操作。判断顺序栈S是否为空。若S为空则返回true，否则返回false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool StackEmpty_Sq(SqStack S)&#123;</div><div class="line">if(S.top==-1)  return true;</div><div class="line">return false;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">(7)撤销顺序栈操作。释放顺序栈S所占用的存储空间。</div></pre></td></tr></table></figure>
+<p>void DestroyStack_Sq(SqStack &amp;S){<br>    free(S.stack);<br>    S.stacksize = 0;<br>    S.top = -1;<br>}//DestroyStack_Sq</p>
+<h2 id=""><a href="#" class="headerlink" title="```"></a>```</h2><p><strong>总结</strong></p>
+<p><em>对于顺序栈S的相关操作，归纳起来主要有以下4个要素。</em></p>
+<ul>
+<li>栈空条件：S.top == -1</li>
+<li>栈满操作：S.top == S.stacksize-1</li>
+<li>进栈操作：S.top++;  元素进栈</li>
+<li>出栈操作：元素退栈，S.top–</li>
+</ul>
 
       
     </div>
@@ -331,14 +346,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/10/顺序栈/" rel="next" title="堆栈的顺序存储---顺序栈">
+                <i class="fa fa-chevron-left"></i> 堆栈的顺序存储---顺序栈
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/12/顺序栈的基本操作/" rel="prev" title="顺序栈的基本操作">
-                顺序栈的基本操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /" rel="prev" title="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同">
+                动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -455,7 +474,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#堆栈的顺序存储—顺序栈"><span class="nav-number">1.</span> <span class="nav-text">堆栈的顺序存储—顺序栈</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#顺序栈的基本操作"><span class="nav-number">1.</span> <span class="nav-text">顺序栈的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.1.</span> <span class="nav-text">```</span></a></li></ol></li></ol></div>
             
 
           </div>
