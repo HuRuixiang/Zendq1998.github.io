@@ -271,6 +271,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -383,6 +405,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/19/自测练习之深入理解对象_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/自测练习之深入理解对象_2/" itemprop="url">自测练习之深入理解对象(2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T00:00:00+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>###Object.prototype.toString方法 ###<br>JavaScript对象原型的关系是一种树形结构，整个树形结构的根部就是Object.prototype。Object.prototype提供了一些可以在所有对象中使用的方法。比如说，toString方法可以将一个对象转换成其字符串表示形式，即返回反映这个对象的字符串。<br><strong>自测练习4</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">8</span>,<span class="number">-1</span>)</div><div class="line">&#125;<span class="comment">//请说明函数foo的作用</span></div></pre></td></tr></table></figure></p>
+<p>对obj这个对象调用Object.prototype.toString，返回对象obj的具体类型（一对方括号，方括号中间是单词“object”和类型的名称），再对返回的[object ….]调用slice方法，切去前面的object和最后的’]’剩下一个代表obj的类型名称的字符串。<br>foo的作用：检测参数的对象类型，返回代表类型名的字符串。<br>比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">foo(<span class="string">"jerry"</span>); <span class="comment">//"String"</span></div><div class="line">foo(<span class="number">123</span>);     <span class="comment">//"Number"</span></div><div class="line">foo(<span class="literal">true</span>);    <span class="comment">//"Boolean"</span></div><div class="line">foo([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment">//"Array"</span></div><div class="line">foo(&#123;&#125;);      <span class="comment">//"Object"</span></div><div class="line">foo(<span class="literal">null</span>);    <span class="comment">//"Null"</span></div><div class="line">foo();        <span class="comment">//"Undefined"</span></div></pre></td></tr></table></figure>
+<p>PS:<br>obj.toString()的结果和Object.prototype.toString.call(obj)的结果不一样,这是因为toString为Object的原型方法，而Array ，function等类型作为Object的实例，都重写（覆盖）了toString方法。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的覆盖之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串（与调用join(“,”)的结果非常相似，即在数组的每个值之间插入一个逗号）…..），而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object上原型toString方法。</p>
+<p>我们可以验证一下，将数组的toString方法删除，看看会是什么结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.hasOwnProperty(<span class="string">"toString"</span>));<span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(arr.toString());<span class="comment">//1,2,3</span></div><div class="line"><span class="keyword">delete</span> <span class="built_in">Array</span>.prototype.toString;<span class="comment">//delete操作符删除实例属性</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.hasOwnProperty(<span class="string">"toString"</span>));<span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(arr.toString());<span class="comment">//"[object Array]"</span></div></pre></td></tr></table></figure>
+<p>删除了Array的toString方法后，同样再采用arr.toString()方法调用时，不再有屏蔽Object原型方法的实例方法，因此沿着原型链，arr最后调用了Object的toString方法，返回了和Object.prototype.toString.call(arr)相同的结果。</p>
+<hr>
+<h3 id="Object-defineProperty-方法"><a href="#Object-defineProperty-方法" class="headerlink" title="Object.defineProperty 方法"></a>Object.defineProperty 方法</h3><p>定义对象可以使用构造函数或字面量的形式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>;  <span class="comment">//obj = &#123;&#125;</span></div><div class="line">obj.name = <span class="string">"张三"</span>       <span class="comment">//添加描述</span></div><div class="line">obj.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;:<span class="comment">//添加行为</span></div></pre></td></tr></table></figure>
+<p>除了以上添加属性的方法，还可以使用Object.defineProperty定义新属性或修改原有的属性。</p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor)</div></pre></td></tr></table></figure>
+<p>参数说明：<br>    obj：必需。目标对象<br>    prop：必需。需要定义或修改属性的名字<br>    descriptor：必需。目标属性所拥有的特性<br>返回值：<br>    传入函数的对象。即第一个参数obj</p>
+<p><strong>数据描述</strong><br>当修改或定义对象的某个属性的时候，给这个属性添加一些特性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    test:<span class="string">"hello"</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//对象已有的属性添加特性描述</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"test"</span>,&#123;</div><div class="line">    configurable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    enumerable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    value:任意类型的值,</div><div class="line">    writable:<span class="literal">true</span> | <span class="literal">false</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">//对象新添加的属性的特性描述</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"newKey"</span>,&#123;</div><div class="line">    configurable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    enumerable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    value:任意类型的值,</div><div class="line">    writable:<span class="literal">true</span> | <span class="literal">false</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>数据描述中的属性都是可选的，来看一下设置每一个属性的作用。</p>
+<p><strong>value</strong><br>属性对应的值,可以使任意类型的值，默认为undefined</p>
+<p><strong>writable</strong><br>属性的值是否可以被重写。设置为true可以被重写；设置为false。不能被重写，默认值为false。</p>
+<p><strong>enumerable</strong><br>此属性的值是否可以被枚举（使用for…in或Object.keys()）。设置为true可以被枚举；设置为false，不能被枚举。默认为false。</p>
+<p><strong>configurable</strong><br>是否可以删除目标属性或者是否可以再次修改属性的特性（writable,configurable,enumerable）。设置为true可以被删除或可以重新设置特性；设置为false，属性想再改过来都不行。</p>
+<p>回到开头，第一种给对象添加属性的方法，添加的属性是可删除、可枚举、可重写的。</p>
+<p>第二种使用Object.definePropety给对象添加属性，如果不设置属性的特性，那么默认情况下，添加的属性是不可删除、不可枚举、不可重写的。<br><a href="https://segmentfault.com/a/1190000007434923" target="_blank" rel="external">具体Object.defineProperty 方法参考</a></p>
+<p><strong>自测练习5</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;&#125;</div><div class="line">a.bar = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">"foo"</span>,</div><div class="line">                      &#123; <span class="attr">value</span>: <span class="string">"hi"</span>&#125;);</div><div class="line"><span class="comment">//为a添加名为foo的属性，值为"hi",没有设置属性的特性，所以这个属性是不可枚举、修改和重写的</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> a.foo)</div><div class="line"><span class="comment">//foo属性不可以被删除，故删除失败，输出false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> a.bar)</div><div class="line"><span class="comment">//a属性是直接添加的，可以删除，输出true</span></div><div class="line"></div><div class="line">a.foo = <span class="string">"world"</span></div><div class="line"><span class="built_in">console</span>.log(a.foo)</div><div class="line"><span class="comment">//foo属性是不可重写的，值不变，还是输出"hi"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> a)&#123;</div><div class="line">  <span class="built_in">console</span>.log(key);</div><div class="line">&#125;<span class="comment">//foo属性不可枚举，bar属性又被删除了，没有可以枚举的属性了，不输出</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"foo"</span> <span class="keyword">in</span> a);</div><div class="line"><span class="comment">//foo虽然不可枚举，但是还是存在对象a之中的，输出true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"bar"</span> <span class="keyword">in</span> a);</div><div class="line"><span class="comment">//bar属性已经被删除，不在对象a之中，输出false</span></div><div class="line"><span class="comment">//请问console.log的输出？</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/自测练习之深入理解对象_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -425,6 +614,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -465,6 +676,631 @@
 <p>###无原型对象###<br>我们可以使用Object.create函数并根据特定原型来创建对象，可以传递null作为原型，并创建一个无原型对象。<br><strong>自测练习3</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> map); </div><div class="line"></div><div class="line"><span class="keyword">var</span> map = <span class="built_in">Object</span>.create(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> map); </div><div class="line"><span class="built_in">console</span>.log(<span class="string">"a"</span> <span class="keyword">in</span> map);</div><div class="line"><span class="comment">//请问输出是什么？</span></div></pre></td></tr></table></figure>
 <p>第一个map，这个对象就是一个无原型对象，map里面没有prototype原型，toString函数也就不在map里面了，输出false<br>第二个map，这个对象有原型且原型是{a:1}，要找map的属性中有没有toString，没有，再去map的原型中去找，原型是{a:1}，也没有toString，再找原型的原型，即对象{a:1}的原型，这个对象的原型默认为Object.prototype，发现是存在的，故输出true  <del>不知道解释的对不对</del>；最后一个console.log只需找一个原型就找到了，也输出true。<br>所以最后输出的结果为：<br>false<br>true<br>true</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/16/闭包/" itemprop="url">闭包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T00:00:00+08:00">
+                2017-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？</p>
+<p>下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapValue</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> localVariable = n;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> localVariable;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> wrap1 = wrapValue(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> wrap2 = wrapValue(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(wrap1);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(wrap2);</div><div class="line"><span class="comment">//2</span></div></pre></td></tr></table></figure>
+<p>这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的，</p>
+<p>我们把这种引用特定的局部变量实例的功能称为闭包。一个包装了一些局部变量的函数是一个闭包。很多高级应用可以利用闭包的特性来实现。</p>
+<p>我们可以把关键字<em>function</em> 当作一种“冻结”代码并将其打包成函数值的模型。所以当你看到“<em>return function(…){…}</em>”这样的代码时，你可以将其理解为一个句柄，其中句柄指向一段包装好的计算代码。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/13/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /" itemprop="url">动态存储分配（堆分配）的顺序串与顺序表在操作上的异同</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-13T00:00:00+08:00">
+                2017-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为
+                     s=‘a1a2...an’  (n&gt;=0)
+</code></pre><p>串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。</p>
+<hr>
+<p><strong>静态存储分配的顺序串（定长）</strong></p>
+<p> 类似于线性表的顺序存储结构，用一组地址连续的存储单元存储串值的字符序列。在串的定长顺序存储结构中，按照预定义的大小，为每个定义的串变量分配一个固定长度</p>
+<p>的存储区，则可以用定长数组如下描述。</p>
+<p>串的实际长度在这预定义长度范围内随意，超过预定义长度的串值则被舍去，称之为“截断”。</p>
+<p>在这种存储结构表示如何实现串的操作，下面以串连接和求子串为例讨论。</p>
+<p><strong>串连接</strong> Concat（&amp;T,S1,S2）<br>假设S1、S2和T都是SSstring型的串变量，且串T是由串S1联结串S2得到的，则只要进行串的复制操作即可，只是需要对超长部分实施“截断”操作。基于串S1和S2长度的不同情况，串T值的产生可能有如下3种情况：（1）S1[0]+S2[0]&lt;=MAXSRETRLEN,得到的串T是正确的结果；（2）S1[0]&lt; MAXSRETRLEN而S1[0]+S2[0]&gt;MAXSRETRLEN,则将串S2的一部分截断，得到的串T只包含S2的一个子串；（1）S1[0]=MAXSRETRLEN,得到的串T并非联接结果，而和串S1相等。</p>
+<p><strong>求子串</strong> SubString（&amp;Sub，S，pos。len）<br>求子串的过程即为复制字符序列的过程，将串S中从第pos个字符开始长度为len的字符序列复制到串Sub中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">Status <span class="title">SubString</span><span class="params">(SString &amp;Sub, SString S, <span class="keyword">int</span> pos, <span class="keyword">int</span> len)</span></span>&#123;</div><div class="line">	<span class="comment">//用Sub返回串S的第pos个字符起长度为len的子串</span></div><div class="line">	<span class="comment">//其中，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=StrLength(S)-pos+1</span></div><div class="line">	<span class="keyword">if</span>(pos&lt;<span class="number">1</span>||pos&gt;S[<span class="number">0</span>]||len&lt;<span class="number">0</span>||len&gt;[<span class="number">0</span>]-pos+<span class="number">1</span>)</div><div class="line">		<span class="keyword">return</span> ERROR;</div><div class="line">	Sub[<span class="number">1.</span>..len] = S[pos..pos+len<span class="number">-1</span>];   <span class="comment">//循环语句一个一个赋值</span></div><div class="line">	Sub[<span class="number">0</span>] = len; <span class="keyword">return</span> OK;    <span class="comment">//S串的长度置为len</span></div><div class="line">&#125;<span class="comment">//Substring</span></div></pre></td></tr></table></figure>
+<p>综上两个操作可知，在顺序存储结构中，实现串操作的原操作为“字符序列的复制”，操作时间复杂度基于字符序列的长度。串连接的特点是，如果在操作中出现串值序列的长度超过MAXSTRLEN时，约定用截尾法处理，这种情况不仅在串联接时发生，在串的其它操作中，如插入、置换等也可能发生。克服这个弊病唯有不限定串长的最大长度，即动态分配串值的存储空间。</p>
+<hr>
+<p>###动态存储分配的顺序串（堆分配存储表示）<br>由于多数情况下串的操作是以串的整体或子串的形式参与，则在应用程序中，参与运算的串变量之间的长度相差较大，因此为串变量设定固定大小空间的数组不尽合理，需要根据具体情况来决定串空间的大小。</p>
+<p>动态存储分配的顺序串完全可以用动态存储分配的顺序表SqList来表示，这样的顺序表的有关操作都可以用来处理顺序串的相关操作，如初始化、求串长等。利用malloc()函数为每个新产生的串分配一块实际串所需的存储空间，若分配成功，则返回一个指向起始地址的指针，作为串的地址。这样，当进行串的插入、连接等操作时，再根据实际需要的增补空间，以满足插入和连接等操作的需要。所以在描述动态顺序串时，当前数组的容量和增补空间不再作为结构的一部分，其结构的描述如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	<span class="keyword">char</span> *str;   <span class="comment">//存放空串的首地址</span></div><div class="line">	<span class="keyword">int</span> length;  <span class="comment">//存放串的当前长度</span></div><div class="line">&#125;DSqString       <span class="comment">//动态顺序串类型</span></div></pre></td></tr></table></figure>
+<p>由于动态存储分配的顺序串既具有顺序存储结构的优点（随机存取，操作简单），同时串值空间的大小是在程序执行时动态分配而得，这对串的插入、连接、置换等操作非常有利，因此在串处理的应用程序中也常被选用。</p>
+<p>这种存储结构表示的串操作仍是基于“字符序列的复制”进行的。<br>1.<strong>串赋值操作</strong><br>串赋值操作就是把一个字符串常量赋值给顺序串S。成功赋值返回true，否则返回false。其主要操作是：①判断顺序串是否非空，若是，则释放其空间（尽管这样做也不影响操作的执行结果，但适时地进行空闲空间回收是一个好的编程习惯）；②求串常量的长度，若等于0，就将顺序串S置空，否则，以此长度为标准为顺序串S申请空间；③把串常量chars的值复制到串S中去，同时顺序串S的长度被赋值为串常量的长度。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">StrAssign_Sq</span><span class="params">(DSqString &amp;S, <span class="keyword">char</span> *chars)</span></span>&#123;</div><div class="line">	<span class="comment">//将字符串chars赋值给顺序串S</span></div><div class="line">	<span class="keyword">int</span> i,j;</div><div class="line">	<span class="keyword">char</span> *c;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>,c=chars;*c;i++,c++);  <span class="comment">//求chars的长度</span></div><div class="line">	<span class="keyword">if</span>(!i)&#123;S.str=<span class="literal">NULL</span>;S.length=<span class="number">0</span>;&#125;  <span class="comment">//S置为空串</span></div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">if</span>(!(S.str=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(i*<span class="keyword">sizeof</span>(<span class="keyword">char</span>))))  <span class="comment">//给串S申请空间</span></div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;i;j++)</div><div class="line">			S.str[j]=chars[j];   <span class="comment">//将数组中的字符赋值到串S中</span></div><div class="line">		S。length=i;    <span class="comment">//串长置为i</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;<span class="comment">//StrAssign_Sq</span></div></pre></td></tr></table></figure>
+<p>又例如串复制操作StrCopy_Sq(&amp;T, S)的算法实现是，若串T已存在，则先释放T所占的空间，当S不空时，首先为T分配大小和S长度相等的存储空间，然后将串S复制到串T中；又如串插入操作（连接）操作StrConcat_Sq(&amp;S,T),首先判断T的长度是否为非0，若是，则为S分配长度为T.length的增补空间，然后将T中的所有字符复制在S的后面。</p>
+<hr>
+<p>关于动态顺序串的主要操作与在顺序表中进行的相关操作的算法思想基本上是一致的，不同之处在于：<br>①因为动态顺序串的存储空间分配是以串的实际长度为标准的，所以在有些操作（如插入、连接等）中首先需要根据实际情况增补存储空间；<br>②在顺序串的操作中经常是针对串的整体（如串赋值）或串的一部分子串而进行的，这样的操作相对于顺序表要复杂一些。以串插入操作为例，首先需要增补存储空间以便能够存放插入后的串，其次是要把从插入位置pos到串末尾的每一个字符串向后移动T.length个位置（而不是顺序表的一个位置），最后再把子串中的每一个字符（而不是顺序表的一个字符）复制到主串的相应位置。所以他的时间开销相比顺序表的插入要多一些，其它操作类似。</p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/顺序栈的基本操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/顺序栈的基本操作/" itemprop="url">顺序栈的基本操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-12T00:00:00+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。</p>
+<hr>
+<p>（1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT)&#123;</div><div class="line">	S.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   </div><div class="line">	                                //顺序栈的初始分配最大空间</div><div class="line">	if(!S.stack)  exit(1);          //存储控件分配失败</div><div class="line">	S.top = -1;                     //置栈空</div><div class="line">	S.stacksize = maSxsize;         //顺序栈的当前容量</div><div class="line">	S.incrementsize = incresize;    //增补空间</div><div class="line">&#125;//InitStack_Sq</div></pre></td></tr></table></figure>
+<p>(2)求顺序栈的长度操作。统计顺序栈S中数据元素的个数，并返回统计结果。其主要操作是：返回顺序栈中栈顶指针的上一个位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int StackLength_Sq(SqStack S)&#123;</div><div class="line">	return S.top+1;</div><div class="line">&#125;//StackLength_Sq</div></pre></td></tr></table></figure>
+<p>(3)进栈操作。将一个新元素插入到顺序栈S的栈顶的上一个位置，作为新的栈顶元素。其主要操作是：先判断顺序栈是否已满，若已满，则重新分配空间，然后将栈顶指针加1，再将进栈元素插入到栈顶处。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">bool Push_Sq(SqStack &amp;S, ElemType e)&#123;</div><div class="line">//在顺序栈的栈顶插入元素e</div><div class="line">if(S.top==S.stacksize-1)&#123;</div><div class="line">	S.stack=(ElemType *)realloc(S.stack,(S.stacksize+incrementsize)*sizeof(ElemType));</div><div class="line">	//栈满，给顺序栈增补空间</div><div class="line">	if(!S.stack)    return false;</div><div class="line">	//存储分配空间失败</div><div class="line">	S.stacksize+=S.incrementsize;</div><div class="line">&#125;</div><div class="line">S.stack[++top]=e;</div><div class="line">	//栈顶指针上移，元素e进栈</div><div class="line">return true;</div><div class="line">&#125;//Push_Sq</div></pre></td></tr></table></figure>
+<p>(4)出栈操作。将元素S的栈顶元素删除。其主要操作是：先判断栈顶指针书否为空，若非空，则将栈顶元素取出，然后将栈顶指针减1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool Pop_Sq(SqStack &amp;S, ElemType &amp;e)&#123;</div><div class="line">//删除顺序栈栈顶元素，并让e返回其值</div><div class="line">if(S.top==-1) return false;</div><div class="line">e = S.stack[S.top--];</div><div class="line">	return false;</div><div class="line">&#125;//Pop_Sq</div></pre></td></tr></table></figure>
+<p>(5)取栈顶操作。取出顺序栈S的栈顶元素的值。其主要操作是：先判断顺序栈是否为空，若非空，则将栈顶元素取出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool 	GetTop_Sq(SqStack S,ElemType e)&#123;</div><div class="line">//取顺序栈顶元素，并让e返回其值</div><div class="line">if(S.top==-1) return false;</div><div class="line">e=S.stack[S.top];</div><div class="line">return true;</div><div class="line">&#125;//GetTop_Sq</div></pre></td></tr></table></figure>
+<p>(6)判断栈空操作。判断顺序栈S是否为空。若S为空则返回true，否则返回false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool StackEmpty_Sq(SqStack S)&#123;</div><div class="line">if(S.top==-1)  return true;</div><div class="line">return false;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">(7)撤销顺序栈操作。释放顺序栈S所占用的存储空间。</div></pre></td></tr></table></figure>
+<p>void DestroyStack_Sq(SqStack &amp;S){<br>    free(S.stack);<br>    S.stacksize = 0;<br>    S.top = -1;<br>}//DestroyStack_Sq</p>
+<h2 id=""><a href="#" class="headerlink" title="```"></a>```</h2><p><strong>总结</strong></p>
+<p><em>对于顺序栈S的相关操作，归纳起来主要有以下4个要素。</em></p>
+<ul>
+<li>栈空条件：S.top == -1</li>
+<li>栈满操作：S.top == S.stacksize-1</li>
+<li>进栈操作：S.top++;  元素进栈</li>
+<li>出栈操作：元素退栈，S.top–</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/顺序栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/顺序栈/" itemprop="url">堆栈的顺序存储---顺序栈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T00:00:00+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>  堆栈的顺序存储结构简称顺序栈，它是利用一组地址连续的存储单元依次存放自栈底到栈顶之间的元素。<br>  顺序栈本质是顺序表的简化，唯一需要确定的是用顺序表的那一段表示栈底。通常把顺序表的表头（数组中下标为0）的一端作为栈底，同时附设指针top指示的栈顶元素在顺序表中的位置，top也被成为<strong>栈顶指针</strong>。<br>  由于顺序表都是在栈顶的位置进行相关操作，因而栈顶指针top的当前位置是非常重要的。在对顺序表进行初始化时，栈顶指针top的初值习惯置为0，表示空栈（不含数据元素的栈），但因为C/C++中，数组的下标从0开始，因此top值为0时表示空栈，则意味着栈顶指针指向的是实际上的栈顶元素的上一个位置。因而，对用C/C++描述的顺序栈一般<strong>以top=-1表示空栈</strong>，这样，进栈操作时，先使top增1，用以表示新的栈顶位置，然后再把元素插入到top所指示的位置上；而出栈时则是先去除栈顶元素，再使top减1，top指针只想新的元素。这样的操作的结果就是栈顶指针指向真正的栈顶元素。<br>        <strong><em>当然，用top=0和top=-1表示空栈，都是可以的，只要实际的操作与此配套就行</em></strong><br>        <strong>注意：*</strong>在顺序栈中，top起到指示栈顶元素的作用，他的值可以表示数组的下标，因此，top是一个相对指针*</p>
+<p>  在对顺序栈进行操作时可能发生两种溢出，一种称为“上溢”（overflow），另一种成为“下溢”（underflow），设存储栈元素的数组长度为stacksize，则<br>  （1）当top&gt;=stacksize-1时，表示系统作为栈用的存储控件已满。如果还有元素要求进栈，则栈溢出，即上溢，这时需要进行栈满处理。如果是用静态顺序存储结构表示顺序栈，一旦发生上溢，程序将终止运行。并向用户告知栈满信息；而如果采用动态顺序存储结构表示顺序栈，一旦发生上溢，可向系统重新申请空间以满足插入要求。<br>  （2）当top=-1时，表示系统作为栈用的存储区已空，栈中无任何元素。这时若还要做出栈运算，则发生下溢。通常用栈空来作为控制转移的条件俺，表明数据已处理完毕。<br>  一般来说，在对顺序栈进行插入元素之前，要判断栈是否“栈满”，而对顺序栈进行删除元素之前，要判断栈是否“栈空”。</p>
+<pre><code>顺序栈的结构描述：
+用C/C++描述顺序栈时，可以用顺序表的结构描述，只不过在顺序栈中，习惯用标识符top表示栈顶，而不用标识符length。
+</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INIT_SIZE 100  <span class="comment">//顺序栈（默认的）的初始分配最大容量</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STACKINCREMENT		<span class="comment">//（默认的）增补控件	</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	ElemType *<span class="built_in">stack</span>;				<span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> top;                 <span class="comment">//栈顶指针</span></div><div class="line">	<span class="keyword">int</span> stacksize;           <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqStack;<span class="comment">//顺序栈</span></div></pre></td></tr></table></figure>
+<p>这里对比一下顺序表的结构描述</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>	</div><div class="line">	ElemType *elem;        <span class="comment">//存储数据元素的一维数组</span></div><div class="line">	<span class="keyword">int</span> length;            <span class="comment">//线性表的当前长度</span></div><div class="line">	<span class="keyword">int</span> listsize;          <span class="comment">//当前分配的数组容量</span></div><div class="line">	<span class="keyword">int</span> incrementsize;       <span class="comment">//增补空间量（以ElemType为单位）</span></div><div class="line">&#125;SqList;<span class="comment">//顺序表的动态分配</span></div></pre></td></tr></table></figure>
+<p><em>两个结构的描述经过对比，区别一清二楚</em></p>
 
           
         
@@ -546,22 +1382,31 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">4</span>
+                <a href="/tags/tags.html">
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">Tags</span>
-                
+                </a>
               </div>
             
 
