@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="###构造函数和对象原型###有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。 自测练习112345678910111213var a = function()&amp;#123;&amp;#125;a.b = 1a.prototype.b = 2a.prototy">
+<meta name="description" content="构造函数和对象原型有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。 自测练习112345678910111213var a = function()&amp;#123;&amp;#125;a.b = 1a.prototype.b = 2a.prototype.c =">
 <meta name="keywords" content="JavaScript,对象">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自测练习之深入理解对象(1)">
 <meta property="og:url" content="http://yoursite.com/2017/10/18/自测练习之深入理解对象_1/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="###构造函数和对象原型###有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。 自测练习112345678910111213var a = function()&amp;#123;&amp;#125;a.b = 1a.prototype.b = 2a.prototy">
+<meta property="og:description" content="构造函数和对象原型有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。 自测练习112345678910111213var a = function()&amp;#123;&amp;#125;a.b = 1a.prototype.b = 2a.prototype.c =">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.blog.csdn.net/20171018225014023?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-10-23T13:28:04.000Z">
+<meta property="og:updated_time" content="2017-10-26T15:18:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自测练习之深入理解对象(1)">
-<meta name="twitter:description" content="###构造函数和对象原型###有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。 自测练习112345678910111213var a = function()&amp;#123;&amp;#125;a.b = 1a.prototype.b = 2a.prototy">
+<meta name="twitter:description" content="构造函数和对象原型有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。 自测练习112345678910111213var a = function()&amp;#123;&amp;#125;a.b = 1a.prototype.b = 2a.prototype.c =">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20171018225014023?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -188,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -198,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -262,7 +262,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T00:00:00+08:00">
                 2017-10-18
@@ -283,7 +283,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -325,14 +325,14 @@
 
       
         <hr>
-<p>###构造函数和对象原型###<br>有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。</p>
+<h3 id="构造函数和对象原型"><a href="#构造函数和对象原型" class="headerlink" title="构造函数和对象原型"></a>构造函数和对象原型</h3><p>有一种创建对象的方法，我们可以直接从一些公有原型中派生并构造对象，即用构造函数来创建对象。在js中，调用函数之前添加一个关键字new则表示调用其构造函数。构造函数中包含了指向新对象的变量this。</p>
 <p><strong>自测练习1</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">a.b = <span class="number">1</span></div><div class="line">a.prototype.b = <span class="number">2</span></div><div class="line">a.prototype.c = <span class="number">3</span></div><div class="line">a.prototype.d = <span class="number">4</span></div><div class="line"><span class="built_in">console</span>.log(a.b) </div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> a().b)</div><div class="line"></div><div class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> a()</div><div class="line">foo.c = <span class="number">5</span></div><div class="line"><span class="built_in">console</span>.log(foo.c) </div><div class="line"><span class="built_in">console</span>.log(foo.d)</div><div class="line"><span class="comment">//请问输出的是什么？</span></div></pre></td></tr></table></figure></p>
 <p>对构造函数来说，都会自动获得一个名为prototype的属性。默认情况下，该属性是一个普通的派生自Object.prototype的空对象。所有使用特定构造函数创建的对象都会将构造函数的prototype属性作为其原型。<br><img src="http://img.blog.csdn.net/20171018225014023?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="练习1分析"><br>所以最后输出结果是：<br>1<br>2<br>5<br>4</p>
 <p><strong>自测练习2</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.a = <span class="number">1</span></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    a:<span class="number">2</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> Foo()</div><div class="line"><span class="built_in">console</span>.log(bar.a)</div><div class="line"><span class="comment">//请问输出是什么？</span></div></pre></td></tr></table></figure>
 <p>构造函数包含了指向新对象的变量this， <strong>除非构造函数显式地返回了另一个对象的值，否则构造函数会返回这个新创建的对象。</strong><br>定义了Foo这个构造函数，这个构造函数很明显是返回的是另一个对象{a:2},不需要this来指向新创建的对象 <del>不知道是不是这样理解？</del><br>所以新创建的bar即为构造函数内部返回的对象{a:2}，输出的结果是2。</p>
 <hr>
-<p>###无原型对象###<br>我们可以使用Object.create函数并根据特定原型来创建对象，可以传递null作为原型，并创建一个无原型对象。<br><strong>自测练习3</strong></p>
+<h3 id="无原型对象"><a href="#无原型对象" class="headerlink" title="无原型对象"></a>无原型对象</h3><p>我们可以使用Object.create函数并根据特定原型来创建对象，可以传递null作为原型，并创建一个无原型对象。<br><strong>自测练习3</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> map); </div><div class="line"></div><div class="line"><span class="keyword">var</span> map = <span class="built_in">Object</span>.create(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> map); </div><div class="line"><span class="built_in">console</span>.log(<span class="string">"a"</span> <span class="keyword">in</span> map);</div><div class="line"><span class="comment">//请问输出是什么？</span></div></pre></td></tr></table></figure>
 <p>第一个map，这个对象就是一个无原型对象，map里面没有prototype原型，toString函数也就不在map里面了，输出false<br>第二个map，这个对象有原型且原型是{a:1}，要找map的属性中有没有toString，没有，再去map的原型中去找，原型是{a:1}，也没有toString，再找原型的原型，即对象{a:1}的原型，这个对象的原型默认为Object.prototype，发现是存在的，故输出true  <del>不知道解释的对不对</del>；最后一个console.log只需找一个原型就找到了，也输出true。<br>所以最后输出的结果为：<br>false<br>true<br>true</p>
 
@@ -431,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,7 +457,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -457,10 +466,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">Kategorien</span>
-                
+                  <span class="site-state-item-name">categories</span>
+                </a>
               </div>
             
 
@@ -470,7 +479,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/tags.html">
                   <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -495,6 +504,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数和对象原型"><span class="nav-number">1.</span> <span class="nav-text">构造函数和对象原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无原型对象"><span class="nav-number">2.</span> <span class="nav-text">无原型对象</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -518,7 +543,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
