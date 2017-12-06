@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-11T08:20:38.000Z">
+<meta property="og:updated_time" content="2017-10-29T10:33:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zendq&#39;s blog">
 <meta name="twitter:description" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静">
@@ -306,11 +306,7 @@
 <p><strong>静态存储分配的顺序串（定长）</strong></p>
 <p> 类似于线性表的顺序存储结构，用一组地址连续的存储单元存储串值的字符序列。在串的定长顺序存储结构中，按照预定义的大小，为每个定义的串变量分配一个固定长度</p>
 <p>的存储区，则可以用定长数组如下描述。</p>
-<p>串的实际长度在这预定义长度范围内随意，超过预定义长度的串值则被舍去，称之为“截断”。</p>
-<p>在这种存储结构表示如何实现串的操作，下面以串连接和求子串为例讨论。</p>
-<p><strong>串连接</strong> Concat（&amp;T,S1,S2）<br>假设S1、S2和T都是SSstring型的串变量，且串T是由串S1联结串S2得到的，则只要进行串的复制操作即可，只是需要对超长部分实施“截断”操作。基于串S1和S2长度的不同情况，串T值的产生可能有如下3种情况：（1）S1[0]+S2[0]&lt;=MAXSRETRLEN,得到的串T是正确的结果；（2）S1[0]&lt; MAXSRETRLEN而S1[0]+S2[0]&gt;MAXSRETRLEN,则将串S2的一部分截断，得到的串T只包含S2的一个子串；（1）S1[0]=MAXSRETRLEN,得到的串T并非联接结果，而和串S1相等。</p>
-<p><strong>求子串</strong> SubString（&amp;Sub，S，pos。len）<br>求子串的过程即为复制字符序列的过程，将串S中从第pos个字符开始长度为len的字符序列复制到串Sub中。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">Status <span class="title">SubString</span><span class="params">(SString &amp;Sub, SString S, <span class="keyword">int</span> pos, <span class="keyword">int</span> len)</span></span>&#123;</div><div class="line">	<span class="comment">//用Sub返回串S的第pos个字符起长度为len的子串</span></div><div class="line">	<span class="comment">//其中，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=StrLength(S)-pos+1</span></div><div class="line">	<span class="keyword">if</span>(pos&lt;<span class="number">1</span>||pos&gt;S[<span class="number">0</span>]||len&lt;<span class="number">0</span>||len&gt;[<span class="number">0</span>]-pos+<span class="number">1</span>)</div><div class="line">		<span class="keyword">return</span> ERROR;</div><div class="line">	Sub[<span class="number">1.</span>..len] = S[pos..pos+len<span class="number">-1</span>];   <span class="comment">//循环语句一个一个赋值</span></div><div class="line">	Sub[<span class="number">0</span>] = len; <span class="keyword">return</span> OK;    <span class="comment">//S串的长度置为len</span></div><div class="line">&#125;<span class="comment">//Substring</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line"></div><div class="line">串的实际长度在这预定义长度范围内随意，超过预定义长度的串值则被舍去，称之为“截断”。</div><div class="line"></div><div class="line">在这种存储结构表示如何实现串的操作，下面以串连接和求子串为例讨论。</div><div class="line"></div><div class="line">**串连接** Concat（&amp;T,S1,S2）</div><div class="line">假设S1、S2和T都是SSstring型的串变量，且串T是由串S1联结串S2得到的，则只要进行串的复制操作即可，只是需要对超长部分实施“截断”操作。基于串S1和S2长度的不同情况，串T值的产生可能有如下<span class="number">3</span>种情况：（<span class="number">1</span>）S1[<span class="number">0</span>]+S2[<span class="number">0</span>]&lt;=MAXSRETRLEN,得到的串T是正确的结果；（<span class="number">2</span>）S1[<span class="number">0</span>]&lt; MAXSRETRLEN而S1[<span class="number">0</span>]+S2[<span class="number">0</span>]&gt;MAXSRETRLEN,则将串S2的一部分截断，得到的串T只包含S2的一个子串；（<span class="number">1</span>）S1[<span class="number">0</span>]=MAXSRETRLEN,得到的串T并非联接结果，而和串S1相等。</div><div class="line"></div><div class="line">**求子串** SubString（&amp;Sub，S，pos。len）</div><div class="line">求子串的过程即为复制字符序列的过程，将串S中从第pos个字符开始长度为len的字符序列复制到串Sub中。</div><div class="line"></div><div class="line">``` C</div><div class="line">Status SubString(SString &amp;Sub, SString S, <span class="keyword">int</span> pos, <span class="keyword">int</span> len)&#123;</div><div class="line">	<span class="comment">//用Sub返回串S的第pos个字符起长度为len的子串</span></div><div class="line">	<span class="comment">//其中，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=StrLength(S)-pos+1</span></div><div class="line">	<span class="keyword">if</span>(pos&lt;<span class="number">1</span>||pos&gt;S[<span class="number">0</span>]||len&lt;<span class="number">0</span>||len&gt;[<span class="number">0</span>]-pos+<span class="number">1</span>)</div><div class="line">		<span class="keyword">return</span> ERROR;</div><div class="line">	Sub[<span class="number">1.</span>..len] = S[pos..pos+len<span class="number">-1</span>];   <span class="comment">//循环语句一个一个赋值</span></div><div class="line">	Sub[<span class="number">0</span>] = len; <span class="keyword">return</span> OK;    <span class="comment">//S串的长度置为len</span></div><div class="line">&#125;<span class="comment">//Substring</span></div></pre></td></tr></table></figure>
 <p>综上两个操作可知，在顺序存储结构中，实现串操作的原操作为“字符序列的复制”，操作时间复杂度基于字符序列的长度。串连接的特点是，如果在操作中出现串值序列的长度超过MAXSTRLEN时，约定用截尾法处理，这种情况不仅在串联接时发生，在串的其它操作中，如插入、置换等也可能发生。克服这个弊病唯有不限定串长的最大长度，即动态分配串值的存储空间。</p>
 <hr>
 <p>###动态存储分配的顺序串（堆分配存储表示）<br>由于多数情况下串的操作是以串的整体或子串的形式参与，则在应用程序中，参与运算的串变量之间的长度相差较大，因此为串变量设定固定大小空间的数组不尽合理，需要根据具体情况来决定串空间的大小。</p>
@@ -347,8 +343,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/10/顺序栈/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/10/10/顺序栈/" rel="next" title="堆栈的顺序存储---顺序栈">
+                <i class="fa fa-chevron-left"></i> 堆栈的顺序存储---顺序栈
               </a>
             
           </div>
@@ -357,8 +353,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/18/自测练习之深入理解对象_1/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/12/顺序栈的基本操作/" rel="prev" title="顺序栈的基本操作">
+                顺序栈的基本操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -436,14 +432,32 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/tags.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">Tags</span>
+                </a>
+              </div>
             
 
           </nav>

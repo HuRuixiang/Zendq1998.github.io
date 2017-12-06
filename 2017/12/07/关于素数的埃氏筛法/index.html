@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#埃拉托斯特尼筛法简称埃氏筛，是一种简单且年代久远的筛法，用来找出一定范围内所有的素数。 所使用的原理是从2开始，将每个素数的各个倍数，标记成合数。一个素数的各个倍数，是一个差为此素数本身的等差数列。此为这个筛法和试除法不同的关键之处，后者是以素数来测试每个待测数能否被整除。  算式给出要筛数值的范围n，找出 {\displaystyle {\sqrt {n}}} \sqrt{n}以内的素数 {\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zendq&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2017/12/07/关于素数的埃氏筛法/index.html">
+<meta property="og:site_name" content="Zendq&#39;s blog">
+<meta property="og:description" content="#埃拉托斯特尼筛法简称埃氏筛，是一种简单且年代久远的筛法，用来找出一定范围内所有的素数。 所使用的原理是从2开始，将每个素数的各个倍数，标记成合数。一个素数的各个倍数，是一个差为此素数本身的等差数列。此为这个筛法和试除法不同的关键之处，后者是以素数来测试每个待测数能否被整除。  算式给出要筛数值的范围n，找出 {\displaystyle {\sqrt {n}}} \sqrt{n}以内的素数 {\">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.blog.csdn.net/20171206235256630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-12-06T16:25:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zendq&#39;s blog">
+<meta name="twitter:description" content="#埃拉托斯特尼筛法简称埃氏筛，是一种简单且年代久远的筛法，用来找出一定范围内所有的素数。 所使用的原理是从2开始，将每个素数的各个倍数，标记成合数。一个素数的各个倍数，是一个差为此素数本身的等差数列。此为这个筛法和试除法不同的关键之处，后者是以素数来测试每个待测数能否被整除。  算式给出要筛数值的范围n，找出 {\displaystyle {\sqrt {n}}} \sqrt{n}以内的素数 {\">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171206235256630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/07/关于素数的埃氏筛法/"/>
+
+
+
+
+
+  <title> | Zendq's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zendq's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">stay hungry, stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/关于素数的埃氏筛法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T00:25:24+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#埃拉托斯特尼筛法<br>简称埃氏筛，是一种简单且年代久远的筛法，用来找出一定范围内所有的素数。</p>
+<p>所使用的原理是从2开始，将每个素数的各个倍数，标记成合数。一个素数的各个倍数，是一个差为此素数本身的等差数列。此为这个筛法和试除法不同的关键之处，后者是以素数来测试每个待测数能否被整除。</p>
+<hr>
+<h2 id="算式"><a href="#算式" class="headerlink" title="算式"></a>算式</h2><p>给出要筛数值的范围n，找出 {\displaystyle {\sqrt {n}}} \sqrt{n}以内的素数 {\displaystyle p<em>{1},p</em>{2},\dots ,p<em>{k}} p</em>1,p<em>2,\dots ,p</em>。先用2去筛，即把2留下，把2的倍数剔除掉；再用下一个素数，也就是3筛，把3留下，把3的倍数剔除掉；接下去用下一个素数5筛，把5留下，把5的倍数剔除掉；不断重复下去……。</p>
+<hr>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>找出25以内的所有素数，详细列出算法如下：</p>
+<ol>
+<li><p>列出2以后的所有序列：<br><em>2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</em> </p>
+</li>
+<li><p>标出序列中的第一个质数，也就是2，序列变成：<br><strong>2</strong> <em>3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</em></p>
+</li>
+<li><p>将剩下序列中，划摽2的倍数（粗体），序列变成：<br>2 3 <strong>4</strong> 5 <strong>6</strong> 7 <strong>8</strong> 9 <strong>10</strong> 11 <strong>12</strong> 13 <strong>14</strong> 15 <strong>16</strong> 17 <strong>18</strong> 19 <strong>20</strong> 21 <strong>22</strong> 23 <strong>24</strong> 25</p>
+<pre><code>如果现在这个序列中最大数小于最后一个标出的素数的平方，那么剩下的序列中所有的数都是质数，否则回到第二步。
+</code></pre></li>
+</ol>
+<ol>
+<li>本例中，因为25大于2的平方，我们返回第二步： 剩下的序列中第一个质数是3，将主序列中3的倍数划出，主序列变成：<br>2 3 <strong>4</strong> 5 <strong>6</strong> 7 <strong>8</strong> <strong>9</strong> <strong>10</strong> 11 <strong>12</strong> 13 <strong>14</strong> <strong>15</strong> <strong>16</strong> 17 <strong>18</strong> 19 <strong>20</strong> <strong>21</strong> <strong>22</strong> 23 <strong>24</strong> 25<br>我们得到的质数有：2，3</li>
+</ol>
+<ol>
+<li><p>25仍然大于3的平方，所以我们还要返回第二步： 现在序列中第一个质数是5，同样将序列中5的倍数划出，主序列成了：<br>2 3 <strong>4</strong> 5 <strong>6</strong> 7 <strong>8</strong> <strong>9</strong> <strong>10</strong> 11 <strong>12</strong> 13 <strong>14</strong> <strong>15</strong> <strong>16</strong> 17 <strong>18</strong> 19 <strong>20</strong> <strong>21</strong> <strong>22</strong> 23 <strong>24</strong> <strong>25</strong><br>我们得到的质数有：2 3 5 。</p>
+</li>
+<li><p>因为25等于5的平方，跳出循环. 结论：去掉划出的数字，2到25之间的质数是：2 3 5 7 11 13 17 19 23。</p>
+</li>
+</ol>
+<hr>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://img.blog.csdn.net/20171206235256630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="c-代码"><a href="#c-代码" class="headerlink" title="c++代码"></a>c++代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;//std::remove_if</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;//std::iota</span></span></div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; eratosthenes(<span class="keyword">int</span> max)&#123;</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(max+<span class="number">1</span>);<span class="comment">//0, 1, 2, ..., max</span></div><div class="line">  <span class="built_in">std</span>::iota(vi.begin(), vi.end(), <span class="number">0</span>);</div><div class="line">  <span class="keyword">if</span>(max&gt;=<span class="number">2</span>)&#123;</div><div class="line">    <span class="keyword">int</span> prime=<span class="number">2</span>;</div><div class="line">    <span class="keyword">while</span>(prime*prime&lt;=max)&#123;<span class="comment">//2 to sqrt(max)</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">size_t</span> index=prime*<span class="number">2</span>; index&lt;vi.size(); index+=prime)&#123;</div><div class="line">        vi[index]=<span class="number">0</span>;<span class="comment">//Rule out this number.</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">for</span>(prime++; prime*prime&lt;=max; prime++)&#123;</div><div class="line">        <span class="keyword">if</span>(vi[prime]&gt;<span class="number">0</span>)&#123;</div><div class="line">          <span class="keyword">break</span>;<span class="comment">//Jump to next non-zero.</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  vi.erase(<span class="built_in">std</span>::remove_if(vi.begin(), vi.end(), [](<span class="keyword">int</span> i)-&gt;<span class="keyword">bool</span>&#123;</div><div class="line">    <span class="keyword">return</span> i&lt;=<span class="number">1</span>;</div><div class="line">  &#125;), vi.end());<span class="comment">//Remove all zeros and the one.</span></div><div class="line">  <span class="keyword">return</span> vi;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上是来自<a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="external">维基百科的说法</a>。</p>
+<p>其实就是直接构造一个整型的数组，经过埃氏筛之后把合数置为0，对于一般占4个字节的int来说，每一个数不管素数还是合数都要占据4个字节的空间，但其实我是不需要合数的，当n很大的时候空间开销就会特别大。</p>
+<p>另一种方法就是筛的时候遇到合数就将它删掉，这样最后数组内只剩下素数，看起来不错可以减少空间的开销，但是频繁地对一个大的容器进行删除操作可能会导致频繁的内存分配和释放，而频繁的内存分配/释放，会导致明显的 CPU 占用并可能造成内存碎片。</p>
+<p><strong>优化</strong><br>按布尔（bool）存储的思路。<br>构造一个定长的布尔型容器（通常用数组）。比方说，质数的分布范围是1,000,000，那么就构造一个包含1,000,000个布尔值的数组。然后把所有元素都初始化为 true。在筛的过程中，一旦发现某个自然数是合数，就以该自然数为下标，把对应的布尔值改为 false。<br>全部筛完之后，遍历数组，找到那些值为 true 的元素，把他们的下标打印出来即可。此种境界的好处在于：其一，由于容器是定长的，运算过程中避免了频繁的内存分配/释放；其二，在某些语言中，布尔型占用的空间比整型要小。比如 C++ 的 bool 仅用1字节<br>　　注：C++ 标准（ISO/IEC 14882）【没有】硬性规定 sizeof(bool)==1，但大多数编译器都实现为单字节。</p>
+<p><strong>继续优化</strong><br>按位（bit）存储的思路。<br>以 C++ 为例。一个 bool 占用1字节内存。而1个字节有8个比特，每个比特可以表示0或1。所以，当你使用按位存储的方式，一个字节可以拿来当8个布尔型使用。所以，达到此境界的程序猿，会构造一个定长的 byte 数组，数组的每个 byte 存储8个布尔值。空间性能相比境界2，提高8倍（对于 C++ 而言）。如果某种语言使用4字节表示布尔型，那么境界3比境界2，空间利用率提高32倍。</p>
+<p>当然，楼上的方法并不一定是最优的方法。欢迎各位挑刺。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/23/数据依赖/" rel="next" title="数据依赖之函数依赖和多值依赖">
+                <i class="fa fa-chevron-left"></i> 数据依赖之函数依赖和多值依赖
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zendeqin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/tags.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">Tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算式"><span class="nav-number">1.</span> <span class="nav-text">算式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图解"><span class="nav-number">3.</span> <span class="nav-text">图解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-代码"><span class="nav-number">4.</span> <span class="nav-text">c++代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zendeqin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
