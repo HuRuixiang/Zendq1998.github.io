@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/关于素数的埃氏筛法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/26/关于素数的埃氏筛法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zendeqin">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/07/关于素数的埃氏筛法/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2017/11/26/关于素数的埃氏筛法/" itemprop="url">埃拉托斯特尼筛法</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T00:25:24+08:00">
-                2017-12-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-26T00:00:00+08:00">
+                2017-11-26
               </time>
             
 
@@ -270,6 +270,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -300,7 +322,7 @@
       
         
           
-            <p>#埃拉托斯特尼筛法<br>简称埃氏筛，是一种简单且年代久远的筛法，用来找出一定范围内所有的素数。</p>
+            <p>简称埃氏筛，是一种简单且年代久远的筛法，用来找出一定范围内所有的素数。</p>
 <p>所使用的原理是从2开始，将每个素数的各个倍数，标记成合数。一个素数的各个倍数，是一个差为此素数本身的等差数列。此为这个筛法和试除法不同的关键之处，后者是以素数来测试每个待测数能否被整除。</p>
 <hr>
 <h2 id="算式"><a href="#算式" class="headerlink" title="算式"></a>算式</h2><p>给出要筛数值的范围n，找出 {\displaystyle {\sqrt {n}}} \sqrt{n}以内的素数 {\displaystyle p<em>{1},p</em>{2},\dots ,p<em>{k}} p</em>1,p<em>2,\dots ,p</em>。先用2去筛，即把2留下，把2的倍数剔除掉；再用下一个素数，也就是3筛，把3留下，把3的倍数剔除掉；接下去用下一个素数5筛，把5留下，把5的倍数剔除掉；不断重复下去……。</p>
@@ -311,9 +333,8 @@
 </li>
 <li><p>标出序列中的第一个质数，也就是2，序列变成：<br><strong>2</strong> <em>3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</em></p>
 </li>
-<li><p>将剩下序列中，划摽2的倍数（粗体），序列变成：<br>2 3 <strong>4</strong> 5 <strong>6</strong> 7 <strong>8</strong> 9 <strong>10</strong> 11 <strong>12</strong> 13 <strong>14</strong> 15 <strong>16</strong> 17 <strong>18</strong> 19 <strong>20</strong> 21 <strong>22</strong> 23 <strong>24</strong> 25</p>
-<pre><code>如果现在这个序列中最大数小于最后一个标出的素数的平方，那么剩下的序列中所有的数都是质数，否则回到第二步。
-</code></pre></li>
+<li><p>将剩下序列中，划摽2的倍数（粗体），序列变成：<br>2 3 <strong>4</strong> 5 <strong>6</strong> 7 <strong>8</strong> 9 <strong>10</strong> 11 <strong>12</strong> 13 <strong>14</strong> 15 <strong>16</strong> 17 <strong>18</strong> 19 <strong>20</strong> 21 <strong>22</strong> 23 <strong>24</strong> 25<br>如果现在这个序列中最大数小于最后一个标出的素数的平方，那么剩下的序列中所有的数都是质数，否则回到第二步。</p>
+</li>
 </ol>
 <ol>
 <li>本例中，因为25大于2的平方，我们返回第二步： 剩下的序列中第一个质数是3，将主序列中3的倍数划出，主序列变成：<br>2 3 <strong>4</strong> 5 <strong>6</strong> 7 <strong>8</strong> <strong>9</strong> <strong>10</strong> 11 <strong>12</strong> 13 <strong>14</strong> <strong>15</strong> <strong>16</strong> 17 <strong>18</strong> 19 <strong>20</strong> <strong>21</strong> <strong>22</strong> 23 <strong>24</strong> 25<br>我们得到的质数有：2，3</li>
@@ -1519,7 +1540,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">Kategorien</span>
                 </a>
               </div>
@@ -1530,7 +1551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/tags.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">Tags</span>
                 </a>
               </div>
