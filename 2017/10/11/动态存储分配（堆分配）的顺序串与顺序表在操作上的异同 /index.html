@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C/C++,串," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静">
+<meta name="description" content="串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静态存储分配的顺序串（定长）  类似于线性表的顺序存储">
+<meta name="keywords" content="C&#x2F;C++,串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zendq&#39;s blog">
+<meta property="og:title" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同">
 <meta property="og:url" content="http://yoursite.com/2017/10/11/动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 /index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静">
+<meta property="og:description" content="串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静态存储分配的顺序串（定长）  类似于线性表的顺序存储">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-29T10:33:04.000Z">
+<meta property="og:updated_time" content="2017-12-08T10:38:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zendq&#39;s blog">
-<meta name="twitter:description" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静">
+<meta name="twitter:title" content="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同">
+<meta name="twitter:description" content="串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为                      s=‘a1a2...an’  (n&amp;gt;=0) 串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。  静态存储分配的顺序串（定长）  类似于线性表的顺序存储">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | Zendq's blog</title>
+  <title>动态存储分配（堆分配）的顺序串与顺序表在操作上的异同 | Zendq's blog</title>
   
 
 
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">动态存储分配（堆分配）的顺序串与顺序表在操作上的异同</h1>
         
 
         <div class="post-meta">
@@ -261,7 +262,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-11T15:34:18+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-11T00:00:00+08:00">
                 2017-10-11
               </time>
             
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,7 +322,7 @@
       
 
       
-        <h1 id="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同"><a href="#动态存储分配（堆分配）的顺序串与顺序表在操作上的异同" class="headerlink" title="动态存储分配（堆分配）的顺序串与顺序表在操作上的异同"></a>动态存储分配（堆分配）的顺序串与顺序表在操作上的异同</h1><pre><code>串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为
+        <pre><code>串（string）（或字符串）是由零个或多个字符组成的有限序列，一般记为
                      s=‘a1a2...an’  (n&gt;=0)
 </code></pre><p>串的数据元素固定为字符型的线性表，因此串的逻辑结构和线性表极为相似，只不过对串的操作常常是以”串的整体”或“子串”作为操作对象，而线性表的操作大多以“单个数据元素”为操作对象。</p>
 <hr>
@@ -333,6 +356,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-C/" rel="tag"># C/C++</a>
+          
+            <a href="/tags/串/" rel="tag"># 串</a>
+          
+        </div>
       
 
       
@@ -407,17 +438,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -432,7 +454,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -443,7 +465,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">Kategorien</span>
                 </a>
               </div>
@@ -454,7 +476,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/tags.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">Tags</span>
                 </a>
               </div>
@@ -479,22 +501,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态存储分配（堆分配）的顺序串与顺序表在操作上的异同"><span class="nav-number">1.</span> <span class="nav-text">动态存储分配（堆分配）的顺序串与顺序表在操作上的异同</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
