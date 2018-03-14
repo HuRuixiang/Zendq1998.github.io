@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1. 1234567">
+<meta name="description" content="由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1. 123456">
 <meta name="keywords" content="堆栈,数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="顺序栈的基本操作">
 <meta property="og:url" content="http://yoursite.com/2017/10/12/顺序栈的基本操作/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1. 1234567">
+<meta property="og:description" content="由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1. 123456">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-23T13:27:50.000Z">
+<meta property="og:updated_time" content="2018-03-14T05:35:59.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺序栈的基本操作">
-<meta name="twitter:description" content="由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1. 1234567">
+<meta name="twitter:description" content="由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。  （1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1. 123456">
 
 
 
@@ -322,7 +322,8 @@
       
 
       
-        <p>由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。</p>
+        <a id="more"></a>
+<p>由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。</p>
 <hr>
 <p>（1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT)&#123;</div><div class="line">	S.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   </div><div class="line">	                                //顺序栈的初始分配最大空间</div><div class="line">	if(!S.stack)  exit(1);          //存储控件分配失败</div><div class="line">	S.top = -1;                     //置栈空</div><div class="line">	S.stacksize = maSxsize;         //顺序栈的当前容量</div><div class="line">	S.incrementsize = incresize;    //增补空间</div><div class="line">&#125;//InitStack_Sq</div></pre></td></tr></table></figure>

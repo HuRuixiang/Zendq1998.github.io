@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。其中最重要的是函数依赖和多值依赖。  例1.函数依赖建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号（Sno）、所在系（Sdept）、系主任姓名（Mname）、课程号（Cno）和成绩（Grade）。假设用一个单一的关系模式Student来表示，则该关系模式的属性集合为U">
+<meta name="description" content="数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。其中最重要的是函数依赖和多值依赖。">
 <meta name="keywords" content="数据库,规范化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据依赖之函数依赖和多值依赖">
 <meta property="og:url" content="http://yoursite.com/2017/10/23/数据依赖/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。其中最重要的是函数依赖和多值依赖。  例1.函数依赖建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号（Sno）、所在系（Sdept）、系主任姓名（Mname）、课程号（Cno）和成绩（Grade）。假设用一个单一的关系模式Student来表示，则该关系模式的属性集合为U">
+<meta property="og:description" content="数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。其中最重要的是函数依赖和多值依赖。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.blog.csdn.net/20171023132957306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-10-23T13:28:24.000Z">
+<meta property="og:updated_time" content="2018-03-14T05:35:05.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据依赖之函数依赖和多值依赖">
-<meta name="twitter:description" content="数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。其中最重要的是函数依赖和多值依赖。  例1.函数依赖建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号（Sno）、所在系（Sdept）、系主任姓名（Mname）、课程号（Cno）和成绩（Grade）。假设用一个单一的关系模式Student来表示，则该关系模式的属性集合为U">
+<meta name="twitter:description" content="数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。其中最重要的是函数依赖和多值依赖。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20171023132957306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -324,7 +324,7 @@
       
 
       
-        <p>数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。<br>其中最重要的是<strong>函数依赖</strong>和<strong>多值依赖</strong>。</p>
+        <p>数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。<br>其中最重要的是<strong>函数依赖</strong>和<strong>多值依赖</strong>。<br><a id="more"></a></p>
 <hr>
 <p><strong>例1.函数依赖</strong><br>建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号（Sno）、所在系（Sdept）、系主任姓名（Mname）、课程号（Cno）和成绩（Grade）。假设用一个单一的关系模式Student来表示，则该关系模式的属性集合为U={Sno,Sdept,Mname,Cno,Grade}<br>现实世界的已知事实告诉我们：<br>①一个系有若干学生，但一个学生只属于一个系。Sno-&gt;Sdept<br>②一个系只有一名负责人。Sdept-&gt;Mname<br>③一个学生可以选修多门课程，没门课程有若干学生选修。<br>④每个学生学习每一门课程有一个成绩。{Sno,Cno}-&gt;Grade<br>于是得到属性U上的椅子函数依赖F={Sno-&gt;Sdept,Sdept-&gt;Mname,{Sno,Cno}-&gt;Grade}。</p>
 <p>但是这个关系模式存在以下问题：<br>①数据冗余<br>②更新异常<br>③插入异常<br>④删除异常</p>
