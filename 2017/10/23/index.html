@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库,规范化," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据依赖之函数依赖和多值依赖">
+<meta name="keywords" content="数据库,规范化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据依赖之函数依赖和多值依赖">
+<meta property="og:url" content="http://yoursite.com/2017/10/23/index.html">
+<meta property="og:site_name" content="Zendq&#39;s blog">
+<meta property="og:description" content="数据依赖之函数依赖和多值依赖">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023132957306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-03-14T06:48:53.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据依赖之函数依赖和多值依赖">
+<meta name="twitter:description" content="数据依赖之函数依赖和多值依赖">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171023132957306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/23/"/>
+
+
+
+
+
+  <title>数据依赖之函数依赖和多值依赖 | Zendq's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zendq's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">stay hungry, stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据依赖之函数依赖和多值依赖</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T00:00:00+08:00">
+                2017-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  数据依赖之函数依赖和多值依赖
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据依赖是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间的相关联系。<br>其中最重要的是<strong>函数依赖</strong>和<strong>多值依赖</strong>。<br><a id="more"></a></p>
+<hr>
+<h2 id="例1-函数依赖"><a href="#例1-函数依赖" class="headerlink" title="例1.函数依赖"></a>例1.函数依赖</h2><p>建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号（Sno）、所在系（Sdept）、系主任姓名（Mname）、课程号（Cno）和成绩（Grade）。假设用一个单一的关系模式Student来表示，则该关系模式的属性集合为U={Sno,Sdept,Mname,Cno,Grade}<br>现实世界的已知事实告诉我们：<br>①一个系有若干学生，但一个学生只属于一个系。Sno-&gt;Sdept<br>②一个系只有一名负责人。Sdept-&gt;Mname<br>③一个学生可以选修多门课程，没门课程有若干学生选修。<br>④每个学生学习每一门课程有一个成绩。{Sno,Cno}-&gt;Grade<br>于是得到属性U上的椅子函数依赖F={Sno-&gt;Sdept,Sdept-&gt;Mname,{Sno,Cno}-&gt;Grade}。</p>
+<p>但是这个关系模式存在以下问题：<br>①数据冗余<br>②更新异常<br>③插入异常<br>④删除异常</p>
+<h2 id="例二-完全函数依赖和部分函数依赖"><a href="#例二-完全函数依赖和部分函数依赖" class="headerlink" title="例二.完全函数依赖和部分函数依赖"></a>例二.完全函数依赖和部分函数依赖</h2><ul>
+<li><p>U={Sno,Sdept,Mname,Cno,Grade}</p>
+<p> {Sno,Cno}-f-&gt;Grade是完全函数依赖。<br> {Sno,Cno}-p-&gt;Sdept是部分函数依赖，因为Sno-&gt;Sdept成立，而Sno是{Sno,Cno}的子集。</p>
+</li>
+<li><p>U =（员工码，姓名，出生日期，联系电话，学历，毕业学校，培训日期，培训内容）<br>  {员工码，培训日期}-f-&gt;U 是完全依赖函数<br>  {员工码，培训日期}-p-&gt;{姓名，出生日期}是部分依赖函数，因为员工码-&gt;{姓名，出生日期}成立，而员工码是{姓名，出生日期}的子集</p>
+</li>
+</ul>
+<h2 id="例三-传递函数依赖"><a href="#例三-传递函数依赖" class="headerlink" title="例三 传递函数依赖"></a>例三 传递函数依赖</h2><ul>
+<li><p>U={Sno,Sdept,Mname,Cno,Grade}</p>
+<p> Sno-&gt;Sdept, Sdept-&gt;Mname成立，所以Sno-传递-&gt;Mname，系主任是传递依赖于学号的。还要加上条件Sdept-/-&gt;Sname,因为如果Sdept-&gt;Sname，则Sdept&lt;-&gt;Sname,实际上是Sno-直接-&gt;Mname，是直接函数依赖而不是传递函数依赖。</p>
+</li>
+<li><p>U={学号，姓名，年龄，班号，班长，课号，成绩}<br> 学号-&gt;班号；班号-&gt;班长成立，又班号-/-&gt;学号，所以学号-传递-&gt;班长。</p>
+</li>
+</ul>
+<h2 id="例四-2NF（第二范式）"><a href="#例四-2NF（第二范式）" class="headerlink" title="例四.2NF（第二范式）"></a>例四.2NF（第二范式）</h2><p>2NF：每一个非主属性完全依赖与候选码。<br>有关系模式S-L-C(Sno，Sdept，Sloc，Cno，Ggrade)，其中Sloc为学生的住处，并且每个系的学生住在同一个地方。码为（Sno，Cno），则函数依赖有：<br>（Sno，Cno）-P-&gt;Sdept, 因为Sno-&gt;Sdept，Sno是（Sno，Cno）的子集<br>（Sno，Cno）-P-&gt;Sloc, 因为Sno-&gt;Sloc, Sno是（Sno，Cno）的子集<br>（Sno，Cno）-F-&gt;Grade<br>可以看到非主属性Sdept、Sloc并不完全依赖于码（Sno，Cno），因此关系模式S-L-C不符合2NF定义。<br>一个关系模式R不属于2NF，会产生以下几个问题：<br>①插入异常<br>②修改异常<br>③删除异常<br>分析：上面的例子中，发现有两类非主属性，一类如Gdrade，它对码是完全函数依赖；另一类如Sdept、Sloc，他们对码是不完全依赖，解决的办法是用投影分解法把关系模式S-L-C分解为两个关系模式：SC(Sno，Cno，Ggrade)和SL(Sno，Sdept，Sloc)。</p>
+<h2 id="例五-3NF（第三范式）"><a href="#例五-3NF（第三范式）" class="headerlink" title="例五.3NF（第三范式）"></a>例五.3NF（第三范式）</h2><p>属于2NF的同时，每一个非主属性都不传递依赖于码<br>在例四修改后的SL(Sno，Sdept，Sloc)中，由Sno-&gt;Sdept(Sdept-/-Sno),Sdept-&gt;Sloc可得，Sno-传递-&gt;Sloc,因此SL(Sno，Sdept，Sloc)不符合3NF。<br>对SC(Sno，Cno，Ggrade)，非主属性是Ggrade，不传递依赖于码，所以符合3NF。</p>
+<h2 id="例六-BCNF"><a href="#例六-BCNF" class="headerlink" title="例六.BCNF"></a>例六.BCNF</h2><p>通常认为BCNF是修正的第三范式，有时也称为扩充的第三范式：<br>关系模式中，每一个决定因素都包含码。<br>一个满足BCNF的关系模式有：</p>
+<ul>
+<li>所有非主属性对每一个码都是完全函数依赖</li>
+<li>所有主属性对每一个不包含他的码也是完全函数依赖</li>
+<li>没有任何属性完全依赖于非码的任何一组属性</li>
+</ul>
+<p>关系模式STJ(S,T,J)中，S表示学生，T表示教师，J表示课程。每一个教师只教一门课，每门课有若干教师，某学生选定某门课就对应一个固定的教师。由语义可得到如下的函数依赖。<br>（S，J）-&gt;T  ,  (S , T)-&gt;J  ,  T-&gt;J<br>因为候选码为（S，J） (S , T)，所以S J T都是主属性<br>STJ是3NF，因为没有任何非主属性对码传递依赖或者部分依赖。<br>但是STJ不是BCNF，因为T是决定因素但是不包含码，或者对主属性J来说，J对(S , T)是部分依赖，因为T-&gt;J，且T是 (S , T)的子集。</p>
+<h2 id="例七-多值依赖"><a href="#例七-多值依赖" class="headerlink" title="例七.多值依赖"></a>例七.多值依赖</h2><p>学校中某一门课由多个教师讲授，他们使用相同的一套参考书。每个教师可以讲授多门课程，每种参考书可以供多门课使用。<br><img src="http://img.blog.csdn.net/20171023132957306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>关系模型Teaching（C，T，B）码是（C，T，B）即all-key，但是当某一个课程增加一名教师，必须插入多个元组，同样要删掉一本参考书，则必须删除多个元组，这样对数据的增删改很不方便，数据的冗余也很明显，发现他具有一种称为多值依赖的数据依赖，<br>例如：在关系模式Teaching中，对于一个（物理，光学原理）有一组T值{李勇，王军}，这组值仅仅决定于课程C上的值（物理）。也就是说对于另一个（物理，普通物理学），它对应的一组仍是{王军，李勇}。因此T多值依赖于C，即C-&gt;-&gt;T。</p>
+<p>又例如：关系模式WSC(W,S,C)中，W表示仓库，S表示保管员，C表示商品。假设每个仓库有若干保管员，有若干种商品。每个保管员保管所在仓库的所有商品，每种商品被所有保管员保管。<br>按照语义，对于W的每一个值Wi，S有一个完整的集合与之对应而不问C取何值。所以W-&gt;-&gt;S。由于C与S具有完全对称性，必然有W-&gt;-&gt;C成立。</p>
+<p>多值依赖的性质：<br>1.具有对称性<br>2.具有传递性<br>3.函数依赖可以看作是多值依赖的特殊情况，这是因为当X-&gt;Y时，对X的每一个值x，Y都有一个确定的值y与之对应，所以X-&gt;-&gt;Y。</p>
+<p>多值依赖和函数依赖相比有下面两个基本的区别：<br>1.多值依赖的有效性与属性集的范围有关。<br>2.若函数依赖X-&gt;Y在R(U)上成立，则对于任何Y’∈Y均有X-&gt;Y’成立。而多值依赖X-&gt;-&gt;Y若在R(U)上成立，却不能断言对于任何Y’∈Y有X-&gt;-&gt;Y’成立。</p>
+<h2 id="例八-4NF"><a href="#例八-4NF" class="headerlink" title="例八.4NF"></a>例八.4NF</h2><p>4NF就是限制关系模式的属性之间不允许有非平凡且非函数依赖的多值依赖。<br>在前面的关系模式WSC(W,S,C)中，W-&gt;-&gt;S,W-&gt;-&gt;C，他们都是非平凡的多值依赖。W不是码，关系模式WSC(W,S,C)中的码是(W,S,C)，即all-key。因此WSC不满足4NF。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数依赖和多值依赖是两种最重要的数据依赖，如果只考虑函数依赖，则属于BCNF的关系模式规范化程度已经是最高的了；如果考虑多值依赖，则属于4NF的关系模式规范化程度是最高的。<br>事实上，除了函数依赖和多值依赖之外，还有其它数据依赖，例如连接依赖。函数依赖是多值依赖的一种特殊情况，而多值依赖又是连接依赖的一种特殊情况。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/规范化/" rel="tag"># 规范化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/19/" rel="next" title="自测练习之深入理解对象(2)">
+                <i class="fa fa-chevron-left"></i> 自测练习之深入理解对象(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/26/" rel="prev" title="埃拉托斯特尼筛法">
+                埃拉托斯特尼筛法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zendeqin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/tags.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Zendq1998" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#例1-函数依赖"><span class="nav-number">1.</span> <span class="nav-text">例1.函数依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例二-完全函数依赖和部分函数依赖"><span class="nav-number">2.</span> <span class="nav-text">例二.完全函数依赖和部分函数依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例三-传递函数依赖"><span class="nav-number">3.</span> <span class="nav-text">例三 传递函数依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例四-2NF（第二范式）"><span class="nav-number">4.</span> <span class="nav-text">例四.2NF（第二范式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例五-3NF（第三范式）"><span class="nav-number">5.</span> <span class="nav-text">例五.3NF（第三范式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例六-BCNF"><span class="nav-number">6.</span> <span class="nav-text">例六.BCNF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例七-多值依赖"><span class="nav-number">7.</span> <span class="nav-text">例七.多值依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例八-4NF"><span class="nav-number">8.</span> <span class="nav-text">例八.4NF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zendeqin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
