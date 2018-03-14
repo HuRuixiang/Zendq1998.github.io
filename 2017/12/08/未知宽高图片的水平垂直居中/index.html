@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="背景图片居中原理：使用一个透明的gif图片做覆盖层，高宽拉伸至所需要的大小，然后给这个gif图片一个background-position:center center的属性。而background-image建议写在页面上，因为实际项目中，这肯定是个动态的URL地址，css文件似乎不支持动态URL地址。 示例代码： 1234567891011121314151617181920212223242">
+<meta name="description" content="未知宽高图片的水平垂直居中">
 <meta name="keywords" content="css,html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="未知宽高图片的水平垂直居中">
 <meta property="og:url" content="http://yoursite.com/2017/12/08/未知宽高图片的水平垂直居中/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="背景图片居中原理：使用一个透明的gif图片做覆盖层，高宽拉伸至所需要的大小，然后给这个gif图片一个background-position:center center的属性。而background-image建议写在页面上，因为实际项目中，这肯定是个动态的URL地址，css文件似乎不支持动态URL地址。 示例代码： 1234567891011121314151617181920212223242">
+<meta property="og:description" content="未知宽高图片的水平垂直居中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.blog.csdn.net/20171208170334087?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171208173149045?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-03-14T06:07:27.846Z">
+<meta property="og:updated_time" content="2018-03-14T06:46:55.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="未知宽高图片的水平垂直居中">
-<meta name="twitter:description" content="背景图片居中原理：使用一个透明的gif图片做覆盖层，高宽拉伸至所需要的大小，然后给这个gif图片一个background-position:center center的属性。而background-image建议写在页面上，因为实际项目中，这肯定是个动态的URL地址，css文件似乎不支持动态URL地址。 示例代码： 1234567891011121314151617181920212223242">
+<meta name="twitter:description" content="未知宽高图片的水平垂直居中">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20171208170334087?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -311,6 +311,10 @@
           
 
           
+              <div class="post-description">
+                  未知宽高图片的水平垂直居中
+              </div>
+          
 
         </div>
       </header>
@@ -336,8 +340,7 @@
 <p>提示：需要把 background-attachment 属性设置为 “fixed”，才能保证该属性在 Firefox 和 Opera 中正常工作。</p>
 <p><strong>最终效果</strong>：<br><img src="http://img.blog.csdn.net/20171208173149045?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>这样直接操作html中的url地址就可以不用考虑该图片的宽高实现水平垂直居中。</p>
-<p><strong>思考</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/* 省略一部分 */</div><div class="line">#box div &#123;</div><div class="line">    background-repeat: no-repeat;</div><div class="line">    background-position: center ;</div><div class="line">    width:100%;</div><div class="line">    height:100%;</div><div class="line">    border: 1px solid #d3d3d3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div style=&quot;background-image:url(img/panda.jpg);&quot; /&gt;</div></pre></td></tr></table></figure>
+<h2 id="思考："><a href="#思考：" class="headerlink" title="思考："></a>思考：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/* 省略一部分 */</div><div class="line">#box div &#123;</div><div class="line">    background-repeat: no-repeat;</div><div class="line">    background-position: center ;</div><div class="line">    width:100%;</div><div class="line">    height:100%;</div><div class="line">    border: 1px solid #d3d3d3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div style=&quot;background-image:url(img/panda.jpg);&quot; /&gt;</div></pre></td></tr></table></figure>
 <p>其实不用img搞一个透明图片覆盖也可以这样实现垂直水平居中的，用透明图层覆盖的话会便于维护一些。</p>
 
       
@@ -521,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片居中"><span class="nav-number">1.</span> <span class="nav-text">背景图片居中</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片居中"><span class="nav-number">1.</span> <span class="nav-text">背景图片居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考："><span class="nav-number">2.</span> <span class="nav-text">思考：</span></a></li></ol></div>
             
 
           </div>
