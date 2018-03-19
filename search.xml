@@ -2,14 +2,13 @@
 <search>
   <entry>
     <title><![CDATA[Rax(2)-关于JSX]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
-    <content type="text"><![CDATA[介绍JSX考虑这个变量的声明：1const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。12345678910111213141516171819function formatName(user) &#123; return user.firstname + ' ' + user.lastname;&#125;const user = &#123; firstName: 'Harper', lastName: 'Perez'&#125;;const element = ( &lt;h1&gt; Hello, &#123;formatName(user)&#125;! &lt;/h1&gt;);ReactDOM.render( element, document.getElementById('root')); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 123456function getGreeting(user) &#123; if (user) &#123; return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;; &#125; return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;&#125; JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： 123456// Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import &#123; createElement &#125; from 'rax'; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
+    <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如：12345678910111213141516171819202122// 定义样式集合const styles = &#123; container: &#123; padding: '20rem', height: '300rem', fontSize: '28rem', backgroundColor: 'red' &#125;, container_title: &#123; color: '#fff', fontSize: '32rem' // font-size不会继承父或祖先元素，需重新定义 &#125;&#125;;// 应用样式const App = (props) =&gt; &#123; return ( &lt;View style=&#123;styles.container&#125;&gt; &lt;Text style=&#123;styles.container_title&#125;&gt;Hello World&lt;/Text&gt; &lt;/View&gt; );&#125;; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法：12345678910&lt;View style=&#123;styles.container&#125;&gt; &lt;Text&gt;hello world&lt;/Text&gt;&lt;/View&gt;const styles = &#123; container: &#123; background: 'grey', width: 375 &#125;&#125;; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 12345678910111213/* hello-world.css */.container &#123; padding: 20rem; height: 300rem; background-color: red;&#125;.container_title &#123; color: #fff; font-size: 32rem; border-width: 1px;&#125; 引入12/* hello-world.js */import styles from './hello-world.css'; webpack配置1234&#123; test: /\.css$/, loader: 'stylesheet'&#125; 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>Rax</tag>
-        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
@@ -25,13 +24,14 @@
   </entry>
   <entry>
     <title><![CDATA[Rax(2)-关于JSX]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如：12345678910111213141516171819202122// 定义样式集合const styles = &#123; container: &#123; padding: '20rem', height: '300rem', fontSize: '28rem', backgroundColor: 'red' &#125;, container_title: &#123; color: '#fff', fontSize: '32rem' // font-size不会继承父或祖先元素，需重新定义 &#125;&#125;;// 应用样式const App = (props) =&gt; &#123; return ( &lt;View style=&#123;styles.container&#125;&gt; &lt;Text style=&#123;styles.container_title&#125;&gt;Hello World&lt;/Text&gt; &lt;/View&gt; );&#125;; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法：12345678910&lt;View style=&#123;styles.container&#125;&gt; &lt;Text&gt;hello world&lt;/Text&gt;&lt;/View&gt;const styles = &#123; container: &#123; background: 'grey', width: 375 &#125;&#125;; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 12345678910111213/* hello-world.css */.container &#123; padding: 20rem; height: 300rem; background-color: red;&#125;.container_title &#123; color: #fff; font-size: 32rem; border-width: 1px;&#125; 引入12/* hello-world.js */import styles from './hello-world.css'; webpack配置1234&#123; test: /\.css$/, loader: 'stylesheet'&#125; 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
+    <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
+    <content type="text"><![CDATA[介绍JSX考虑这个变量的声明：1const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。12345678910111213141516171819function formatName(user) &#123; return user.firstname + ' ' + user.lastname;&#125;const user = &#123; firstName: 'Harper', lastName: 'Perez'&#125;;const element = ( &lt;h1&gt; Hello, &#123;formatName(user)&#125;! &lt;/h1&gt;);ReactDOM.render( element, document.getElementById('root')); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 123456function getGreeting(user) &#123; if (user) &#123; return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;; &#125; return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;&#125; JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： 123456// Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import &#123; createElement &#125; from 'rax'; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>Rax</tag>
+        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
