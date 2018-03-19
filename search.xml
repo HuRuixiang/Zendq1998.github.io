@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Rax-关于JSX]]></title>
-    <url>%2F2018%2F03%2F19%2FRax-%E5%85%B3%E4%BA%8EJSX-1%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[Rax-入门]]></title>
     <url>%2F2018%2F03%2F18%2FRax-%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：1$ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。12345678910111213141516rax init hello-worldCreating a new Rax project in /Users/anonymous/hello-worldInstall dependencies:...To run your app: cd hello-world npm run start```$ cd hello-world/Users/anonymous/hello-world|-- README.md|-- node_modules|-- package.json|-- public|-- src`-- webpack.config.js改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World1234567891011121314151617181920212223242526272829//顶层APIimport &#123;createElement, Component&#125; from 'rax';//元件引用import View from 'rax-view';import Text from 'rax-text';//import &#123;View, Text&#125; from 'rax-components';//rax-components需要自行安装//引用样式import styles from './App.css';//定义组件class App extends Component &#123; render() &#123; return ( &lt;View style=&#123;styles.app&#125;&gt; &lt;View style=&#123;styles.appHeader&#125;&gt; &lt;Text style=&#123;styles.appBanner&#125;&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style=&#123;styles.appIntro&#125;&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); &#125;&#125;//渲染export default App; 参考资料Rax Github]]></content>
