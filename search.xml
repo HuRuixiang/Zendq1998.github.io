@@ -12,17 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Rax(3)-关于样式]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如： // 定义样式集合 const styles = { container: { padding: &#39;20rem&#39;, height: &#39;300rem&#39;, fontSize: &#39;28rem&#39;, backgroundColor: &#39;red&#39; }, container_title: { color: &#39;#fff&#39;, fontSize: &#39;32rem&#39; // font-size不会继承父或祖先元素，需重新定义 } }; // 应用样式 const App = (props) =&gt; { return ( &lt;View style={styles.container}&gt; &lt;Text style={styles.container_title}&gt;Hello World&lt;/Text&gt; &lt;/View&gt; ); }; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法： &lt;View style={styles.container}&gt; &lt;Text&gt;hello world&lt;/Text&gt; &lt;/View&gt; const styles = { container: { background: &#39;grey&#39;, width: 375 } }; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 /* hello-world.css */ .container { padding: 20rem; height: 300rem; background-color: red; } .container_title { color: #fff; font-size: 32rem; border-width: 1px; } 引入 /* hello-world.js */ import styles from &#39;./hello-world.css&#39;; webpack配置 { test: /\.css$/, loader: &#39;stylesheet&#39; } 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Rax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Rax(2)-关于JSX]]></title>
     <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
     <content type="text"><![CDATA[介绍JSX考虑这个变量的声明： const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。 function formatName(user) { return user.firstname + &#39; &#39; + user.lastname; } const user = { firstName: &#39;Harper&#39;, lastName: &#39;Perez&#39; }; const element = ( &lt;h1&gt; Hello, {formatName(user)}! &lt;/h1&gt; ); ReactDOM.render( element, document.getElementById(&#39;root&#39;) ); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 function getGreeting(user) { if (user) { return &lt;h1&gt;Hello, {formatName(user)}!&lt;/h1&gt;; } return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;; } JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： // Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import { createElement } from &#39;rax&#39;; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
@@ -32,6 +21,17 @@
       <tags>
         <tag>Rax</tag>
         <tag>JSX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Rax(3)-关于样式]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如： // 定义样式集合 const styles = { container: { padding: &#39;20rem&#39;, height: &#39;300rem&#39;, fontSize: &#39;28rem&#39;, backgroundColor: &#39;red&#39; }, container_title: { color: &#39;#fff&#39;, fontSize: &#39;32rem&#39; // font-size不会继承父或祖先元素，需重新定义 } }; // 应用样式 const App = (props) =&gt; { return ( &lt;View style={styles.container}&gt; &lt;Text style={styles.container_title}&gt;Hello World&lt;/Text&gt; &lt;/View&gt; ); }; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法： &lt;View style={styles.container}&gt; &lt;Text&gt;hello world&lt;/Text&gt; &lt;/View&gt; const styles = { container: { background: &#39;grey&#39;, width: 375 } }; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 /* hello-world.css */ .container { padding: 20rem; height: 300rem; background-color: red; } .container_title { color: #fff; font-size: 32rem; border-width: 1px; } 引入 /* hello-world.js */ import styles from &#39;./hello-world.css&#39;; webpack配置 { test: /\.css$/, loader: &#39;stylesheet&#39; } 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Rax</tag>
       </tags>
   </entry>
   <entry>
@@ -127,8 +127,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>堆栈</tag>
         <tag>数据结构</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
