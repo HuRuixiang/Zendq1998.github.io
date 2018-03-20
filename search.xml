@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Rax(1)-入门]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装： $ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。 rax init hello-world Creating a new Rax project in /Users/anonymous/hello-world Install dependencies: ... To run your app: cd hello-world npm run start ```$ cd hello-world /Users/anonymous/hello-world |-- README.md |-- node_modules |-- package.json |-- public |-- src `-- webpack.config.js 改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World//顶层API import {createElement, Component} from &#39;rax&#39;; //元件引用 import View from &#39;rax-view&#39;; import Text from &#39;rax-text&#39;; //import {View, Text} from &#39;rax-components&#39;; //rax-components需要自行安装 //引用样式 import styles from &#39;./App.css&#39;; //定义组件 class App extends Component { render() { return ( &lt;View style={styles.app}&gt; &lt;View style={styles.appHeader}&gt; &lt;Text style={styles.appBanner}&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style={styles.appIntro}&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); } } //渲染 export default App; 参考资料Rax Github]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Rax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Rax(2)-关于JSX]]></title>
     <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
     <content type="text"><![CDATA[介绍JSX考虑这个变量的声明： const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。 function formatName(user) { return user.firstname + &#39; &#39; + user.lastname; } const user = { firstName: &#39;Harper&#39;, lastName: &#39;Perez&#39; }; const element = ( &lt;h1&gt; Hello, {formatName(user)}! &lt;/h1&gt; ); ReactDOM.render( element, document.getElementById(&#39;root&#39;) ); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 function getGreeting(user) { if (user) { return &lt;h1&gt;Hello, {formatName(user)}!&lt;/h1&gt;; } return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;; } JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： // Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import { createElement } from &#39;rax&#39;; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
@@ -27,6 +16,17 @@
     <title><![CDATA[Rax(3)-关于样式]]></title>
     <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如： // 定义样式集合 const styles = { container: { padding: &#39;20rem&#39;, height: &#39;300rem&#39;, fontSize: &#39;28rem&#39;, backgroundColor: &#39;red&#39; }, container_title: { color: &#39;#fff&#39;, fontSize: &#39;32rem&#39; // font-size不会继承父或祖先元素，需重新定义 } }; // 应用样式 const App = (props) =&gt; { return ( &lt;View style={styles.container}&gt; &lt;Text style={styles.container_title}&gt;Hello World&lt;/Text&gt; &lt;/View&gt; ); }; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法： &lt;View style={styles.container}&gt; &lt;Text&gt;hello world&lt;/Text&gt; &lt;/View&gt; const styles = { container: { background: &#39;grey&#39;, width: 375 } }; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 /* hello-world.css */ .container { padding: 20rem; height: 300rem; background-color: red; } .container_title { color: #fff; font-size: 32rem; border-width: 1px; } 引入 /* hello-world.js */ import styles from &#39;./hello-world.css&#39;; webpack配置 { test: /\.css$/, loader: &#39;stylesheet&#39; } 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Rax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Rax(1)-入门]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装： $ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。 rax init hello-world Creating a new Rax project in /Users/anonymous/hello-world Install dependencies: ... To run your app: cd hello-world npm run start ```$ cd hello-world /Users/anonymous/hello-world |-- README.md |-- node_modules |-- package.json |-- public |-- src `-- webpack.config.js 改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World//顶层API import {createElement, Component} from &#39;rax&#39;; //元件引用 import View from &#39;rax-view&#39;; import Text from &#39;rax-text&#39;; //import {View, Text} from &#39;rax-components&#39;; //rax-components需要自行安装 //引用样式 import styles from &#39;./App.css&#39;; //定义组件 class App extends Component { render() { return ( &lt;View style={styles.app}&gt; &lt;View style={styles.appHeader}&gt; &lt;Text style={styles.appBanner}&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style={styles.appIntro}&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); } } //渲染 export default App; 参考资料Rax Github]]></content>
       <categories>
         <category>前端</category>
       </categories>
