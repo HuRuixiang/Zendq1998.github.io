@@ -161,13 +161,8 @@
 <!-- Theme Background Related-->
 
     <style>
-      body {
-        background-color: ;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
-        background-color: #fff;
+      body{
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -489,15 +484,48 @@
 <p><strong>静态存储分配的顺序串（定长）</strong></p>
 <p> 类似于线性表的顺序存储结构，用一组地址连续的存储单元存储串值的字符序列。在串的定长顺序存储结构中，按照预定义的大小，为每个定义的串变量分配一个固定长度</p>
 <p>的存储区，则可以用定长数组如下描述。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line"></div><div class="line">串的实际长度在这预定义长度范围内随意，超过预定义长度的串值则被舍去，称之为“截断”。</div><div class="line"></div><div class="line">在这种存储结构表示如何实现串的操作，下面以串连接和求子串为例讨论。</div><div class="line"></div><div class="line">**串连接** Concat（&amp;T,S1,S2）</div><div class="line">假设S1、S2和T都是SSstring型的串变量，且串T是由串S1联结串S2得到的，则只要进行串的复制操作即可，只是需要对超长部分实施“截断”操作。基于串S1和S2长度的不同情况，串T值的产生可能有如下<span class="number">3</span>种情况：（<span class="number">1</span>）S1[<span class="number">0</span>]+S2[<span class="number">0</span>]&lt;=MAXSRETRLEN,得到的串T是正确的结果；（<span class="number">2</span>）S1[<span class="number">0</span>]&lt; MAXSRETRLEN而S1[<span class="number">0</span>]+S2[<span class="number">0</span>]&gt;MAXSRETRLEN,则将串S2的一部分截断，得到的串T只包含S2的一个子串；（<span class="number">1</span>）S1[<span class="number">0</span>]=MAXSRETRLEN,得到的串T并非联接结果，而和串S1相等。</div><div class="line"></div><div class="line">**求子串** SubString（&amp;Sub，S，pos。len）</div><div class="line">求子串的过程即为复制字符序列的过程，将串S中从第pos个字符开始长度为len的字符序列复制到串Sub中。</div><div class="line"></div><div class="line">``` C</div><div class="line">Status SubString(SString &amp;Sub, SString S, <span class="keyword">int</span> pos, <span class="keyword">int</span> len)&#123;</div><div class="line">	<span class="comment">//用Sub返回串S的第pos个字符起长度为len的子串</span></div><div class="line">	<span class="comment">//其中，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=StrLength(S)-pos+1</span></div><div class="line">	<span class="keyword">if</span>(pos&lt;<span class="number">1</span>||pos&gt;S[<span class="number">0</span>]||len&lt;<span class="number">0</span>||len&gt;[<span class="number">0</span>]-pos+<span class="number">1</span>)</div><div class="line">		<span class="keyword">return</span> ERROR;</div><div class="line">	Sub[<span class="number">1.</span>..len] = S[pos..pos+len<span class="number">-1</span>];   <span class="comment">//循环语句一个一个赋值</span></div><div class="line">	Sub[<span class="number">0</span>] = len; <span class="keyword">return</span> OK;    <span class="comment">//S串的长度置为len</span></div><div class="line">&#125;<span class="comment">//Substring</span></div></pre></td></tr></table></figure>
+<pre><code class="C">
+</code></pre>
+<p>串的实际长度在这预定义长度范围内随意，超过预定义长度的串值则被舍去，称之为“截断”。</p>
+<p>在这种存储结构表示如何实现串的操作，下面以串连接和求子串为例讨论。</p>
+<p><strong>串连接</strong> Concat（&amp;T,S1,S2）<br>假设S1、S2和T都是SSstring型的串变量，且串T是由串S1联结串S2得到的，则只要进行串的复制操作即可，只是需要对超长部分实施“截断”操作。基于串S1和S2长度的不同情况，串T值的产生可能有如下3种情况：（1）S1[0]+S2[0]&lt;=MAXSRETRLEN,得到的串T是正确的结果；（2）S1[0]&lt; MAXSRETRLEN而S1[0]+S2[0]&gt;MAXSRETRLEN,则将串S2的一部分截断，得到的串T只包含S2的一个子串；（1）S1[0]=MAXSRETRLEN,得到的串T并非联接结果，而和串S1相等。</p>
+<p><strong>求子串</strong> SubString（&amp;Sub，S，pos。len）<br>求子串的过程即为复制字符序列的过程，将串S中从第pos个字符开始长度为len的字符序列复制到串Sub中。</p>
+<pre><code class="C">Status SubString(SString &amp;Sub, SString S, int pos, int len){
+    //用Sub返回串S的第pos个字符起长度为len的子串
+    //其中，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=StrLength(S)-pos+1
+    if(pos&lt;1||pos&gt;S[0]||len&lt;0||len&gt;[0]-pos+1)
+        return ERROR;
+    Sub[1...len] = S[pos..pos+len-1];   //循环语句一个一个赋值
+    Sub[0] = len; return OK;    //S串的长度置为len
+}//Substring
+</code></pre>
 <p>综上两个操作可知，在顺序存储结构中，实现串操作的原操作为“字符序列的复制”，操作时间复杂度基于字符序列的长度。串连接的特点是，如果在操作中出现串值序列的长度超过MAXSTRLEN时，约定用截尾法处理，这种情况不仅在串联接时发生，在串的其它操作中，如插入、置换等也可能发生。克服这个弊病唯有不限定串长的最大长度，即动态分配串值的存储空间。</p>
 <hr>
 <p>###动态存储分配的顺序串（堆分配存储表示）<br>由于多数情况下串的操作是以串的整体或子串的形式参与，则在应用程序中，参与运算的串变量之间的长度相差较大，因此为串变量设定固定大小空间的数组不尽合理，需要根据具体情况来决定串空间的大小。</p>
 <p>动态存储分配的顺序串完全可以用动态存储分配的顺序表SqList来表示，这样的顺序表的有关操作都可以用来处理顺序串的相关操作，如初始化、求串长等。利用malloc()函数为每个新产生的串分配一块实际串所需的存储空间，若分配成功，则返回一个指向起始地址的指针，作为串的地址。这样，当进行串的插入、连接等操作时，再根据实际需要的增补空间，以满足插入和连接等操作的需要。所以在描述动态顺序串时，当前数组的容量和增补空间不再作为结构的一部分，其结构的描述如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">	<span class="keyword">char</span> *str;   <span class="comment">//存放空串的首地址</span></div><div class="line">	<span class="keyword">int</span> length;  <span class="comment">//存放串的当前长度</span></div><div class="line">&#125;DSqString       <span class="comment">//动态顺序串类型</span></div></pre></td></tr></table></figure>
+<pre><code class="C">typedef struct{
+    char *str;   //存放空串的首地址
+    int length;  //存放串的当前长度
+}DSqString       //动态顺序串类型
+</code></pre>
 <p>由于动态存储分配的顺序串既具有顺序存储结构的优点（随机存取，操作简单），同时串值空间的大小是在程序执行时动态分配而得，这对串的插入、连接、置换等操作非常有利，因此在串处理的应用程序中也常被选用。</p>
 <p>这种存储结构表示的串操作仍是基于“字符序列的复制”进行的。<br>1.<strong>串赋值操作</strong><br>串赋值操作就是把一个字符串常量赋值给顺序串S。成功赋值返回true，否则返回false。其主要操作是：①判断顺序串是否非空，若是，则释放其空间（尽管这样做也不影响操作的执行结果，但适时地进行空闲空间回收是一个好的编程习惯）；②求串常量的长度，若等于0，就将顺序串S置空，否则，以此长度为标准为顺序串S申请空间；③把串常量chars的值复制到串S中去，同时顺序串S的长度被赋值为串常量的长度。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">StrAssign_Sq</span><span class="params">(DSqString &amp;S, <span class="keyword">char</span> *chars)</span></span>&#123;</div><div class="line">	<span class="comment">//将字符串chars赋值给顺序串S</span></div><div class="line">	<span class="keyword">int</span> i,j;</div><div class="line">	<span class="keyword">char</span> *c;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>,c=chars;*c;i++,c++);  <span class="comment">//求chars的长度</span></div><div class="line">	<span class="keyword">if</span>(!i)&#123;S.str=<span class="literal">NULL</span>;S.length=<span class="number">0</span>;&#125;  <span class="comment">//S置为空串</span></div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">if</span>(!(S.str=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(i*<span class="keyword">sizeof</span>(<span class="keyword">char</span>))))  <span class="comment">//给串S申请空间</span></div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;i;j++)</div><div class="line">			S.str[j]=chars[j];   <span class="comment">//将数组中的字符赋值到串S中</span></div><div class="line">		S。length=i;    <span class="comment">//串长置为i</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;<span class="comment">//StrAssign_Sq</span></div></pre></td></tr></table></figure>
+<pre><code class="c">bool StrAssign_Sq(DSqString &amp;S, char *chars){
+    //将字符串chars赋值给顺序串S
+    int i,j;
+    char *c;
+    for(i=0,c=chars;*c;i++,c++);  //求chars的长度
+    if(!i){S.str=NULL;S.length=0;}  //S置为空串
+    else{
+        if(!(S.str=(char *)malloc(i*sizeof(char))))  //给串S申请空间
+            return false;
+        for(j=0;j&lt;i;j++)
+            S.str[j]=chars[j];   //将数组中的字符赋值到串S中
+        S。length=i;    //串长置为i
+    }
+    return true;
+}//StrAssign_Sq
+</code></pre>
 <p>又例如串复制操作StrCopy_Sq(&amp;T, S)的算法实现是，若串T已存在，则先释放T所占的空间，当S不空时，首先为T分配大小和S长度相等的存储空间，然后将串S复制到串T中；又如串插入操作（连接）操作StrConcat_Sq(&amp;S,T),首先判断T的长度是否为非0，若是，则为S分配长度为T.length的增补空间，然后将T中的所有字符复制在S的后面。</p>
 <hr>
 <p>关于动态顺序串的主要操作与在顺序表中进行的相关操作的算法思想基本上是一致的，不同之处在于：<br>①因为动态顺序串的存储空间分配是以串的实际长度为标准的，所以在有些操作（如插入、连接等）中首先需要根据实际情况增补存储空间；<br>②在顺序串的操作中经常是针对串的整体（如串赋值）或串的一部分子串而进行的，这样的操作相对于顺序表要复杂一些。以串插入操作为例，首先需要增补存储空间以便能够存放插入后的串，其次是要把从插入位置pos到串末尾的每一个字符串向后移动T.length个位置（而不是顺序表的一个位置），最后再把子串中的每一个字符（而不是顺序表的一个字符）复制到主串的相应位置。所以他的时间开销相比顺序表的插入要多一些，其它操作类似。</p>
@@ -592,7 +620,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto: 1305233756@qq.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -614,8 +642,6 @@
             </a>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Archives  -->
@@ -634,44 +660,15 @@
             </ul>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法与数据结构/">算法与数据结构<span class="sidebar_archives-count">4</span></a>
-            </ul>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 
     <!-- Pages  -->
     
 
     <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">13</span>
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 </ul>
 
@@ -767,7 +764,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/Zendq1998" target="_blank">
+        <a href="https://www.github.com/zendq1998" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
                 <span class="visuallyhidden">Github</span>
             </button><!--
@@ -853,10 +850,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    
-        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
-    
-
 
 
 
@@ -896,12 +889,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Bing Background -->
-
-<script type="text/ls-javascript" id="Bing-Background-script">
-    queue.offer(function(){
-        $('body').attr('data-original', 'https://api.i-meto.com/bing?[object Object]');
-    });
-</script>
 
 
 <script type="text/ls-javascript" id="lazy-load">

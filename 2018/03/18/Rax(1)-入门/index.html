@@ -161,13 +161,8 @@
 <!-- Theme Background Related-->
 
     <style>
-      body {
-        background-color: ;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
-        background-color: #fff;
+      body{
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -503,15 +498,62 @@
 <h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><p>创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App.</p>
 <p>node：版本号至少为4.0</p>
 <p>Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，<a href="https://weex-project.io/cn/playground.html" target="_blank" rel="external">这里下载</a>。</p>
-<p>Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g rax-cli</div></pre></td></tr></table></figure></p>
-<h2 id="开始第一个项目"><a href="#开始第一个项目" class="headerlink" title="开始第一个项目"></a>开始第一个项目</h2><p>创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">rax init hello-world</div><div class="line">Creating a new Rax project in /Users/anonymous/hello-world</div><div class="line">Install dependencies:</div><div class="line">...</div><div class="line">To run your app:</div><div class="line">   cd hello-world</div><div class="line">   npm run start</div><div class="line">```$ cd hello-world</div><div class="line">/Users/anonymous/hello-world</div><div class="line">|-- README.md</div><div class="line">|-- node_modules</div><div class="line">|-- package.json</div><div class="line">|-- public</div><div class="line">|-- src</div><div class="line">`-- webpack.config.js</div><div class="line">改变路径到你的新项目</div></pre></td></tr></table></figure></p>
-<p>跑<code>rax init</code>之后，会自动在项目路径当中创建一系列文件：</p>
+<p>Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：</p>
+<pre><code class="Terminal">$ npm install -g rax-cli
+</code></pre>
+<h2 id="开始第一个项目"><a href="#开始第一个项目" class="headerlink" title="开始第一个项目"></a>开始第一个项目</h2><p>创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。</p>
+<pre><code>rax init hello-world
+Creating a new Rax project in /Users/anonymous/hello-world
+Install dependencies:
+...
+To run your app:
+   cd hello-world
+   npm run start
+```$ cd hello-world
+/Users/anonymous/hello-world
+|-- README.md
+|-- node_modules
+|-- package.json
+|-- public
+|-- src
+`-- webpack.config.js
+改变路径到你的新项目
+</code></pre><p>跑<code>rax init</code>之后，会自动在项目路径当中创建一系列文件：</p>
 <ul>
 <li><code>src/index.js</code> 是Rax app的入口。</li>
 <li><code>package.json</code>定义了项目所需要的各种模块，它告诉<code>npm</code>如何安装外部依赖，比如<code>rax</code>和<code>rax-component</code>库。</li>
 </ul>
 <p>使用<code>npm run start</code>命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。</p>
-<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//顶层API</span></div><div class="line"><span class="keyword">import</span> &#123;createElement, Component&#125; <span class="keyword">from</span> <span class="string">'rax'</span>;</div><div class="line"><span class="comment">//元件引用</span></div><div class="line"><span class="keyword">import</span> View <span class="keyword">from</span> <span class="string">'rax-view'</span>;</div><div class="line"><span class="keyword">import</span> Text <span class="keyword">from</span> <span class="string">'rax-text'</span>;</div><div class="line"><span class="comment">//import &#123;View, Text&#125; from 'rax-components';</span></div><div class="line"><span class="comment">//rax-components需要自行安装</span></div><div class="line"></div><div class="line"><span class="comment">//引用样式</span></div><div class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./App.css'</span>;</div><div class="line"></div><div class="line"><span class="comment">//定义组件</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View style=&#123;styles.app&#125;&gt;</div><div class="line">        &lt;View style=&#123;styles.appHeader&#125;&gt;</div><div class="line">          &lt;Text style=&#123;styles.appBanner&#125;&gt;Welcome to Rax&lt;<span class="regexp">/Text&gt;</span></div><div class="line"><span class="regexp">        &lt;/</span>View&gt;</div><div class="line">        &lt;Text style=&#123;styles.appIntro&#125;&gt;</div><div class="line">          To get started, edit src/App.js and save to reload.</div><div class="line">        &lt;<span class="regexp">/Text&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//渲染</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</div></pre></td></tr></table></figure>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><pre><code class="javascript">//顶层API
+import {createElement, Component} from &#39;rax&#39;;
+//元件引用
+import View from &#39;rax-view&#39;;
+import Text from &#39;rax-text&#39;;
+//import {View, Text} from &#39;rax-components&#39;;
+//rax-components需要自行安装
+
+//引用样式
+import styles from &#39;./App.css&#39;;
+
+//定义组件
+class App extends Component {
+  render() {
+    return (
+      &lt;View style={styles.app}&gt;
+        &lt;View style={styles.appHeader}&gt;
+          &lt;Text style={styles.appBanner}&gt;Welcome to Rax&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;Text style={styles.appIntro}&gt;
+          To get started, edit src/App.js and save to reload.
+        &lt;/Text&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+
+//渲染
+export default App;
+</code></pre>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/alibaba/rax/blob/master/docs/README.md" target="_blank" rel="external">Rax Github</a></p>
 
         
@@ -539,7 +581,7 @@
 
     <!-- Next Nav -->
     
-        <a href="/2018/03/18/Rax(3)-关于样式/" id="post_nav-older" class="next-content">
+        <a href="/2018/03/18/Rax(2)-关于JSX/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -595,7 +637,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto: 1305233756@qq.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -617,8 +659,6 @@
             </a>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Archives  -->
@@ -637,44 +677,15 @@
             </ul>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法与数据结构/">算法与数据结构<span class="sidebar_archives-count">4</span></a>
-            </ul>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 
     <!-- Pages  -->
     
 
     <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">13</span>
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 </ul>
 
@@ -770,7 +781,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/Zendq1998" target="_blank">
+        <a href="https://www.github.com/zendq1998" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
                 <span class="visuallyhidden">Github</span>
             </button><!--
@@ -856,10 +867,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    
-        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
-    
-
 
 
 
@@ -899,12 +906,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Bing Background -->
-
-<script type="text/ls-javascript" id="Bing-Background-script">
-    queue.offer(function(){
-        $('body').attr('data-original', 'https://api.i-meto.com/bing?[object Object]');
-    });
-</script>
 
 
 <script type="text/ls-javascript" id="lazy-load">

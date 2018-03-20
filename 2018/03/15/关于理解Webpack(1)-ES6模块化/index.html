@@ -161,13 +161,8 @@
 <!-- Theme Background Related-->
 
     <style>
-      body {
-        background-color: ;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
-        background-color: #fff;
+      body{
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -495,24 +490,61 @@
 <p>ES6模块化提出之后，实现了模块功能而起相当简单，逐渐取代之前的两种规范，因为它同时具有CommonJS简练的语法（for single exports and support for cyclic dependencies）和AMD的可异步加载依赖。并且具有在语法上比CommonJS更简练、更支持循环依赖等优点。</p>
 <h2 id="The-basics-of-ES6-modules"><a href="#The-basics-of-ES6-modules" class="headerlink" title="The basics of ES6 modules"></a>The basics of ES6 modules</h2><p>export的具体用法参照<a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export" target="_blank" rel="external">这里</a>，其实就两种export：named exports (several per module) and default exports (one per module)，从一个模块里可以有多个不同命名的exports输出，但是只有一个default export。</p>
 <ol>
-<li><strong>Named export (several per module)</strong><br>一个模块输出多个exports<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ lib.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> sqrt = <span class="built_in">Math</span>.sqrt;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x * x;</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">diag</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> sqrt(square(x) + square(y));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//------ main.js ------</span></div><div class="line"><span class="keyword">import</span> &#123; square, diag &#125; <span class="keyword">from</span> <span class="string">'lib'</span>;</div><div class="line"><span class="built_in">console</span>.log(square(<span class="number">11</span>)); <span class="comment">// 121</span></div><div class="line"><span class="built_in">console</span>.log(diag(<span class="number">4</span>, <span class="number">3</span>)); <span class="comment">// 5</span></div></pre></td></tr></table></figure>
-</li>
+<li><strong>Named export (several per module)</strong><br>一个模块输出多个exports<br>```JavaScript<br>//—— lib.js ——<br>export const sqrt = Math.sqrt;<br>export function square(x) {<br>return x * x;<br>}<br>export function diag(x, y) {<br>return sqrt(square(x) + square(y));<br>}</li>
 </ol>
-<p>符号*代表所有模块所以main.js也可以改成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------- main.js -----</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> lib <span class="keyword">from</span> <span class="string">'lib'</span>;</div><div class="line"><span class="built_in">console</span>.log(lib.square(<span class="number">11</span>)); <span class="comment">// 121</span></div><div class="line"><span class="built_in">console</span>.log(lib.diag(<span class="number">4</span>, <span class="number">3</span>)); <span class="comment">// 5</span></div></pre></td></tr></table></figure></p>
-<ol>
-<li><strong>Default exports (one per module)</strong><br>一个模块输出一个export，这样的模块里只有一个function或者class：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ myFunc.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"></div><div class="line"><span class="comment">//------ main1.js ------</span></div><div class="line"><span class="keyword">import</span> myFunc <span class="keyword">from</span> <span class="string">'myFunc'</span>;</div><div class="line">myFunc();</div><div class="line"></div><div class="line"><span class="comment">//------ MyClass.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"></div><div class="line"><span class="comment">//------ main2.js ------</span></div><div class="line"><span class="keyword">import</span> MyClass <span class="keyword">from</span> <span class="string">'MyClass'</span>;</div><div class="line"><span class="keyword">const</span> inst = <span class="keyword">new</span> MyClass();</div></pre></td></tr></table></figure>
-</li>
+<p>//—— main.js ——<br>import { square, diag } from ‘lib’;<br>console.log(square(11)); // 121<br>console.log(diag(4, 3)); // 5</p>
+<pre><code>
+符号*代表所有模块所以main.js也可以改成：
+```JavaScript
+//------- main.js -----
+import * as lib from &#39;lib&#39;;
+console.log(lib.square(11)); // 121
+console.log(lib.diag(4, 3)); // 5
+</code></pre><ol>
+<li><strong>Default exports (one per module)</strong><br>一个模块输出一个export，这样的模块里只有一个function或者class：<br>```JavaScript<br>//—— myFunc.js ——<br>export default function () {} // no semicolon!</li>
 </ol>
-<p><em>要注意:export default…后面没有分号！</em></p>
-<p><strong>主要有两种风格的export default：</strong></p>
-<pre><code>1.元素声明（Labeling declarations）
+<p>//—— main1.js ——<br>import myFunc from ‘myFunc’;<br>myFunc();</p>
+<p>//—— MyClass.js ——<br>export default class {} // no semicolon!</p>
+<p>//—— main2.js ——<br>import MyClass from ‘MyClass’;<br>const inst = new MyClass();</p>
+<pre><code>*要注意:export default...后面没有分号！*
 
-2.直接输出值（Default-exporting values directly）
-</code></pre><p>第一种风格：<strong>边声明边输出</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"></div><div class="line"><span class="comment">//或者使用匿名函数</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div></pre></td></tr></table></figure>
-<p>第二种风格：<strong>直接输出值</strong><br>（这些值都是经由表达式产生）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'abc'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> foo();</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> /^xyz$/;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">5</span> * <span class="number">7</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; <span class="attr">no</span>: <span class="literal">false</span>, <span class="attr">yes</span>: <span class="literal">true</span> &#125;;</div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 格式：</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> «expression»;</div></pre></td></tr></table></figure>
-<p><strong>必须在模块的最高作用域imports或者export</strong><br>ES6的模块是静态结构，你不能在if语句后面export或者import东西，否则会报错，所以你必须在一个模块的最外层作用于使用export或者import。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">Math</span>.random()) &#123;</div><div class="line">    <span class="keyword">import</span> <span class="string">'foo'</span>; <span class="comment">// SyntaxError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// You can’t even nest `import` and `export`</span></div><div class="line"><span class="comment">// inside a simple block:</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">import</span> <span class="string">'foo'</span>; <span class="comment">// SyntaxError</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+**主要有两种风格的export default：**
+
+    1.元素声明（Labeling declarations）
+
+    2.直接输出值（Default-exporting values directly）
+
+第一种风格：**边声明边输出**
+
+```JavaScript
+export default function foo() {} // no semicolon!
+export default class Bar {} // no semicolon!
+
+//或者使用匿名函数
+export default function () {} // no semicolon!
+export default class {} // no semicolon!
+</code></pre><p>第二种风格：<strong>直接输出值</strong><br>（这些值都是经由表达式产生）</p>
+<pre><code class="JavaScript">export default &#39;abc&#39;;
+export default foo();
+export default /^xyz$/;
+export default 5 * 7;
+export default { no: false, yes: true };
+</code></pre>
+<pre><code class="JavaScript">// 格式：
+export default «expression»;
+</code></pre>
+<p><strong>必须在模块的最高作用域imports或者export</strong><br>ES6的模块是静态结构，你不能在if语句后面export或者import东西，否则会报错，所以你必须在一个模块的最外层作用于使用export或者import。</p>
+<pre><code class="JavaScript">if (Math.random()) {
+    import &#39;foo&#39;; // SyntaxError
+}
+
+// You can’t even nest `import` and `export`
+// inside a simple block:
+{
+    import &#39;foo&#39;; // SyntaxError
+}
+</code></pre>
 <p>如果你在{}内引用了import或者export，经测试,报错结果是”You can’t even nest <code>import</code> and <code>export</code>“</p>
 <h2 id="Support-for-cyclic-dependencies"><a href="#Support-for-cyclic-dependencies" class="headerlink" title="Support for cyclic dependencies"></a>Support for cyclic dependencies</h2><p>如果模块A引入了模块B而且B也引入了A，那么就称这两个模块互相循环依赖</p>
 
@@ -535,7 +567,7 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/03/18/Rax(2)-关于JSX/" id="post_nav-newer" class="prev-content">
+        <a href="/2018/03/18/Rax(3)-关于样式/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -605,7 +637,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto: 1305233756@qq.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -627,8 +659,6 @@
             </a>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Archives  -->
@@ -647,44 +677,15 @@
             </ul>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法与数据结构/">算法与数据结构<span class="sidebar_archives-count">4</span></a>
-            </ul>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 
     <!-- Pages  -->
     
 
     <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">13</span>
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 </ul>
 
@@ -780,7 +781,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/Zendq1998" target="_blank">
+        <a href="https://www.github.com/zendq1998" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
                 <span class="visuallyhidden">Github</span>
             </button><!--
@@ -866,10 +867,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    
-        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
-    
-
 
 
 
@@ -909,12 +906,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Bing Background -->
-
-<script type="text/ls-javascript" id="Bing-Background-script">
-    queue.offer(function(){
-        $('body').attr('data-original', 'https://api.i-meto.com/bing?[object Object]');
-    });
-</script>
 
 
 <script type="text/ls-javascript" id="lazy-load">

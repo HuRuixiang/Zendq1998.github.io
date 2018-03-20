@@ -161,13 +161,8 @@
 <!-- Theme Background Related-->
 
     <style>
-      body {
-        background-color: ;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text {
-        background-color: #fff;
+      body{
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -340,15 +335,6 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#"><span class="post-toc-number">1.</span> <span class="post-toc-text">```</span></a></li></ol>
-    </ul>
-    
 
 
 
@@ -494,19 +480,61 @@
 <p>由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。</p>
 <hr>
 <p>（1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT)&#123;</div><div class="line">	S.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   </div><div class="line">	                                //顺序栈的初始分配最大空间</div><div class="line">	if(!S.stack)  exit(1);          //存储控件分配失败</div><div class="line">	S.top = -1;                     //置栈空</div><div class="line">	S.stacksize = maSxsize;         //顺序栈的当前容量</div><div class="line">	S.incrementsize = incresize;    //增补空间</div><div class="line">&#125;//InitStack_Sq</div></pre></td></tr></table></figure>
+<pre><code class="c/c++"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT){
+    S.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   
+                                    //顺序栈的初始分配最大空间
+    if(!S.stack)  exit(1);          //存储控件分配失败
+    S.top = -1;                     //置栈空
+    S.stacksize = maSxsize;         //顺序栈的当前容量
+    S.incrementsize = incresize;    //增补空间
+}//InitStack_Sq
+</code></pre>
 <p>(2)求顺序栈的长度操作。统计顺序栈S中数据元素的个数，并返回统计结果。其主要操作是：返回顺序栈中栈顶指针的上一个位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int StackLength_Sq(SqStack S)&#123;</div><div class="line">	return S.top+1;</div><div class="line">&#125;//StackLength_Sq</div></pre></td></tr></table></figure>
+<pre><code class="c/c++">int StackLength_Sq(SqStack S){
+    return S.top+1;
+}//StackLength_Sq
+</code></pre>
 <p>(3)进栈操作。将一个新元素插入到顺序栈S的栈顶的上一个位置，作为新的栈顶元素。其主要操作是：先判断顺序栈是否已满，若已满，则重新分配空间，然后将栈顶指针加1，再将进栈元素插入到栈顶处。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">bool Push_Sq(SqStack &amp;S, ElemType e)&#123;</div><div class="line">//在顺序栈的栈顶插入元素e</div><div class="line">if(S.top==S.stacksize-1)&#123;</div><div class="line">	S.stack=(ElemType *)realloc(S.stack,(S.stacksize+incrementsize)*sizeof(ElemType));</div><div class="line">	//栈满，给顺序栈增补空间</div><div class="line">	if(!S.stack)    return false;</div><div class="line">	//存储分配空间失败</div><div class="line">	S.stacksize+=S.incrementsize;</div><div class="line">&#125;</div><div class="line">S.stack[++top]=e;</div><div class="line">	//栈顶指针上移，元素e进栈</div><div class="line">return true;</div><div class="line">&#125;//Push_Sq</div></pre></td></tr></table></figure>
-<p>(4)出栈操作。将元素S的栈顶元素删除。其主要操作是：先判断栈顶指针书否为空，若非空，则将栈顶元素取出，然后将栈顶指针减1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool Pop_Sq(SqStack &amp;S, ElemType &amp;e)&#123;</div><div class="line">//删除顺序栈栈顶元素，并让e返回其值</div><div class="line">if(S.top==-1) return false;</div><div class="line">e = S.stack[S.top--];</div><div class="line">	return false;</div><div class="line">&#125;//Pop_Sq</div></pre></td></tr></table></figure>
-<p>(5)取栈顶操作。取出顺序栈S的栈顶元素的值。其主要操作是：先判断顺序栈是否为空，若非空，则将栈顶元素取出。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool 	GetTop_Sq(SqStack S,ElemType e)&#123;</div><div class="line">//取顺序栈顶元素，并让e返回其值</div><div class="line">if(S.top==-1) return false;</div><div class="line">e=S.stack[S.top];</div><div class="line">return true;</div><div class="line">&#125;//GetTop_Sq</div></pre></td></tr></table></figure>
-<p>(6)判断栈空操作。判断顺序栈S是否为空。若S为空则返回true，否则返回false。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool StackEmpty_Sq(SqStack S)&#123;</div><div class="line">if(S.top==-1)  return true;</div><div class="line">return false;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">(7)撤销顺序栈操作。释放顺序栈S所占用的存储空间。</div></pre></td></tr></table></figure>
-<p>void DestroyStack_Sq(SqStack &amp;S){<br>    free(S.stack);<br>    S.stacksize = 0;<br>    S.top = -1;<br>}//DestroyStack_Sq</p>
-<h2 id=""><a href="#" class="headerlink" title="```"></a>```</h2><p><strong>总结</strong></p>
+<pre><code>bool Push_Sq(SqStack &amp;S, ElemType e){
+//在顺序栈的栈顶插入元素e
+if(S.top==S.stacksize-1){
+    S.stack=(ElemType *)realloc(S.stack,(S.stacksize+incrementsize)*sizeof(ElemType));
+    //栈满，给顺序栈增补空间
+    if(!S.stack)    return false;
+    //存储分配空间失败
+    S.stacksize+=S.incrementsize;
+}
+S.stack[++top]=e;
+    //栈顶指针上移，元素e进栈
+return true;
+}//Push_Sq
+</code></pre><p>(4)出栈操作。将元素S的栈顶元素删除。其主要操作是：先判断栈顶指针书否为空，若非空，则将栈顶元素取出，然后将栈顶指针减1.</p>
+<pre><code>bool Pop_Sq(SqStack &amp;S, ElemType &amp;e){
+//删除顺序栈栈顶元素，并让e返回其值
+if(S.top==-1) return false;
+e = S.stack[S.top--];
+    return false;
+}//Pop_Sq
+</code></pre><p>(5)取栈顶操作。取出顺序栈S的栈顶元素的值。其主要操作是：先判断顺序栈是否为空，若非空，则将栈顶元素取出。</p>
+<pre><code>bool     GetTop_Sq(SqStack S,ElemType e){
+//取顺序栈顶元素，并让e返回其值
+if(S.top==-1) return false;
+e=S.stack[S.top];
+return true;
+}//GetTop_Sq
+</code></pre><p>(6)判断栈空操作。判断顺序栈S是否为空。若S为空则返回true，否则返回false。</p>
+<pre><code>bool StackEmpty_Sq(SqStack S){
+if(S.top==-1)  return true;
+return false;
+}
+</code></pre><p>(7)撤销顺序栈操作。释放顺序栈S所占用的存储空间。</p>
+<pre><code>void DestroyStack_Sq(SqStack &amp;S){
+    free(S.stack);
+    S.stacksize = 0;
+    S.top = -1;
+}//DestroyStack_Sq
+</code></pre><hr>
+<p><strong>总结</strong></p>
 <p><em>对于顺序栈S的相关操作，归纳起来主要有以下4个要素。</em></p>
 <ul>
 <li>栈空条件：S.top == -1</li>
@@ -604,7 +632,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto: 1305233756@qq.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -626,8 +654,6 @@
             </a>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Archives  -->
@@ -646,44 +672,15 @@
             </ul>
         </li>
         
-            <li class="divider"></li>
-        
     
 
     <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法与数据结构/">算法与数据结构<span class="sidebar_archives-count">4</span></a>
-            </ul>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 
     <!-- Pages  -->
     
 
     <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">13</span>
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
     
 </ul>
 
@@ -779,7 +776,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
-        <a href="https://github.com/Zendq1998" target="_blank">
+        <a href="https://www.github.com/zendq1998" target="_blank">
             <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
                 <span class="visuallyhidden">Github</span>
             </button><!--
@@ -865,10 +862,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    
-        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
-    
-
 
 
 
@@ -908,12 +901,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Bing Background -->
-
-<script type="text/ls-javascript" id="Bing-Background-script">
-    queue.offer(function(){
-        $('body').attr('data-original', 'https://api.i-meto.com/bing?[object Object]');
-    });
-</script>
 
 
 <script type="text/ls-javascript" id="lazy-load">
