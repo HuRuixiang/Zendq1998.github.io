@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Rax(2)-关于JSX]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
-    <content type="text"><![CDATA[介绍JSX考虑这个变量的声明： const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。 function formatName(user) { return user.firstname + &#39; &#39; + user.lastname; } const user = { firstName: &#39;Harper&#39;, lastName: &#39;Perez&#39; }; const element = ( &lt;h1&gt; Hello, {formatName(user)}! &lt;/h1&gt; ); ReactDOM.render( element, document.getElementById(&#39;root&#39;) ); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 function getGreeting(user) { if (user) { return &lt;h1&gt;Hello, {formatName(user)}!&lt;/h1&gt;; } return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;; } JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： // Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import { createElement } from &#39;rax&#39;; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
+    <title><![CDATA[Rax(1)-入门]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装： $ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。 rax init hello-world Creating a new Rax project in /Users/anonymous/hello-world Install dependencies: ... To run your app: cd hello-world npm run start ```$ cd hello-world /Users/anonymous/hello-world |-- README.md |-- node_modules |-- package.json |-- public |-- src `-- webpack.config.js 改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World//顶层API import {createElement, Component} from &#39;rax&#39;; //元件引用 import View from &#39;rax-view&#39;; import Text from &#39;rax-text&#39;; //import {View, Text} from &#39;rax-components&#39;; //rax-components需要自行安装 //引用样式 import styles from &#39;./App.css&#39;; //定义组件 class App extends Component { render() { return ( &lt;View style={styles.app}&gt; &lt;View style={styles.appHeader}&gt; &lt;Text style={styles.appBanner}&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style={styles.appIntro}&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); } } //渲染 export default App; 参考资料Rax Github]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>Rax</tag>
-        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
@@ -24,14 +23,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Rax(1)-入门]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装： $ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。 rax init hello-world Creating a new Rax project in /Users/anonymous/hello-world Install dependencies: ... To run your app: cd hello-world npm run start ```$ cd hello-world /Users/anonymous/hello-world |-- README.md |-- node_modules |-- package.json |-- public |-- src `-- webpack.config.js 改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World//顶层API import {createElement, Component} from &#39;rax&#39;; //元件引用 import View from &#39;rax-view&#39;; import Text from &#39;rax-text&#39;; //import {View, Text} from &#39;rax-components&#39;; //rax-components需要自行安装 //引用样式 import styles from &#39;./App.css&#39;; //定义组件 class App extends Component { render() { return ( &lt;View style={styles.app}&gt; &lt;View style={styles.appHeader}&gt; &lt;Text style={styles.appBanner}&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style={styles.appIntro}&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); } } //渲染 export default App; 参考资料Rax Github]]></content>
+    <title><![CDATA[Rax(2)-关于JSX]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
+    <content type="text"><![CDATA[介绍JSX考虑这个变量的声明： const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。 function formatName(user) { return user.firstname + &#39; &#39; + user.lastname; } const user = { firstName: &#39;Harper&#39;, lastName: &#39;Perez&#39; }; const element = ( &lt;h1&gt; Hello, {formatName(user)}! &lt;/h1&gt; ); ReactDOM.render( element, document.getElementById(&#39;root&#39;) ); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 function getGreeting(user) { if (user) { return &lt;h1&gt;Hello, {formatName(user)}!&lt;/h1&gt;; } return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;; } JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： // Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import { createElement } from &#39;rax&#39;; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>Rax</tag>
+        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
