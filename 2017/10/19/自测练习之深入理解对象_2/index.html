@@ -42,7 +42,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,316
+                  1,315
                 </span>
               
 
@@ -429,60 +429,22 @@
       
         <a id="more"></a>
 <hr>
-<h3 id="Object-prototype-toString方法"><a href="#Object-prototype-toString方法" class="headerlink" title="Object.prototype.toString方法"></a>Object.prototype.toString方法</h3><p>JavaScript对象原型的关系是一种树形结构，整个树形结构的根部就是Object.prototype。Object.prototype提供了一些可以在所有对象中使用的方法。比如说，toString方法可以将一个对象转换成其字符串表示形式，即返回反映这个对象的字符串。<br><strong>自测练习4</strong></p>
-<pre><code class="JavaScript">function foo(obj){
-  return Object.prototype.toString.call(obj).slice(8,-1)
-}//请说明函数foo的作用
-</code></pre>
+<h3 id="Object-prototype-toString方法"><a href="#Object-prototype-toString方法" class="headerlink" title="Object.prototype.toString方法"></a>Object.prototype.toString方法</h3><p>JavaScript对象原型的关系是一种树形结构，整个树形结构的根部就是Object.prototype。Object.prototype提供了一些可以在所有对象中使用的方法。比如说，toString方法可以将一个对象转换成其字符串表示形式，即返回反映这个对象的字符串。<br><strong>自测练习4</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">8</span>,<span class="number">-1</span>)</div><div class="line">&#125;<span class="comment">//请说明函数foo的作用</span></div></pre></td></tr></table></figure></p>
 <p>对obj这个对象调用Object.prototype.toString，返回对象obj的具体类型（一对方括号，方括号中间是单词“object”和类型的名称），再对返回的[object ….]调用slice方法，切去前面的object和最后的’]’剩下一个代表obj的类型名称的字符串。<br>foo的作用：检测参数的对象类型，返回代表类型名的字符串。<br>比如：</p>
-<pre><code class="JavaScript">foo(&quot;jerry&quot;); //&quot;String&quot;
-foo(123);     //&quot;Number&quot;
-foo(true);    //&quot;Boolean&quot;
-foo([1,2,3]); //&quot;Array&quot;
-foo({});      //&quot;Object&quot;
-foo(null);    //&quot;Null&quot;
-foo();        //&quot;Undefined&quot;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">foo(<span class="string">"jerry"</span>); <span class="comment">//"String"</span></div><div class="line">foo(<span class="number">123</span>);     <span class="comment">//"Number"</span></div><div class="line">foo(<span class="literal">true</span>);    <span class="comment">//"Boolean"</span></div><div class="line">foo([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment">//"Array"</span></div><div class="line">foo(&#123;&#125;);      <span class="comment">//"Object"</span></div><div class="line">foo(<span class="literal">null</span>);    <span class="comment">//"Null"</span></div><div class="line">foo();        <span class="comment">//"Undefined"</span></div></pre></td></tr></table></figure>
 <p>PS:<br>obj.toString()的结果和Object.prototype.toString.call(obj)的结果不一样,这是因为toString为Object的原型方法，而Array ，function等类型作为Object的实例，都重写（覆盖）了toString方法。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的覆盖之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串（与调用join(“,”)的结果非常相似，即在数组的每个值之间插入一个逗号）…..），而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object上原型toString方法。</p>
 <p>我们可以验证一下，将数组的toString方法删除，看看会是什么结果：</p>
-<pre><code class="JavaScript">var arr=[1,2,3];
-console.log(Array.prototype.hasOwnProperty(&quot;toString&quot;));//true
-console.log(arr.toString());//1,2,3
-delete Array.prototype.toString;//delete操作符删除实例属性
-console.log(Array.prototype.hasOwnProperty(&quot;toString&quot;));//false
-console.log(arr.toString());//&quot;[object Array]&quot;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.hasOwnProperty(<span class="string">"toString"</span>));<span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(arr.toString());<span class="comment">//1,2,3</span></div><div class="line"><span class="keyword">delete</span> <span class="built_in">Array</span>.prototype.toString;<span class="comment">//delete操作符删除实例属性</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.hasOwnProperty(<span class="string">"toString"</span>));<span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(arr.toString());<span class="comment">//"[object Array]"</span></div></pre></td></tr></table></figure>
 <p>删除了Array的toString方法后，同样再采用arr.toString()方法调用时，不再有屏蔽Object原型方法的实例方法，因此沿着原型链，arr最后调用了Object的toString方法，返回了和Object.prototype.toString.call(arr)相同的结果。</p>
 <hr>
 <h3 id="Object-defineProperty-方法"><a href="#Object-defineProperty-方法" class="headerlink" title="Object.defineProperty 方法"></a>Object.defineProperty 方法</h3><p>定义对象可以使用构造函数或字面量的形式：</p>
-<pre><code class="JavaScript">var obj = new Object;  //obj = {}
-obj.name = &quot;张三&quot;       //添加描述
-obj.say = function(){}://添加行为
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>;  <span class="comment">//obj = &#123;&#125;</span></div><div class="line">obj.name = <span class="string">"张三"</span>       <span class="comment">//添加描述</span></div><div class="line">obj.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;:<span class="comment">//添加行为</span></div></pre></td></tr></table></figure>
 <p>除了以上添加属性的方法，还可以使用Object.defineProperty定义新属性或修改原有的属性。</p>
 <p>语法：</p>
-<pre><code class="JavaScript">Object.defineProperty(obj, prop, descriptor)
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor)</div></pre></td></tr></table></figure>
 <p>参数说明：<br>    obj：必需。目标对象<br>    prop：必需。需要定义或修改属性的名字<br>    descriptor：必需。目标属性所拥有的特性<br>返回值：<br>    传入函数的对象。即第一个参数obj</p>
 <p><strong>数据描述</strong><br>当修改或定义对象的某个属性的时候，给这个属性添加一些特性：</p>
-<pre><code class="JavaScript">var obj = {
-    test:&quot;hello&quot;
-}
-//对象已有的属性添加特性描述
-Object.defineProperty(obj,&quot;test&quot;,{
-    configurable:true | false,
-    enumerable:true | false,
-    value:任意类型的值,
-    writable:true | false
-});
-//对象新添加的属性的特性描述
-Object.defineProperty(obj,&quot;newKey&quot;,{
-    configurable:true | false,
-    enumerable:true | false,
-    value:任意类型的值,
-    writable:true | false
-});
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    test:<span class="string">"hello"</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//对象已有的属性添加特性描述</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"test"</span>,&#123;</div><div class="line">    configurable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    enumerable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    value:任意类型的值,</div><div class="line">    writable:<span class="literal">true</span> | <span class="literal">false</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">//对象新添加的属性的特性描述</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"newKey"</span>,&#123;</div><div class="line">    configurable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    enumerable:<span class="literal">true</span> | <span class="literal">false</span>,</div><div class="line">    value:任意类型的值,</div><div class="line">    writable:<span class="literal">true</span> | <span class="literal">false</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>数据描述中的属性都是可选的，来看一下设置每一个属性的作用。</p>
 <p><strong>value</strong><br>属性对应的值,可以使任意类型的值，默认为undefined</p>
 <p><strong>writable</strong><br>属性的值是否可以被重写。设置为true可以被重写；设置为false。不能被重写，默认值为false。</p>
@@ -491,31 +453,7 @@ Object.defineProperty(obj,&quot;newKey&quot;,{
 <p>回到开头，第一种给对象添加属性的方法，添加的属性是可删除、可枚举、可重写的。</p>
 <p>第二种使用Object.definePropety给对象添加属性，如果不设置属性的特性，那么默认情况下，添加的属性是不可删除、不可枚举、不可重写的。<br><a href="https://segmentfault.com/a/1190000007434923" target="_blank" rel="external">具体Object.defineProperty 方法参考</a></p>
 <p><strong>自测练习5</strong></p>
-<pre><code class="JavaScript">var a = {}
-a.bar = 2
-
-Object.defineProperty(a, &quot;foo&quot;,
-                      { value: &quot;hi&quot;});
-//为a添加名为foo的属性，值为&quot;hi&quot;,没有设置属性的特性，所以这个属性是不可枚举、修改和重写的
-console.log(delete a.foo)
-//foo属性不可以被删除，故删除失败，输出false
-console.log(delete a.bar)
-//a属性是直接添加的，可以删除，输出true
-
-a.foo = &quot;world&quot;
-console.log(a.foo)
-//foo属性是不可重写的，值不变，还是输出&quot;hi&quot;
-
-for (var key in a){
-  console.log(key);
-}//foo属性不可枚举，bar属性又被删除了，没有可以枚举的属性了，不输出
-
-console.log(&quot;foo&quot; in a);
-//foo虽然不可枚举，但是还是存在对象a之中的，输出true
-console.log(&quot;bar&quot; in a);
-//bar属性已经被删除，不在对象a之中，输出false
-//请问console.log的输出？
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;&#125;</div><div class="line">a.bar = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">"foo"</span>,</div><div class="line">                      &#123; <span class="attr">value</span>: <span class="string">"hi"</span>&#125;);</div><div class="line"><span class="comment">//为a添加名为foo的属性，值为"hi",没有设置属性的特性，所以这个属性是不可枚举、修改和重写的</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> a.foo)</div><div class="line"><span class="comment">//foo属性不可以被删除，故删除失败，输出false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> a.bar)</div><div class="line"><span class="comment">//a属性是直接添加的，可以删除，输出true</span></div><div class="line"></div><div class="line">a.foo = <span class="string">"world"</span></div><div class="line"><span class="built_in">console</span>.log(a.foo)</div><div class="line"><span class="comment">//foo属性是不可重写的，值不变，还是输出"hi"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> a)&#123;</div><div class="line">  <span class="built_in">console</span>.log(key);</div><div class="line">&#125;<span class="comment">//foo属性不可枚举，bar属性又被删除了，没有可以枚举的属性了，不输出</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"foo"</span> <span class="keyword">in</span> a);</div><div class="line"><span class="comment">//foo虽然不可枚举，但是还是存在对象a之中的，输出true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"bar"</span> <span class="keyword">in</span> a);</div><div class="line"><span class="comment">//bar属性已经被删除，不在对象a之中，输出false</span></div><div class="line"><span class="comment">//请问console.log的输出？</span></div></pre></td></tr></table></figure>
 
       
     </div>

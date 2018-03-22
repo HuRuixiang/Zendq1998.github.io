@@ -42,7 +42,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -453,32 +453,7 @@
 </ol>
 <hr>
 <h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="http://img.blog.csdn.net/20171206235256630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjI1ODM0MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<h2 id="c-代码"><a href="#c-代码" class="headerlink" title="c++代码"></a>c++代码</h2><pre><code class="c++">#include &lt;vector&gt;
-#include &lt;algorithm&gt;//std::remove_if
-#include &lt;numeric&gt;//std::iota
-
-std::vector&lt;int&gt; eratosthenes(int max){
-  std::vector&lt;int&gt; vi(max+1);//0, 1, 2, ..., max
-  std::iota(vi.begin(), vi.end(), 0);
-  if(max&gt;=2){
-    int prime=2;
-    while(prime*prime&lt;=max){//2 to sqrt(max)
-      for(size_t index=prime*2; index&lt;vi.size(); index+=prime){
-        vi[index]=0;//Rule out this number.
-      }
-      for(prime++; prime*prime&lt;=max; prime++){
-        if(vi[prime]&gt;0){
-          break;//Jump to next non-zero.
-        }
-      }
-    }
-  }
-  vi.erase(std::remove_if(vi.begin(), vi.end(), [](int i)-&gt;bool{
-    return i&lt;=1;
-  }), vi.end());//Remove all zeros and the one.
-  return vi;
-}
-</code></pre>
+<h2 id="c-代码"><a href="#c-代码" class="headerlink" title="c++代码"></a>c++代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;//std::remove_if</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;//std::iota</span></span></div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; eratosthenes(<span class="keyword">int</span> max)&#123;</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(max+<span class="number">1</span>);<span class="comment">//0, 1, 2, ..., max</span></div><div class="line">  <span class="built_in">std</span>::iota(vi.begin(), vi.end(), <span class="number">0</span>);</div><div class="line">  <span class="keyword">if</span>(max&gt;=<span class="number">2</span>)&#123;</div><div class="line">    <span class="keyword">int</span> prime=<span class="number">2</span>;</div><div class="line">    <span class="keyword">while</span>(prime*prime&lt;=max)&#123;<span class="comment">//2 to sqrt(max)</span></div><div class="line">      <span class="keyword">for</span>(<span class="keyword">size_t</span> index=prime*<span class="number">2</span>; index&lt;vi.size(); index+=prime)&#123;</div><div class="line">        vi[index]=<span class="number">0</span>;<span class="comment">//Rule out this number.</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">for</span>(prime++; prime*prime&lt;=max; prime++)&#123;</div><div class="line">        <span class="keyword">if</span>(vi[prime]&gt;<span class="number">0</span>)&#123;</div><div class="line">          <span class="keyword">break</span>;<span class="comment">//Jump to next non-zero.</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  vi.erase(<span class="built_in">std</span>::remove_if(vi.begin(), vi.end(), [](<span class="keyword">int</span> i)-&gt;<span class="keyword">bool</span>&#123;</div><div class="line">    <span class="keyword">return</span> i&lt;=<span class="number">1</span>;</div><div class="line">  &#125;), vi.end());<span class="comment">//Remove all zeros and the one.</span></div><div class="line">  <span class="keyword">return</span> vi;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以上是来自<a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="external">维基百科的说法</a>。</p>
 <p>其实就是直接构造一个整型的数组，经过埃氏筛之后把合数置为0，对于一般占4个字节的int来说，每一个数不管素数还是合数都要占据4个字节的空间，但其实我是不需要合数的，当n很大的时候空间开销就会特别大。</p>
 <p>另一种方法就是筛的时候遇到合数就将它删掉，这样最后数组内只剩下素数，看起来不错可以减少空间的开销，但是频繁地对一个大的容器进行删除操作可能会导致频繁的内存分配和释放，而频繁的内存分配/释放，会导致明显的 CPU 占用并可能造成内存碎片。</p>

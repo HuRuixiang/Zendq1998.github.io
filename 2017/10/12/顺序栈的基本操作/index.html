@@ -42,7 +42,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  756
+                  762
                 </span>
               
 
@@ -431,61 +431,19 @@
 <p>由于顺序栈的操作位置基本在栈底，所以，不需要查找插入和删除的位置，也不需要移动元素，因而顺序栈的基本操作要比顺序表简单的多，其基本操作时间复杂度均为O（1）。下面给出顺序栈的部分操作的实现。</p>
 <hr>
 <p>（1）初始化操作。顺序栈的初始化就是构造一个空的顺序栈S，初始分配的最大容量为maxsize，预设的需要扩容的增量为incresize。其主要操作是：申请存储控件，栈顶指针的初始值置为-1.</p>
-<pre><code class="c/c++"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT){
-    S.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   
-                                    //顺序栈的初始分配最大空间
-    if(!S.stack)  exit(1);          //存储控件分配失败
-    S.top = -1;                     //置栈空
-    S.stacksize = maSxsize;         //顺序栈的当前容量
-    S.incrementsize = incresize;    //增补空间
-}//InitStack_Sq
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> void InitStack_Sq(SqStack &amp;S, int maxsize=STACK_INIT_SIZE, int incresize=STACKINCREMENT)&#123;</div><div class="line">trueS.stack=(ElemType *)malloc(maxsize*sizeof(ElemType));   </div><div class="line">true                                //顺序栈的初始分配最大空间</div><div class="line">trueif(!S.stack)  exit(1);          //存储控件分配失败</div><div class="line">trueS.top = -1;                     //置栈空</div><div class="line">trueS.stacksize = maSxsize;         //顺序栈的当前容量</div><div class="line">trueS.incrementsize = incresize;    //增补空间</div><div class="line">&#125;//InitStack_Sq</div></pre></td></tr></table></figure>
 <p>(2)求顺序栈的长度操作。统计顺序栈S中数据元素的个数，并返回统计结果。其主要操作是：返回顺序栈中栈顶指针的上一个位置。</p>
-<pre><code class="c/c++">int StackLength_Sq(SqStack S){
-    return S.top+1;
-}//StackLength_Sq
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int StackLength_Sq(SqStack S)&#123;</div><div class="line">truereturn S.top+1;</div><div class="line">&#125;//StackLength_Sq</div></pre></td></tr></table></figure>
 <p>(3)进栈操作。将一个新元素插入到顺序栈S的栈顶的上一个位置，作为新的栈顶元素。其主要操作是：先判断顺序栈是否已满，若已满，则重新分配空间，然后将栈顶指针加1，再将进栈元素插入到栈顶处。</p>
-<pre><code>bool Push_Sq(SqStack &amp;S, ElemType e){
-//在顺序栈的栈顶插入元素e
-if(S.top==S.stacksize-1){
-    S.stack=(ElemType *)realloc(S.stack,(S.stacksize+incrementsize)*sizeof(ElemType));
-    //栈满，给顺序栈增补空间
-    if(!S.stack)    return false;
-    //存储分配空间失败
-    S.stacksize+=S.incrementsize;
-}
-S.stack[++top]=e;
-    //栈顶指针上移，元素e进栈
-return true;
-}//Push_Sq
-</code></pre><p>(4)出栈操作。将元素S的栈顶元素删除。其主要操作是：先判断栈顶指针书否为空，若非空，则将栈顶元素取出，然后将栈顶指针减1.</p>
-<pre><code>bool Pop_Sq(SqStack &amp;S, ElemType &amp;e){
-//删除顺序栈栈顶元素，并让e返回其值
-if(S.top==-1) return false;
-e = S.stack[S.top--];
-    return false;
-}//Pop_Sq
-</code></pre><p>(5)取栈顶操作。取出顺序栈S的栈顶元素的值。其主要操作是：先判断顺序栈是否为空，若非空，则将栈顶元素取出。</p>
-<pre><code>bool     GetTop_Sq(SqStack S,ElemType e){
-//取顺序栈顶元素，并让e返回其值
-if(S.top==-1) return false;
-e=S.stack[S.top];
-return true;
-}//GetTop_Sq
-</code></pre><p>(6)判断栈空操作。判断顺序栈S是否为空。若S为空则返回true，否则返回false。</p>
-<pre><code>bool StackEmpty_Sq(SqStack S){
-if(S.top==-1)  return true;
-return false;
-}
-</code></pre><p>(7)撤销顺序栈操作。释放顺序栈S所占用的存储空间。</p>
-<pre><code>void DestroyStack_Sq(SqStack &amp;S){
-    free(S.stack);
-    S.stacksize = 0;
-    S.top = -1;
-}//DestroyStack_Sq
-</code></pre><hr>
-<p><strong>总结</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Push_Sq</span><span class="params">(SqStack &amp;S, ElemType e)</span></span>&#123;</div><div class="line"><span class="comment">//在顺序栈的栈顶插入元素e</span></div><div class="line"><span class="keyword">if</span>(S.top==S.stacksize<span class="number">-1</span>)&#123;</div><div class="line">trueS.<span class="built_in">stack</span>=(ElemType *)<span class="built_in">realloc</span>(S.<span class="built_in">stack</span>,(S.stacksize+incrementsize)*<span class="keyword">sizeof</span>(ElemType));</div><div class="line">true<span class="comment">//栈满，给顺序栈增补空间</span></div><div class="line">true<span class="keyword">if</span>(!S.<span class="built_in">stack</span>)    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">true<span class="comment">//存储分配空间失败</span></div><div class="line">trueS.stacksize+=S.incrementsize;</div><div class="line">&#125;</div><div class="line">S.<span class="built_in">stack</span>[++top]=e;</div><div class="line">true<span class="comment">//栈顶指针上移，元素e进栈</span></div><div class="line"><span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;<span class="comment">//Push_Sq</span></div></pre></td></tr></table></figure>
+<p>(4)出栈操作。将元素S的栈顶元素删除。其主要操作是：先判断栈顶指针书否为空，若非空，则将栈顶元素取出，然后将栈顶指针减1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Pop_Sq</span><span class="params">(SqStack &amp;S, ElemType &amp;e)</span></span>&#123;</div><div class="line"><span class="comment">//删除顺序栈栈顶元素，并让e返回其值</span></div><div class="line"><span class="keyword">if</span>(S.top==<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">e = S.<span class="built_in">stack</span>[S.top--];</div><div class="line">true<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;<span class="comment">//Pop_Sq</span></div></pre></td></tr></table></figure>
+<p>(5)取栈顶操作。取出顺序栈S的栈顶元素的值。其主要操作是：先判断顺序栈是否为空，若非空，则将栈顶元素取出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> 	<span class="title">GetTop_Sq</span><span class="params">(SqStack S,ElemType e)</span></span>&#123;</div><div class="line"><span class="comment">//取顺序栈顶元素，并让e返回其值</span></div><div class="line"><span class="keyword">if</span>(S.top==<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">e=S.<span class="built_in">stack</span>[S.top];</div><div class="line"><span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;<span class="comment">//GetTop_Sq</span></div></pre></td></tr></table></figure>
+<p>(6)判断栈空操作。判断顺序栈S是否为空。若S为空则返回true，否则返回false。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool StackEmpty_S<span class="string">q(SqStack S)</span>&#123;</div><div class="line"><span class="keyword">if</span>(S.top==-<span class="number">1</span>)  <span class="keyword">return</span> true;</div><div class="line"><span class="keyword">return</span> false;</div><div class="line">&#125;</div><div class="line"><span class="string">``</span><span class="string">` </span></div><div class="line"><span class="string">(7)撤销顺序栈操作。释放顺序栈S所占用的存储空间。</span></div></pre></td></tr></table></figure>
+<p>void DestroyStack_Sq(SqStack &amp;S){<br>    free(S.stack);<br>    S.stacksize = 0;<br>    S.top = -1;<br>}//DestroyStack_Sq</p>
+<h2 id=""><a href="#" class="headerlink" title="```"></a>```</h2><p><strong>总结</strong></p>
 <p><em>对于顺序栈S的相关操作，归纳起来主要有以下4个要素。</em></p>
 <ul>
 <li>栈空条件：S.top == -1</li>
@@ -589,8 +547,17 @@ return false;
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -678,6 +645,22 @@ return false;
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">```</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
