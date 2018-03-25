@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="ES6在语言规格的层面上实现了模块功能，而且实现的相当简单，完全可以成为浏览器和服务器通用的模块解决方案">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-25T15:50:36.444Z">
+<meta property="og:updated_time" content="2018-03-25T16:00:37.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6模块化">
 <meta name="twitter:description" content="ES6在语言规格的层面上实现了模块功能，而且实现的相当简单，完全可以成为浏览器和服务器通用的模块解决方案">
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  604
+                  1,482
                 </span>
               
 
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  6
                 </span>
               
             </div>
@@ -453,14 +453,8 @@
 </code></pre><h4 id="第一种风格：边声明边输出"><a href="#第一种风格：边声明边输出" class="headerlink" title="第一种风格：边声明边输出"></a>第一种风格：边声明边输出</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="comment">// 加载时都视为匿名函数</span></div><div class="line"></div><div class="line"><span class="comment">//或者使用匿名函数</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div></pre></td></tr></table></figure>
 <h4 id="第二种风格：直接输出值"><a href="#第二种风格：直接输出值" class="headerlink" title="第二种风格：直接输出值"></a>第二种风格：直接输出值</h4><p>（这些值都是经由表达式产生）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'abc'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> foo();</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> /^xyz$/;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">5</span> * <span class="number">7</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; <span class="attr">no</span>: <span class="literal">false</span>, <span class="attr">yes</span>: <span class="literal">true</span> &#125;;</div></pre></td></tr></table></figure></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 格式：</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> «expression»;</div></pre></td></tr></table></figure>
-<!-- ## export语法小结
-### 命名式导出
-#### 变量
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> 变量名 = 值;</div><div class="line"><span class="keyword">export</span> &#123;变量<span class="number">1</span>, 变量<span class="number">2</span>, ...&#125;;</div><div class="line"><span class="keyword">export</span> <span class="number">1</span>; <span class="comment">// 错误（不能直接导出值，因为没有变量与之相对应）</span></div></pre></td></tr></table></figure>
-<h4 id="函数-类"><a href="#函数-类" class="headerlink" title="函数/类"></a>函数/类</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> 函数名(<span class="params"></span>)</span>&#123;...&#125;;</div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;&#125;;</div><div class="line"><span class="keyword">export</span> &#123;函数名<span class="number">1</span>, 函数名<span class="number">2</span>, ...&#125;;</div></pre></td></tr></table></figure>
-<h3 id="默认导出"><a href="#默认导出" class="headerlink" title="默认导出"></a>默认导出</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'Hello world!'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">3</span> * <span class="number">7</span>;</div><div class="line"><span class="comment">// 值是可以默认输出的，但是不能直接输出</span></div></pre></td></tr></table></figure>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="comment">// 匿名函数，没有分号</span></div><div class="line"><span class="string">``</span><span class="string">` --&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">import</span></div><div class="line"><span class="string">-----</span></div><div class="line"><span class="string">使用export命令定义了模块的对外接口之后，其他js文件就可以通过import命令加载这个模块。</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">### 命名式输入</span></div><div class="line"><span class="string">`</span><span class="string">``</span>js</div><div class="line"><span class="keyword">import</span> &#123;变量<span class="number">1</span>, 变量<span class="number">2</span>, ...&#125; <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="keyword">import</span> &#123;变量名 <span class="keyword">as</span> 重命名&#125; <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="comment">// 变量名必须和被导入的变量名相同</span></div></pre></td></tr></table></figure>
+<h2 id="import"><a href="#import" class="headerlink" title="import"></a>import</h2><p>使用export命令定义了模块的对外接口之后，其他js文件就可以通过import命令加载这个模块。</p>
+<h3 id="命名式输入"><a href="#命名式输入" class="headerlink" title="命名式输入"></a>命名式输入</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;变量<span class="number">1</span>, 变量<span class="number">2</span>, ...&#125; <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="keyword">import</span> &#123;变量名 <span class="keyword">as</span> 重命名&#125; <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="comment">// 变量名必须和被导入的变量名相同</span></div></pre></td></tr></table></figure>
 <h3 id="默认输入"><a href="#默认输入" class="headerlink" title="默认输入"></a>默认输入</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> 任意变量名 <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="comment">// 因为只可能有一个默认输出，所以不需要知道原模型输出的函数名或变量名，而且不使用大括号</span></div></pre></td></tr></table></figure>
 <h3 id="同时存在命名式和默认式"><a href="#同时存在命名式和默认式" class="headerlink" title="同时存在命名式和默认式"></a>同时存在命名式和默认式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> defaultName, &#123;otherName&#125; <span class="keyword">from</span> <span class="string">'url'</span></div></pre></td></tr></table></figure>
 <p><strong>必须在模块的最高作用域imports或者export</strong><br>ES6的模块是静态结构，它的模块思想是尽量静态化，使得在编译时就能确定模块的依赖关系以及输入和输出的变量。所以不能在if语句后面export或者import东西，否则会报错，所以你必须在一个模块的最外层作用于使用export或者import。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">Math</span>.random()) &#123;</div><div class="line">    <span class="keyword">import</span> <span class="string">'foo'</span>; <span class="comment">// SyntaxError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// You can’t even nest `import` and `export`</span></div><div class="line"><span class="comment">// inside a simple block:</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">import</span> <span class="string">'foo'</span>; <span class="comment">// SyntaxError</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -530,9 +524,9 @@
 <p><strong>注意</strong>：尽管不能改变输入进来的值，但是可以改变他们所引用的对象。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ lib.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> obj = &#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">//------ main.js ------</span></div><div class="line"><span class="keyword">import</span> &#123; obj &#125; <span class="keyword">from</span> <span class="string">'./lib'</span>;</div><div class="line"></div><div class="line">obj.prop = <span class="number">123</span>; <span class="comment">// OK</span></div><div class="line">obj = &#123;&#125;; <span class="comment">// TypeError</span></div></pre></td></tr></table></figure></p>
 <h2 id="Support-for-cyclic-dependencies"><a href="#Support-for-cyclic-dependencies" class="headerlink" title="Support for cyclic dependencies"></a>Support for cyclic dependencies</h2><p>如果模块A引入了模块B而且B也引入了A，那么就称这两个模块互相循环依赖</p>
 <p>…未完待续</p>
-<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="http://exploringjs.com/es6/ch_modules.html#sec_imports-as-views-on-exports">exploringjs</a></p>
-<p><a href="http://es6.ruanyifeng.com/#docs/module-loader">阮一峰</a></p>
--->
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="http://exploringjs.com/es6/ch_modules.html#sec_imports-as-views-on-exports" target="_blank" rel="external">exploringjs</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/module-loader" target="_blank" rel="external">阮一峰</a></p>
+
       
     </div>
     
@@ -591,8 +585,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/18/Rax(2)-关于JSX/" rel="prev" title="Rax(2)-关于JSX">
-                Rax(2)-关于JSX <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/18/Rax(1)-入门/" rel="prev" title="Rax(1)-入门">
+                Rax(1)-入门 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -753,7 +747,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modules-in-JavaScript"><span class="nav-number">1.</span> <span class="nav-text">Modules in JavaScript </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">2.</span> <span class="nav-text">export</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Named-export-several-per-module"><span class="nav-number">2.1.</span> <span class="nav-text">Named export (several per module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Default-exports-one-per-module"><span class="nav-number">2.2.</span> <span class="nav-text">Default exports (one per module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#export-default主要的两种风格"><span class="nav-number">2.3.</span> <span class="nav-text">export default主要的两种风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种风格：边声明边输出"><span class="nav-number">2.3.1.</span> <span class="nav-text">第一种风格：边声明边输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种风格：直接输出值"><span class="nav-number">2.3.2.</span> <span class="nav-text">第二种风格：直接输出值</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modules-in-JavaScript"><span class="nav-number">1.</span> <span class="nav-text">Modules in JavaScript </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">2.</span> <span class="nav-text">export</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Named-export-several-per-module"><span class="nav-number">2.1.</span> <span class="nav-text">Named export (several per module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Default-exports-one-per-module"><span class="nav-number">2.2.</span> <span class="nav-text">Default exports (one per module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#export-default主要的两种风格"><span class="nav-number">2.3.</span> <span class="nav-text">export default主要的两种风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种风格：边声明边输出"><span class="nav-number">2.3.1.</span> <span class="nav-text">第一种风格：边声明边输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种风格：直接输出值"><span class="nav-number">2.3.2.</span> <span class="nav-text">第二种风格：直接输出值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import"><span class="nav-number">3.</span> <span class="nav-text">import</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名式输入"><span class="nav-number">3.1.</span> <span class="nav-text">命名式输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认输入"><span class="nav-number">3.2.</span> <span class="nav-text">默认输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同时存在命名式和默认式"><span class="nav-number">3.3.</span> <span class="nav-text">同时存在命名式和默认式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview-of-ES6-modules-syntax"><span class="nav-number">4.</span> <span class="nav-text">Overview of ES6 modules syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Details-imports-as-views-on-exports"><span class="nav-number">5.</span> <span class="nav-text">Details: imports as views on exports</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS模块输入的是被输出值的拷贝"><span class="nav-number">5.1.</span> <span class="nav-text">CommonJS模块输入的是被输出值的拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6的输入事export的动态可读视图"><span class="nav-number">5.2.</span> <span class="nav-text">ES6的输入事export的动态可读视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Support-for-cyclic-dependencies"><span class="nav-number">6.</span> <span class="nav-text">Support for cyclic dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-number">7.</span> <span class="nav-text">相关资料</span></a></li></ol></div>
             
 
           </div>
@@ -787,7 +781,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">11.4k</span>
+    <span title="Site words total count">12.3k</span>
   
 </div>
 
@@ -807,7 +801,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共11.4k字</span>
+  <span class="post-count">博客全站共12.3k字</span>
 </div>
 
         
