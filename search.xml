@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[ES6模块化]]></title>
+    <title><![CDATA[java web项目实践]]></title>
     <url>%2F2018%2F04%2F16%2Fjavaweb%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5%2F</url>
-    <content type="text"><![CDATA[搭建java web的开发环境 jdk环境 tomcat服务器 Eclipes tomcat简介tomcat是apache的一个开源项目，是一种常见的web服务器，jsp/servelet的容器。安装成功之后，运行omcat/bin/startup.sh, windows下是运行startup.bat。访问localhost:8080。是一个带有猫的页面，证明成功。 tomcat服务器目录结构/bin ：binary(二进制的缩写)，存放各种平台下启动和停止tomcat的命令文件，如startup.bat，shutdown.bat /conf：存放tomcat的各种配置文件 /lib：存放tomcat服务器所需的第三方驱动各种jar文件 /log：存放在tomcat的日志文件 /temp：tomcat运行时用于存放临时文件 /webapps：当发布web应用时，默认会将web应用的文件发布到此目录中 /work：tomcat把由jsp生成的servlet放在此目录下 第一个java web项目（手动）初始化 在webapps中创建项目目录，比如webapps/myhome 编写index.jsp 创建WEB-INF目录 运行 能够访问localhost:8080/myhome/index.jsp WEB-INF目录结构 WEB-INF是java的web应用的安全目录。—也就是客户端无法访问，只有服务端可以访问的目录。 web.xml：项目部署文件。 classes文件夹，用来放置*.class文件。 lib文件夹，用来存放需要的jar包。]]></content>
+    <content type="text"><![CDATA[搭建java web的开发环境 jdk环境 tomcat服务器 Eclipes tomcat简介tomcat是apache的一个开源项目，是一种常见的web服务器，jsp/servelet的容器。安装成功之后，运行omcat/bin/startup.sh, windows下是运行startup.bat。访问localhost:8080。是一个带有猫的页面，证明成功。 tomcat服务器目录结构/bin ：binary(二进制的缩写)，存放各种平台下启动和停止tomcat的命令文件，如startup.bat，shutdown.bat /conf：存放tomcat的各种配置文件 /lib：存放tomcat服务器所需的第三方驱动各种jar文件 /log：存放在tomcat的日志文件 /temp：tomcat运行时用于存放临时文件 /webapps：当发布web应用时，默认会将web应用的文件发布到此目录中 /work：tomcat把由jsp生成的servlet放在此目录下 第一个java web项目（手动）初始化 在webapps中创建项目目录，比如webapps/myhome 编写index.jsp 创建WEB-INF目录 运行 能够访问localhost:8080/myhome/index.jsp WEB-INF目录结构 WEB-INF是java的web应用的安全目录。—也就是客户端无法访问，只有服务端可以访问的目录。 web.xml：项目部署文件。 classes文件夹，用来放置*.class文件。 lib文件夹，用来存放需要的jar包。 eclipes集成tomcat环境配置： 配jre进入preference =&gt; java =&gt; install jres配置（推荐你自己安装的jre） 集成tomcat进入preference =&gt; server =&gt; runtime enviroment 使用eclipes编写第一个web程序new =&gt; project =&gt; web =&gt; dynamic web project 创建一个名叫mytest的项目 默认会产生一些项目结构。 在其中的WebRoot(或者WebContent)根目录内创建index.jsp, 在里面可以写一个hello world测试一下。 保存之后点击tab栏中的运行tomcat，（第一次运行需要选择你对应的tomcat版本），运行之后下面的控制台会给出一系列的提示信息，若没有报错，则可以在浏览器中访问localhost:8080/mytest/index.jsp，就可以看到你写的hello world啦。 修改tomcat服务器默认端口修改conf/server.xml 1234&lt;Connector port="8080" protocol="HTTP/1.1" connectionTomeout="20000" redirectPort="8443"&gt; 修改完后重启tomcat就OKl。]]></content>
       <categories>
         <category>数据库与后端</category>
       </categories>
