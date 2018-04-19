@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="记录实践javaee小项目的学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-19T10:20:11.000Z">
+<meta property="og:updated_time" content="2018-04-19T11:14:30.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java web项目实践">
 <meta name="twitter:description" content="记录实践javaee小项目的学习笔记">
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,050
+                  1,288
                 </span>
               
 
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -523,6 +523,24 @@
 </ul>
 <p>用户发出请求index.jsp=&gt;判断用户是否是第一次请求=&gt;若是，jsp引擎把该文件转化为一个servelet，生成字节码文件并执行jspInit(),若不是，则直接访问字节码文件=&gt;解析执行，jspService()</p>
 <p>jspService()方法被调用来处理客户端的请求。对每一个请求，jsp引擎创建一个新的线程来处理该请求。如果有多个客户端同时请求改jsp文件，则jsp引擎会创建多个线程。每个客户端请求对应一个线程。以多线程方式执行可以大大降低系统的资源需求，提高系统的并发量及相应时间。但也要注意多线程带来的同步问题，由于Servelet始终驻于内存，所以相应是非常快的。</p>
+<ul>
+<li>阶段项目</li>
+</ul>
+<p>分别使用脚本和html打印99乘法表：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></div><div class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;</div><div class="line">&lt;title&gt;Insert title here&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">true&lt;%!</div><div class="line">truetrue<span class="function">String <span class="title">printMutiTable</span><span class="params">()</span> </span>&#123;</div><div class="line">truetruetrueString s = <span class="string">""</span>;</div><div class="line">truetruetrue<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">9</span>;i++) &#123;</div><div class="line">truetruetruetrue<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=i;j++) &#123;</div><div class="line">truetruetruetruetrues += i+<span class="string">"*"</span>+j+<span class="string">"="</span>+(i*j)+<span class="string">"   "</span>;</div><div class="line">truetruetruetrue&#125;</div><div class="line">truetruetruetrues += <span class="string">"&lt;br&gt;"</span>;</div><div class="line">truetruetrue&#125;</div><div class="line">truetruetrue<span class="keyword">return</span> s;</div><div class="line">truetrue&#125;</div><div class="line">true%&gt;</div><div class="line">true&lt;h1&gt;九九乘法表&lt;/h1&gt;</div><div class="line">true&lt;hr&gt;</div><div class="line">true&lt;%=printMutiTable() %&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="jsp内置对象"><a href="#jsp内置对象" class="headerlink" title="jsp内置对象"></a>jsp内置对象</h2><h3 id="内置对象简介"><a href="#内置对象简介" class="headerlink" title="内置对象简介"></a>内置对象简介</h3><p>jsp内置对象是web容器创建的一组对象，不使用new关键字就可以使用的内置对象。</p>
+<p>例如：<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;%</div><div class="line"><span class="keyword">int</span>[] value = &#123;<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i:value) &#123;</div><div class="line">trueout.println(i);</div><div class="line">&#125;</div><div class="line">%&gt;</div></pre></td></tr></table></figure></p>
+<p>常见的jsp内置对象：</p>
+<ul>
+<li>out</li>
+<li>request</li>
+<li>response</li>
+<li>session</li>
+<li>application</li>
+<li>page/pageContext/exception/config</li>
+</ul>
+<h4 id="web程序的请求与相应模式"><a href="#web程序的请求与相应模式" class="headerlink" title="web程序的请求与相应模式"></a>web程序的请求与相应模式</h4><p>用户发送请求（request）<br>服务器给用户相应（response）</p>
+<h3 id="四种作用域范围"><a href="#四种作用域范围" class="headerlink" title="四种作用域范围"></a>四种作用域范围</h3><h3 id="out"><a href="#out" class="headerlink" title="out"></a>out</h3><h3 id="request-response"><a href="#request-response" class="headerlink" title="request/response"></a>request/response</h3><h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><h3 id="application"><a href="#application" class="headerlink" title="application"></a>application</h3><h3 id="其他内置对象"><a href="#其他内置对象" class="headerlink" title="其他内置对象"></a>其他内置对象</h3><p>###项目案例</p>
 
       
     </div>
@@ -578,8 +596,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/18/vue使用slot分发内容/" rel="prev" title="Vue双向数据绑定实现原理">
-                Vue双向数据绑定实现原理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/18/vue使用slot分发内容/" rel="prev" title="vue使用slot分发内容">
+                vue使用slot分发内容 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -740,7 +758,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建java-web的开发环境"><span class="nav-number">1.</span> <span class="nav-text">搭建java web的开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat简介"><span class="nav-number">1.1.</span> <span class="nav-text">tomcat简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat服务器目录结构"><span class="nav-number">1.2.</span> <span class="nav-text">tomcat服务器目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个java-web项目（手动）"><span class="nav-number">1.3.</span> <span class="nav-text">第一个java web项目（手动）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化"><span class="nav-number">1.3.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WEB-INF目录结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">WEB-INF目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipes集成tomcat"><span class="nav-number">1.4.</span> <span class="nav-text">eclipes集成tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用eclipes编写第一个web程序"><span class="nav-number">1.5.</span> <span class="nav-text">使用eclipes编写第一个web程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改tomcat服务器默认端口"><span class="nav-number">1.6.</span> <span class="nav-text">修改tomcat服务器默认端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp"><span class="nav-number">2.</span> <span class="nav-text">jsp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp简介"><span class="nav-number">2.1.</span> <span class="nav-text">jsp简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">2.3.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指令"><span class="nav-number">2.3.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">2.3.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jsp脚本"><span class="nav-number">2.3.3.</span> <span class="nav-text">jsp脚本</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建java-web的开发环境"><span class="nav-number">1.</span> <span class="nav-text">搭建java web的开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat简介"><span class="nav-number">1.1.</span> <span class="nav-text">tomcat简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat服务器目录结构"><span class="nav-number">1.2.</span> <span class="nav-text">tomcat服务器目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个java-web项目（手动）"><span class="nav-number">1.3.</span> <span class="nav-text">第一个java web项目（手动）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化"><span class="nav-number">1.3.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WEB-INF目录结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">WEB-INF目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipes集成tomcat"><span class="nav-number">1.4.</span> <span class="nav-text">eclipes集成tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用eclipes编写第一个web程序"><span class="nav-number">1.5.</span> <span class="nav-text">使用eclipes编写第一个web程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改tomcat服务器默认端口"><span class="nav-number">1.6.</span> <span class="nav-text">修改tomcat服务器默认端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp"><span class="nav-number">2.</span> <span class="nav-text">jsp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp简介"><span class="nav-number">2.1.</span> <span class="nav-text">jsp简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">2.3.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指令"><span class="nav-number">2.3.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">2.3.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jsp脚本"><span class="nav-number">2.3.3.</span> <span class="nav-text">jsp脚本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp内置对象"><span class="nav-number">3.</span> <span class="nav-text">jsp内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置对象简介"><span class="nav-number">3.1.</span> <span class="nav-text">内置对象简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web程序的请求与相应模式"><span class="nav-number">3.1.1.</span> <span class="nav-text">web程序的请求与相应模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四种作用域范围"><span class="nav-number">3.2.</span> <span class="nav-text">四种作用域范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#out"><span class="nav-number">3.3.</span> <span class="nav-text">out</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request-response"><span class="nav-number">3.4.</span> <span class="nav-text">request/response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session"><span class="nav-number">3.5.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#application"><span class="nav-number">3.6.</span> <span class="nav-text">application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他内置对象"><span class="nav-number">3.7.</span> <span class="nav-text">其他内置对象</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -774,7 +792,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.4k</span>
+    <span title="Site words total count">18.6k</span>
   
 </div>
 
@@ -794,7 +812,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.4k字</span>
+  <span class="post-count">博客全站共18.6k字</span>
 </div>
 
         
