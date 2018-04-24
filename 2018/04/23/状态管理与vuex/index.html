@@ -117,10 +117,12 @@
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="在父子组件和兄弟组建通信时可以使用bus方法，vuex所解决的问题和bus类似，它作为vue的一个插件来使用，可以更加优雅和高效地完成状态管理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-24T15:15:23.513Z">
+<meta property="og:image" content="https://vuex.vuejs.org/zh-cn/images/vuex.png">
+<meta property="og:updated_time" content="2018-04-24T15:56:08.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="状态管理与vuex">
 <meta name="twitter:description" content="在父子组件和兄弟组建通信时可以使用bus方法，vuex所解决的问题和bus类似，它作为vue的一个插件来使用，可以更加优雅和高效地完成状态管理。">
+<meta name="twitter:image" content="https://vuex.vuejs.org/zh-cn/images/vuex.png">
 
 
 
@@ -396,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,186
+                  1,605
                 </span>
               
 
@@ -412,7 +414,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -437,7 +439,14 @@
       
 
       
-        <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h3><p>首先通过npm安装Vuex：<br><code>npm install --save vuex</code></p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="Vuex的设计思想"><a href="#Vuex的设计思想" class="headerlink" title="Vuex的设计思想"></a>Vuex的设计思想</h3><p><img src="https://vuex.vuejs.org/zh-cn/images/vuex.png" alt="Vuex的设计思想"></p>
+<p>Vuex把所有组件的所有状态和数据放在同一个内存空间去管理，把它成为state，state的数据可以容易地映射到组件上，来渲染组件，当组件的数据需要发生变化的时候，组件可以通过dispatch一个action，actoin可以做一些异步操作（比如从后端请求数据），action会commit一个mutation（组件里面也可以commit一个mutation），mutation是一个唯一可以修改state的途径，其他任何方式去修改state都是非法的。</p>
+<h3 id="使用场景和用来解决哪些问题"><a href="#使用场景和用来解决哪些问题" class="headerlink" title="使用场景和用来解决哪些问题"></a>使用场景和用来解决哪些问题</h3><p>我们要修改映射在组件上的数据，可以直接在组件内部进行操作；利用Vuex修改数据，要经过action、mutation，修改数据的路径反而会变长。那我们什么时候需要用到Vuex呢？</p>
+<ul>
+<li>可以解决复杂应用的组件数据共享。如果不打算开发大型单页应用，使用Vuex 可能是繁琐冗余的。如果您的应用够简单，最好不要使用Vuex。一个简单的 <a href="https://cn.vuejs.org/v2/guide/components.html#%E9%9D%9E%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" target="_blank" rel="external">global event bus</a> 就足够您所需了。但是，如果构建一个中大型单页应用，Vuex将会成为自然而然的选择。因为它可以解决多个组件之间的状态共享，如果一些组件是兄弟组件甚至时关联度很低的组件，我们要共享他们的数据就比较困难。</li>
+<li>可以解决路由间的复杂数据传递，当遇到路由跳转场景需要传递的参数很复杂的时候，用Vuex传递数据就比较好。</li>
+</ul>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h3><p>首先通过npm安装Vuex：<br><code>npm install --save vuex</code></p>
 <p>在<code>main.js</code>里，通过Vue.use()使用Vuex：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</div><div class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span>;</div><div class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span>;</div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./app.vue'</span>;</div><div class="line"></div><div class="line">Vue.use(VueRouter);</div><div class="line">Vue.use(Vuex);</div><div class="line"></div><div class="line"><span class="comment">// 路由配置省略</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  <span class="comment">// vuex的配置</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router,</div><div class="line">  store,</div><div class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>仓库store包含了应用的数据（状态）和操作过程。Vuex里的数据都是响应式的，任何组件使用同一store的数据时，只要store的数据变化，对应的组件也会立即更新。</p>
@@ -696,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装和配置"><span class="nav-number">1.1.</span> <span class="nav-text">安装和配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state"><span class="nav-number">1.2.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mutations"><span class="nav-number">1.3.</span> <span class="nav-text">mutations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级用法"><span class="nav-number">2.</span> <span class="nav-text">高级用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getters"><span class="nav-number">2.1.</span> <span class="nav-text">getters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#actions"><span class="nav-number">2.2.</span> <span class="nav-text">actions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#modules"><span class="nav-number">2.3.</span> <span class="nav-text">modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuex的设计思想"><span class="nav-number">1.1.</span> <span class="nav-text">Vuex的设计思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景和用来解决哪些问题"><span class="nav-number">1.2.</span> <span class="nav-text">使用场景和用来解决哪些问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装和配置"><span class="nav-number">2.1.</span> <span class="nav-text">安装和配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state"><span class="nav-number">2.2.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mutations"><span class="nav-number">2.3.</span> <span class="nav-text">mutations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级用法"><span class="nav-number">3.</span> <span class="nav-text">高级用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getters"><span class="nav-number">3.1.</span> <span class="nav-text">getters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#actions"><span class="nav-number">3.2.</span> <span class="nav-text">actions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#modules"><span class="nav-number">3.3.</span> <span class="nav-text">modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -730,7 +739,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.3k</span>
+    <span title="Site words total count">21.7k</span>
   
 </div>
 
@@ -750,7 +759,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.3k字</span>
+  <span class="post-count">博客全站共21.7k字</span>
 </div>
 
         
