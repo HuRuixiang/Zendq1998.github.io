@@ -118,7 +118,7 @@
 <meta property="og:description" content="在父子组件和兄弟组建通信时可以使用bus方法，vuex所解决的问题和bus类似，它作为vue的一个插件来使用，可以更加优雅和高效地完成状态管理。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://vuex.vuejs.org/zh-cn/images/vuex.png">
-<meta property="og:updated_time" content="2018-05-02T14:21:52.017Z">
+<meta property="og:updated_time" content="2018-05-02T14:22:44.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="状态管理与vuex">
 <meta name="twitter:description" content="在父子组件和兄弟组建通信时可以使用bus方法，vuex所解决的问题和bus类似，它作为vue的一个插件来使用，可以更加优雅和高效地完成状态管理。">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,988
+                  1,989
                 </span>
               
 
@@ -494,7 +494,7 @@
 <p>实战中，或许我们会遇到一个问题：有多个网络请求，而且业务中需要我们做的是先请求到所有的数据，才能提交mutation对state中的属性进行“集体”的赋值，比如页面切换的时候，同时渲染出所有的数据模块会带来较好的体验感，另外要求我们的网络异步请求必须是同时发出的。</p>
 <p>这里可以用到<code>Promise.all</code>对那几个异步网络请求进行封装，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> actions = &#123;</div><div class="line">  fetchAll(&#123; commit &#125;, id) &#123;</div><div class="line">    commit(<span class="string">"setId"</span>, id);</div><div class="line">    <span class="built_in">Promise</span>.all([</div><div class="line">      DetailService.getInfo(state.course_id),</div><div class="line">      DetailService.getComments(state.course_id, state.page),</div><div class="line">      DetailService.getHotComments(state.course_id)</div><div class="line">    ]).then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">      preprocess(value[<span class="number">1</span>]);</div><div class="line">      preprocess(value[<span class="number">2</span>]);</div><div class="line">      commit(<span class="string">"setInfo"</span>, value[<span class="number">0</span>]);</div><div class="line">      commit(<span class="string">"setComments"</span>, value[<span class="number">1</span>]);</div><div class="line">      commit(<span class="string">"setHotComments"</span>, value[<span class="number">2</span>]);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>Promise.all</code>的作用就是当参数（一个promise数组）中所有的promise都resolve，它才resolve。看上面这个例子很明显了。</p>
+<p><code>Promise.all</code>的作用就是当参数（一个promise数组）中所有的promise都resolve，它才resolve。看上面这个例子很明显了。hexo</p>
 <h3 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h3><p>modules将store分割到不同的模块。当项目足够大时，store里的state、getters、mutations、actions会非常多，都放在main.js里显得不是很友好，使用modules可以把它们写到不同的文件中。每个modules拥有自己的state、getters、mutations、actions，而且可以多层嵌套：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> moduleA = &#123;</div><div class="line">  state: &#123; ... &#125;,</div><div class="line">  mutations: &#123; ... &#125;,</div><div class="line">  actions: &#123; ... &#125;,</div><div class="line">  getters: &#123; ... &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> moduleB = &#123;</div><div class="line">  state: &#123; ... &#125;,</div><div class="line">  mutations: &#123; ... &#125;,</div><div class="line">  actions: &#123; ... &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  modules: &#123;</div><div class="line">    a: moduleA,</div><div class="line">    b: moduleB</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://vuex.vuejs.org/zh-cn/" target="_blank" rel="external">官方文档</a></p>
