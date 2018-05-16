@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[微信小程序上手]]></title>
+    <url>%2F2018%2F05%2F15%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%2F</url>
+    <content type="text"><![CDATA[开始文件类型与目录结构微信客户端在打开小程序之前，会把整个小程序的代码包下载到本地。 紧接着通过 app.json 的 pages 字段就可以知道你当前小程序的所有页面路径: 123456&#123; "pages":[ "pages/index/index", "pages/logs/logs" ]&#125; 这个配置说明在项目定义了两个页面，分别位于 pages/index/index 和 pages/logs/logs 目录。而写在 pages 字段的第一个页面就是这个小程序的首页(打开小程序看到的第一个页面)。 于是微信客户端就把首页的代码装载进来，通过小程序底层的一些机制，就可以渲染出这个首页。 小程序启动之后，在 app.js 定义的 App 实例的 onLaunch 回调会被执行: 12345App(&#123; onLaunch: function () &#123; // 小程序启动之后 触发 &#125;&#125;) 整个小程序只有一个 App 实例，是全部页面共享的。 项目目录下面的以app开头的js、json、wxss文件是描述应用程序整个的状态，在全局里面是唯一的（因为只有一个应用程序）。 123456// app.json&#123; "pages": [ "pages/welcome/welcom" ]&#125; app.json中page的注册，只写了文件名，没有写后缀，这样并不是注册某一个wxml或者某一个js文件，而是注册名为welcome的所有文件，自动地把welcome相关的4种类型的文件关联再一起。 注册小程序页面以及组件的用法Flex弹性盒子模型 在flex容器中默认存在两条轴，水平主轴(main axis) 和垂直的交叉轴(cross axis)。 在容器中的每个单元块被称之为 flex item，每个项目占据的主轴空间为 (main size), 占据的交叉轴的空间为 (cross size)。 注意：不能先入为主认为宽度就是 main size，高度就是 cross size，这个还要取决于你主轴的方向，如果你垂直方向是主轴，那么项目的高度就是 main size。 flex-direction：决定主轴的方向（即项目排列方向） css .container { flex-direction: row | row-reverse | column | column-reverse; } 默认值：row，主轴为水平方向，起点在左端。 row-reverse ：株洲为水平方向，起点在右端。 column：主轴为垂直方向，起点在上沿。 column-reverse：主轴为垂直方向，起点在下沿。 flex-wrap：决定容器内项目是否可换行。 默认情况下，项目都排在主轴线上，使用flex-wrap可实现项目的换行。 123.container &#123; flex-wrap: nowrap | wrap | wrap-reverse;&#125; 默认值：nowrap不换行，即当主轴尺寸固定，当空间不足时，项目尺寸会随之调整而不会挤到下一行。 wrap：项目主轴尺寸超出容器时换行，第一行在上方。 wrap-reverse：换行，第一行在下方。 justify-content：定义了项目在主轴的对齐方式。 123.container &#123; justify-content: flex-start | flex-end | center | space-between | space-around;&#125; 默认值：flex-start左对齐。 flex-end：右对齐。 center：居中。 space-between：两端对齐，项目之间的间隔相等，即剩余空间等分成间隙。 space-around：每个项目两侧的间隔相等，所以项目之间的间隔比项目与边缘的间隔大一倍。 align-items：定义了项目再交叉轴上的对齐方式 123.container &#123; align-items: flex-start | flex-end | center | baseline | stretch;&#125; 主轴为水平方向，即flex-direction: row 默认值为stretch：如果项目未设置高度或者设置为auto，将占满整个容器的高度。 假设容器高度为100px，而项目都没有设置高度的情况下，则项目的高度也为100px。 first-start：交叉轴的起点对齐 假设容器高度设置为 100px，而项目分别为 20px, 40px, 60px, 80px, 100px, 则如上图显示。 flex-end：交叉轴的终点对齐 center：交叉轴的中点对齐 baseline：项目的第一行文字的基线对齐 移动端分辨率及小程序自适应单位RPXrpx单位是微信小程序中css的尺寸单位，rpx可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx = 375px = 750物理像素，1rpx = 0.5px = 1物理像素。 参考资料：微信小程序开发文档]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[计算机系统概述]]></title>
     <url>%2F2018%2F05%2F11%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%2F</url>
-    <content type="text"><![CDATA[计算机系统基本组成与基本功能冯·诺依曼结构主要思想 计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成 各个部件的功能： 存储器：不仅能存放数据，而且能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令； 控制器：应能够自动取出指令来执行； 运算器：应能进行加/减/乘/出四种基本算术运算，并且也能进行一些逻辑运算和附加运算； 操作人员可以通过输入设备、输出设备和主机进行通信； 内部以二进制表示指令和数据。每条指令由操作码和地址码两部分组成。操作码指出操作类型，地址码指出操作数的地址。由一串指令组成程序。 采用“存储程序”工作方式。 现代计算机结构模型及工作原理 计算机执行程序，和它的内部结构是紧密关联的。 计算机是如何工作的把计算机执行程序比做你妈在厨房做菜～ 做菜前 原材料（数据）和菜谱（指令）都按序放在厨房（CPU）外的架子（存储器）上，每个架子都有编号（存储单元地址）。 菜谱的内容：原料位置、做法、做好的菜放哪等。例如：把10、11号架子上的原料一起炒，并装入3号盘。 然后，你告诉你妈：从第5个架子上（起始PC=5）指定菜谱开始做 开始做菜 第一步：从5号架子上取菜谱（根据PC取指令） 第二步：看菜谱（指令译码） 第三步：从架子上或盘中取原材料（取操作数） 第四步：根据菜谱规定洗、切、炒等具体操作（执行指令） 第五步：装盘或者直接送桌（回写结果） 第六步：算出下一菜谱所在架子编号6=5+1（修改PC的值） 继续做下一道菜（执行下一条指令） 程序执行前 数据和指令事先放在存储器中，每条指令和每个数据都有地址，指令按序存放，指令由OP、ADDR字段组成，程序起始地址置PC。 开始执行程序 第一步：根据PC取指令 第二部：指令译码 第三步：取操作数 第四步：指令执行 第五步：回写结果 第六步：修改PC的值 继续执行下一条指令 指令和数据 程序启动之前，指令和数据都存放在存储器中，形式上没有差别，都是0/1序列。 采用“ 存储程序 ”工作方式： 程序由指令组成，程序被启动后，计算机只能自动取出一条一条指令执行，在执行过程中无需人的干预。 指令中需给出的信息： 操作性质（操作码） 源操作数1或/和源操作数2 （立即数、寄存器编号、存储地址） 目的操作数地址（寄存器编号、存储地址） 存储地址的描述与操作数的数据结构有关！ 程序开发和执行过程从机器语言到高级语言最早的程序开发过程用机器语言编写程序，并记录在纸带或卡片上。 输入：按钮、开关 输出：指示灯等 所有的信息都是0/1序列！ 其执行速度快，但是书写、阅读及其困难。 汇编语言开发程序 汇编语言程序由汇编指令构成，汇编指令是用助记符和标号来表示的指令。 用助记符表示操作码 用标号表示位置 用助记符表示寄存器 指令： 包含操作码和操作数或其地址码（机器指令用二进制表示，汇编指令用符号表示）。 只能描述： 取（或存一个数） 两个数加（或减、乘、除、与、或等） 根据运算结果判断是否转移执行 通过汇编程序用来把汇编程序写的程序转化成机器语言写的程序。 优点： 不会因为增减指令而需要修改其他指令 不需记忆指令编码，编写方便 可读性比机器语言强 缺点： 程序会很长：需要描述的细节太多，程序会很长很长。 不可移植：在不同结构的机器上就不能运行。 结论：机器语言和汇编语言都是面向机器结构的语言，与机器的结构相关。用汇编语言比机器语言好，但是，还是很麻烦。 高级语言开发程序 随着技术的发展，出现了许多高级编程语言 它们与具体机器结构无关 面向算法描述，比机器级语言描述能力强得多 有“ 面向过程 ”和“ 面向对象 ”等语言之分 处理逻辑分为三种结构：顺序结构、选择结构、循环结构 最终要将高级语言转化为机器语言，有两种转换方式： 编译程序（Complier）：将高级语言源程序转换为机器级目标程序（机器语言或者汇编语言），执行时只要启动目标程序即可。 解释程序（Interpreter）：将高级语言语句逐条翻译成机器指令并立即执行，不生成目标文件。 hello worldhello.c程序的转换处理过程123456// hello.c#include &lt;stdio.h&gt;int main() &#123; printf("hello world\n");&#125; hello.c的ascii文本表示源程序中其实存放的是程序的ascii文本表示。显然计算机是不能执行hello.c。 以下是gcc+Linux平台中的处理过程： 源程序hello.c（文本）——预处理(cpp)——&gt;源程序hello.i（文本）——编译(cc1)——&gt; 汇编语言程序hello.s（文本）——汇编(as)——&gt;可重定位目标程序hello.o（二进制）——print.o连接(Id)——&gt;可执行目标程序hello（二进制） hello程序的数据流动过程 数据经常在各存储部件间传递，现代计算机大多采用“缓存技术”。 所有过程都是在CPU执行指令所产生的控制信号的作用下进行的。 开发和运行程序需要什么支撑？ 最早的程序开发很简单 直接输入指令和数据，启动后把第一条指令地址送PC开始执行 用高级语言开发需要复杂的支撑环境 编辑器编写源程序（语言处理系统） 一套翻译转换软件处理各类源程序（语言处理系统） 编译方式：预处理程序、编译器、汇编器、连接器 解释方式：解释程序 需要一个可以执行程序的界面（环境）——人机接口（操作系统） GUI：图形用户界面 CUI：命令行用户界面 支撑程序开发和运行的环境由系统软件提供，最重要的系统软件是操作系统和语言处理系统 计算机系统层次结构]]></content>
+    <content type="text"><![CDATA[计算机系统基本组成与基本功能冯·诺依曼结构主要思想 计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成 各个部件的功能： 存储器：不仅能存放数据，而且能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令； 控制器：应能够自动取出指令来执行； 运算器：应能进行加/减/乘/出四种基本算术运算，并且也能进行一些逻辑运算和附加运算； 操作人员可以通过输入设备、输出设备和主机进行通信； 内部以二进制表示指令和数据。每条指令由操作码和地址码两部分组成。操作码指出操作类型，地址码指出操作数的地址。由一串指令组成程序。 采用“存储程序”工作方式。 现代计算机结构模型及工作原理 计算机执行程序，和它的内部结构是紧密关联的。 计算机是如何工作的把计算机执行程序比做你妈在厨房做菜～ 做菜前 原材料（数据）和菜谱（指令）都按序放在厨房（CPU）外的架子（存储器）上，每个架子都有编号（存储单元地址）。 菜谱的内容：原料位置、做法、做好的菜放哪等。例如：把10、11号架子上的原料一起炒，并装入3号盘。 然后，你告诉你妈：从第5个架子上（起始PC=5）指定菜谱开始做 开始做菜 第一步：从5号架子上取菜谱（根据PC取指令） 第二步：看菜谱（指令译码） 第三步：从架子上或盘中取原材料（取操作数） 第四步：根据菜谱规定洗、切、炒等具体操作（执行指令） 第五步：装盘或者直接送桌（回写结果） 第六步：算出下一菜谱所在架子编号6=5+1（修改PC的值） 继续做下一道菜（执行下一条指令） 程序执行前 数据和指令事先放在存储器中，每条指令和每个数据都有地址，指令按序存放，指令由OP、ADDR字段组成，程序起始地址置PC。 开始执行程序 第一步：根据PC取指令 第二部：指令译码 第三步：取操作数 第四步：指令执行 第五步：回写结果 第六步：修改PC的值 继续执行下一条指令 指令和数据 程序启动之前，指令和数据都存放在存储器中，形式上没有差别，都是0/1序列。 采用“ 存储程序 ”工作方式： 程序由指令组成，程序被启动后，计算机只能自动取出一条一条指令执行，在执行过程中无需人的干预。 指令中需给出的信息： 操作性质（操作码） 源操作数1或/和源操作数2 （立即数、寄存器编号、存储地址） 目的操作数地址（寄存器编号、存储地址） 存储地址的描述与操作数的数据结构有关！ 程序开发和执行过程从机器语言到高级语言最早的程序开发过程用机器语言编写程序，并记录在纸带或卡片上。 输入：按钮、开关 输出：指示灯等 所有的信息都是0/1序列！ 其执行速度快，但是书写、阅读及其困难。 汇编语言开发程序 汇编语言程序由汇编指令构成，汇编指令是用助记符和标号来表示的指令。 用助记符表示操作码 用标号表示位置 用助记符表示寄存器 指令： 包含操作码和操作数或其地址码（机器指令用二进制表示，汇编指令用符号表示）。 只能描述： 取（或存一个数） 两个数加（或减、乘、除、与、或等） 根据运算结果判断是否转移执行 通过汇编程序用来把汇编程序写的程序转化成机器语言写的程序。 优点： 不会因为增减指令而需要修改其他指令 不需记忆指令编码，编写方便 可读性比机器语言强 缺点： 程序会很长：需要描述的细节太多，程序会很长很长。 不可移植：在不同结构的机器上就不能运行。 结论：机器语言和汇编语言都是面向机器结构的语言，与机器的结构相关。用汇编语言比机器语言好，但是，还是很麻烦。 高级语言开发程序 随着技术的发展，出现了许多高级编程语言 它们与具体机器结构无关 面向算法描述，比机器级语言描述能力强得多 有“ 面向过程 ”和“ 面向对象 ”等语言之分 处理逻辑分为三种结构：顺序结构、选择结构、循环结构 最终要将高级语言转化为机器语言，有两种转换方式： 编译程序（Complier）：将高级语言源程序转换为机器级目标程序（机器语言或者汇编语言），执行时只要启动目标程序即可。 解释程序（Interpreter）：将高级语言语句逐条翻译成机器指令并立即执行，不生成目标文件。 hello worldhello.c程序的转换处理过程123456// hello.c#include &lt;stdio.h&gt;int main() &#123; printf("hello world\n");&#125; hello.c的ascii文本表示源程序中其实存放的是程序的ascii文本表示。显然计算机是不能执行hello.c。 以下是gcc+Linux平台中的处理过程： 源程序hello.c（文本）——预处理(cpp)——&gt;源程序hello.i（文本）——编译(cc1)——&gt; 汇编语言程序hello.s（文本）——汇编(as)——&gt;可重定位目标程序hello.o（二进制）——print.o连接(Id)——&gt;可执行目标程序hello（二进制） hello程序的数据流动过程 数据经常在各存储部件间传递，现代计算机大多采用“缓存技术”。 所有过程都是在CPU执行指令所产生的控制信号的作用下进行的。 开发和运行程序需要什么支撑？ 最早的程序开发很简单 直接输入指令和数据，启动后把第一条指令地址送PC开始执行 用高级语言开发需要复杂的支撑环境 编辑器编写源程序（语言处理系统） 一套翻译转换软件处理各类源程序（语言处理系统） 编译方式：预处理程序、编译器、汇编器、连接器 解释方式：解释程序 需要一个可以执行程序的界面（环境）——人机接口（操作系统） GUI：图形用户界面 CUI：命令行用户界面 支撑程序开发和运行的环境由系统软件提供，最重要的系统软件是操作系统和语言处理系统 计算机系统层次结构早期计算机系统的层次 现代（传统）计算机系统的层次 计算机系统抽象层次的转换]]></content>
       <categories>
         <category>CSAPP</category>
       </categories>
@@ -59,6 +70,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Rax(1)-入门]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：1$ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。12345678910111213141516rax init hello-worldCreating a new Rax project in /Users/anonymous/hello-worldInstall dependencies:...To run your app: cd hello-world npm run start```$ cd hello-world/Users/anonymous/hello-world|-- README.md|-- node_modules|-- package.json|-- public|-- src`-- webpack.config.js改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World1234567891011121314151617181920212223242526272829//顶层APIimport &#123;createElement, Component&#125; from 'rax';//元件引用import View from 'rax-view';import Text from 'rax-text';//import &#123;View, Text&#125; from 'rax-components';//rax-components需要自行安装//引用样式import styles from './App.css';//定义组件class App extends Component &#123; render() &#123; return ( &lt;View style=&#123;styles.app&#125;&gt; &lt;View style=&#123;styles.appHeader&#125;&gt; &lt;Text style=&#123;styles.appBanner&#125;&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style=&#123;styles.appIntro&#125;&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); &#125;&#125;//渲染export default App; 参考资料Rax Github]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Rax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Rax(3)-关于样式]]></title>
     <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如：12345678910111213141516171819202122// 定义样式集合const styles = &#123; container: &#123; padding: '20rem', height: '300rem', fontSize: '28rem', backgroundColor: 'red' &#125;, container_title: &#123; color: '#fff', fontSize: '32rem' // font-size不会继承父或祖先元素，需重新定义 &#125;&#125;;// 应用样式const App = (props) =&gt; &#123; return ( &lt;View style=&#123;styles.container&#125;&gt; &lt;Text style=&#123;styles.container_title&#125;&gt;Hello World&lt;/Text&gt; &lt;/View&gt; );&#125;; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法：12345678910&lt;View style=&#123;styles.container&#125;&gt; &lt;Text&gt;hello world&lt;/Text&gt;&lt;/View&gt;const styles = &#123; container: &#123; background: 'grey', width: 375 &#125;&#125;; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 12345678910111213/* hello-world.css */.container &#123; padding: 20rem; height: 300rem; background-color: red;&#125;.container_title &#123; color: #fff; font-size: 32rem; border-width: 1px;&#125; 引入12/* hello-world.js */import styles from './hello-world.css'; webpack配置1234&#123; test: /\.css$/, loader: 'stylesheet'&#125; 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
@@ -79,17 +101,6 @@
       <tags>
         <tag>Rax</tag>
         <tag>JSX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Rax(1)-入门]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：1$ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。12345678910111213141516rax init hello-worldCreating a new Rax project in /Users/anonymous/hello-worldInstall dependencies:...To run your app: cd hello-world npm run start```$ cd hello-world/Users/anonymous/hello-world|-- README.md|-- node_modules|-- package.json|-- public|-- src`-- webpack.config.js改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World1234567891011121314151617181920212223242526272829//顶层APIimport &#123;createElement, Component&#125; from 'rax';//元件引用import View from 'rax-view';import Text from 'rax-text';//import &#123;View, Text&#125; from 'rax-components';//rax-components需要自行安装//引用样式import styles from './App.css';//定义组件class App extends Component &#123; render() &#123; return ( &lt;View style=&#123;styles.app&#125;&gt; &lt;View style=&#123;styles.appHeader&#125;&gt; &lt;Text style=&#123;styles.appBanner&#125;&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style=&#123;styles.appIntro&#125;&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); &#125;&#125;//渲染export default App; 参考资料Rax Github]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Rax</tag>
       </tags>
   </entry>
   <entry>
@@ -185,8 +196,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>堆栈</tag>
         <tag>数据结构</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
