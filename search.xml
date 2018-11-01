@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[WebStorage]]></title>
+    <url>%2F2018%2F10%2F31%2FWebStorageAPI%2F</url>
+    <content type="text"><![CDATA[CookieCookie是什么 Cookie是一小段文本信息，伴随着用户请求在 Web 服务器和浏览器之间传递。它存储于访问者的计算机中，每当同一台计算机通过浏览器请求某个页面时，就会发送这个 cookie。 它是浏览器提供的一种机制，它将 document 对象的 cookie 属性提供给 JavaScript。可以使用JavaScript来创建和取回 cookie 的值，因此我们可以通过document.cookie访问它。 cookie是存于用户硬盘的一个文件，这个文件通常对应于一个域名，也就是说，cookie可以跨越一个域名下的多个网页，但不能跨越多个域名使用。 Cookie的分类Cookie总是保存在客户端中，按在客户端中的存储位置，可分为内存Cookie和硬盘Cookie。 内存Cookie由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的。硬盘Cookie保存在硬盘里，有一个过期时间，除非用户手工清理或到了过期时间，硬盘Cookie不会被删除，其存在时间是长期的。所以，按存在时间，可分为非持久Cookie和持久Cookie。 为什么用CookieHTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自身不对请求和相应之间的通信状态进行保存。 协议本身并不保留之前一切的请求或者响应报文的信息，这是为了更快地处理大量事物，确保协议的可伸缩性，而特意把HTTP协议设计成如此简单的。 可是随着Web的不断发展，因为无状态导致业务变得棘手的情况增多了。典型的情况是一家购物网站，当用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于HTTP的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。所以Cookie就是用来绕开HTTP的无状态性的“额外手段”之一。服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。 Cookie会根据服务端发送的相应报文内的一个叫做Set-Cookie的收不字段信息，通知客户端保存Cookie。当客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。 服务端发现客户端发送过来的Cookie后，回去检查究竟时哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。 浏览器没有Cookie信息状态下发送请求 浏览器保存Cookie之后，发送请求时会自动携带domain（域名）属性与服务器相同的Cookie 关于Cookie的HTTP请求和相应的内容如下： 摘录自: 上野 宣. “图解HTTP” 下面我用github个人主页举一个例子： 进入浏览器的开发者选项–&gt;Application–&gt;Storage–&gt;Cookie，可以看到我们存储的每个Cookie都是由属性和值的形式组成，其中包括name=dotcom_user;value=Zendq1998和name=logged_in;value=yes, 这些都是我的个人用户登陆信息。 再看我们向github个人主页发送的第一个请求，在request header中有一个Cookie的属性，这是一堆字符串，正是storage中domain为github.com的所有Cookie通过name=value;组成的(中间有空格)。 有了这样的机制，我们可以将我们的用户信息保存在Cookie内，每次访问对应的网站会自动携带这些信息，这样就避免重复验证身份了。 JavaScript操作CookieMDN Cookie与token这两者都可以用作用户身份验证，发送请求时一般都放在headers中。 我在团队目前的项目中，还没有遇到过服务器传给前端Set-Cookie的情况，用户的身份认证往往是在请求的headers中添加我们的token。token的值是一串字符串，可以简单地进行一下用户验证，而Cookie是一些列name=value组成的字符串，相对来说信息量大一点，当然，复杂的用户信息就可以拿来做一些精准推送啥的了，或者是类似购物车信息。 Cookie和Token Cookie的缺陷 Cookie会被附加在每个HTTP请求中，所以无形中增加了流量。 由于在HTTP请求中的Cookie是明文传递的，所以安全性成问题，除非用HTTPS。（设置Secure属性为true） Cookie的大小限制在4KB左右，对于复杂的存储需求来说是不够用的。 Web storageWeb Storage最早是在Web超文本应用技术工作组（WHAT-WG）的Web应用1.0规范中描述的。这个规范的最初的工作最终成为了HTML5的一部分。Web Storage的目的是克服由cookie带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。Web Storage的两个主要目标是： 提供一种在cookie之外存储会话数据的途径； 提供一种存储大量可以跨会话存在的数据的机制。 Web Storage规范主要包含了两种对象的定义：localStorage和sessionStorage，存在于window对象中。localStorage和sessionStorage的区别主要是在于其生存期。 localStoragelocalStorage是HTML5标准中新加入的技术，用于本地存储。为每一个给定的源（given origin）维持一个独立的存储区域，没有过期时间，只能主动删除。 用法参见MDN-localStorage sessionStorage和localStorage相似，sessionStorage为每一个给定的源维持一个独立的存储区域，而session这个词的意思是”会话“，所以该存储区域在页面会话期间可用，意思是它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在，但当页面关闭后，sessionStorage 中的数据就会被清空。 用法参见MDN-sessionStorage 三者的异同 应用场景有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。 因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。针对登录过的用户，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~ 而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。 参考资料 常用本地存储–Cookie篇 Cookie和Token Wiki 详说 Cookie, LocalStorage 与 SessionStorage 《图解HTTP》2.3 &amp; 2.8 《javascript高级程序设计》]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JavaScript之原生函数]]></title>
     <url>%2F2018%2F10%2F28%2FJs%E4%B9%8B%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[常用的原生函数 String() Number() Boolean() Array() Object() Function() RegExp() Date() Error() Symbol() –ES6新加入的 DateECMAScript中的Date类型是在早期Java中的java.util.Date类基础上构建的。为此，Date类型使用自UTC（Coordinated Universal Time，国际协调时间）1970年1月1日午夜（零时）开始经过的毫秒数来保存日期。 在调用Date构造函数而不传递参数的情况下，新创建的对象自动获得当前日期和时间。如果想根据特定的日期和时间创建日期对象，必须传入表示该日期的毫秒数（即从UTC时间1970年1月1日午夜起至该日期止经过的毫秒数）。为了简化这一计算过程，ECMAScript提供了两个方法：Date.parse()和Date.UTC()。 其中，Date.parse()方法接收一个表示日期的字符串参数，然后尝试根据这个字符串返回相应日期的毫秒数。ECMA-262没有定义Date.parse()应该支持哪种日期格式，因此这个方法的行为因实现而异，而且通常是因地区而异。将地区设置为美国的浏览器通常都接受下列日期格式： “月/日/年”，如6/13/2004； “英文月名 日,年”，如January 12,2004； 例如，要为2004年5月25日创建一个日期对象，可以使用下面的代码： 1var someDate = new Date(Date.parse(&quot;May 25, 2004&quot;)); 如果传入Date.parse()方法的字符串不能表示日期，那么它会返回NaN。实际上，如果直接将表示日期的字符串传递给Date构造函数，也会在后台调用Date.parse()。换句话说，下面的代码与前面的例子是等价的： 1var someDate = new Date(&quot;May 25, 2004&quot;); 这行代码将会得到与前面相同的日期对象。 RegExp下面先说用字面量模式创建一个正则表达式： 1var expression = / pattern / flags ; 其中的模式（pattern）部分可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。每个正则表达式都可带有一或多个标志（flags），用以标明正则表达式的行为。正则表达式的匹配模式支持下列3个标志。 g：表示全局（global）模式，即模式将被应用于所有字符串，而非在发现第一个匹配项时立即停止； i：表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写； m：表示多行（multiline）模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项。 另一种创建正则表达式的方式是使用RegExp构造函数，它接收两个参数：一个是要匹配的字符串模式，另一个是可选的标志字符串。可以使用字面量定义的任何表达式，都可以使用构造函数来定义，如下面的例子所示。 123456789/* * 匹配第一个&quot;bat&quot;或&quot;cat&quot;，不区分大小写 */var pattern1 = /[bc]at/i;/* * 与pattern1相同，只不过是使用构造函数创建的 */var pattern2 = new RegExp(&quot;[bc]at&quot;, &quot;i&quot;); RegExp模式参数元字符的双重转义传递给RegExp构造函数的两个参数都是字符串（不能把正则表达式字面量传递给RegExp构造函数）。由于RegExp构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此，例如\n（字符\在字符串中通常被转义为\，而在正则表达式字符串中就会变成\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用RegExp构造函数定义相同模式时使用的字符串。 RegExpshi li]]></content>
@@ -230,8 +241,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>堆栈</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
