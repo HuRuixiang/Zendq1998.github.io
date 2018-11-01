@@ -118,7 +118,12 @@
 <meta property="og:description" content="本文主要浅析Cookie, LocalStorage 与 SessionStorage三者的异同">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZly1fwrirmwgqrj314s0fctay.jpg">
-<meta property="og:updated_time" content="2018-11-01T03:24:02.436Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsevjhiz8j31300iimzl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsf2j5w6qj312k0gmq4v.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsf5bngcfj31a00ya7az.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfe5103hj31c80ciq7h.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfwuztosj31cq0nw480.jpg">
+<meta property="og:updated_time" content="2018-11-01T04:30:44.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web Storage API">
 <meta name="twitter:description" content="本文主要浅析Cookie, LocalStorage 与 SessionStorage三者的异同">
@@ -388,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  653
+                  855
                 </span>
               
 
@@ -404,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -436,6 +441,26 @@
 <p>可是随着Web的不断发展，因为无状态导致业务变得棘手的情况增多了。典型的情况是一家购物网站，当用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于HTTP的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。所以Cookie就是用来绕开HTTP的无状态性的“额外手段”之一。服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。</p>
 <p>Cookie会根据服务端发送的相应报文内的一个叫做Set-Cookie的收不字段信息，通知客户端保存Cookie。当客户端再往该服务器发送请求时，客户端会<strong>自动</strong>在请求报文中加入Cookie值后发送出去。</p>
 <p>服务端发现客户端发送过来的Cookie后，回去检查究竟时哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
+<ul>
+<li>浏览器没有Cookie信息状态下发送请求</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsevjhiz8j31300iimzl.jpg" alt="浏览器没有Cookie信息状态下发送请求"></p>
+<ul>
+<li>浏览器保存Cookie之后，发送请求时会自动携带domain（域名）属性与服务器相同的Cookie</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsf2j5w6qj312k0gmq4v.jpg" alt="浏览器保存Cookie之后"></p>
+<ul>
+<li>关于Cookie的HTTP请求和相应的内容如下：</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsf5bngcfj31a00ya7az.jpg" alt="HTTP请求和相应的内容"></p>
+<p>摘录自: 上野 宣. “图解HTTP”</p>
+<ul>
+<li>下面我用github个人主页举一个例子：</li>
+</ul>
+<p>进入浏览器的开发者选项–&gt;Application–&gt;Storage–&gt;Cookie，可以看到我们存储的每个Cookie都是由属性和值的形式组成，其中包括<code>name=dotcom_user;value=Zendq1998</code>和<code>name=logged_in;value=yes</code>, 这些都是我的个人用户登陆信息。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfe5103hj31c80ciq7h.jpg" alt=""></p>
+<p>再看我们向github个人主页发送的第一个请求，在<code>request header</code>中有一个<code>Cookie</code>的属性，这是一堆字符串，正是<code>storage</code>中<code>domain</code>为<code>github.com的</code>所有Cookie通过<code>name=value;</code>组成的(中间有空格)。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfwuztosj31cq0nw480.jpg" alt=""></p>
 <p>Web storage, 有时候也叫做DOM storage，为webApp提供了一系列用来在web浏览器中存储数据的方法和通信协议。</p>
 <h2 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h2><p>localStorage是HTML5标准中新加入的技术，用于本地存储。为每一个给定的源（given origin）维持一个独立的存储区域，没有过期时间，只能主动删除。</p>
 <h2 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h2><p>和localStorage相似，sessionStorage为每一个给定的源维持一个独立的存储区域，而session这个词的意思是”会话“，所以该存储区域在页面会话期间可用，意思是它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在，但当页面关闭后，sessionStorage 中的数据就会被清空。</p>
@@ -692,7 +717,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">30.4k</span>
+    <span title="Site words total count">30.6k</span>
   
 </div>
 
@@ -712,7 +737,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.4k字</span>
+  <span class="post-count">博客全站共30.6k字</span>
 </div>
 
         

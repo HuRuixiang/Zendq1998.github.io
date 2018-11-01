@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Web Storage API]]></title>
     <url>%2F2018%2F10%2F31%2FWebStorageAPI%2F</url>
-    <content type="text"><![CDATA[CookieCookie，是小甜饼的意思，确实，cookie很小，它的大小限制4kb左右。它的主要用途有保存登陆信息，比如登陆某个网站我们用到对“记住密码”，就是通过在Cookie中存入一段辨别用户身份对数据来实现的。 为什么用CookieHTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自身不对请求和相应之间的通信状态进行保存。 协议本身并不保留之前一切的请求或者响应报文的信息，这是为了更快地处理大量事物，确保协议的可伸缩性，而特意把HTTP协议设计成如此简单的。 可是随着Web的不断发展，因为无状态导致业务变得棘手的情况增多了。典型的情况是一家购物网站，当用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于HTTP的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。所以Cookie就是用来绕开HTTP的无状态性的“额外手段”之一。服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。 Cookie会根据服务端发送的相应报文内的一个叫做Set-Cookie的收不字段信息，通知客户端保存Cookie。当客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。 服务端发现客户端发送过来的Cookie后，回去检查究竟时哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。 Web storage, 有时候也叫做DOM storage，为webApp提供了一系列用来在web浏览器中存储数据的方法和通信协议。 localStoragelocalStorage是HTML5标准中新加入的技术，用于本地存储。为每一个给定的源（given origin）维持一个独立的存储区域，没有过期时间，只能主动删除。 sessionStorage和localStorage相似，sessionStorage为每一个给定的源维持一个独立的存储区域，而session这个词的意思是”会话“，所以该存储区域在页面会话期间可用，意思是它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在，但当页面关闭后，sessionStorage 中的数据就会被清空。]]></content>
+    <content type="text"><![CDATA[CookieCookie，是小甜饼的意思，确实，cookie很小，它的大小限制4kb左右。它的主要用途有保存登陆信息，比如登陆某个网站我们用到对“记住密码”，就是通过在Cookie中存入一段辨别用户身份对数据来实现的。 为什么用CookieHTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自身不对请求和相应之间的通信状态进行保存。 协议本身并不保留之前一切的请求或者响应报文的信息，这是为了更快地处理大量事物，确保协议的可伸缩性，而特意把HTTP协议设计成如此简单的。 可是随着Web的不断发展，因为无状态导致业务变得棘手的情况增多了。典型的情况是一家购物网站，当用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于HTTP的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。所以Cookie就是用来绕开HTTP的无状态性的“额外手段”之一。服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。 Cookie会根据服务端发送的相应报文内的一个叫做Set-Cookie的收不字段信息，通知客户端保存Cookie。当客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。 服务端发现客户端发送过来的Cookie后，回去检查究竟时哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。 浏览器没有Cookie信息状态下发送请求 浏览器保存Cookie之后，发送请求时会自动携带domain（域名）属性与服务器相同的Cookie 关于Cookie的HTTP请求和相应的内容如下： 摘录自: 上野 宣. “图解HTTP” 下面我用github个人主页举一个例子： 进入浏览器的开发者选项–&gt;Application–&gt;Storage–&gt;Cookie，可以看到我们存储的每个Cookie都是由属性和值的形式组成，其中包括name=dotcom_user;value=Zendq1998和name=logged_in;value=yes, 这些都是我的个人用户登陆信息。 再看我们向github个人主页发送的第一个请求，在request header中有一个Cookie的属性，这是一堆字符串，正是storage中domain为github.com的所有Cookie通过name=value;组成的(中间有空格)。 Web storage, 有时候也叫做DOM storage，为webApp提供了一系列用来在web浏览器中存储数据的方法和通信协议。 localStoragelocalStorage是HTML5标准中新加入的技术，用于本地存储。为每一个给定的源（given origin）维持一个独立的存储区域，没有过期时间，只能主动删除。 sessionStorage和localStorage相似，sessionStorage为每一个给定的源维持一个独立的存储区域，而session这个词的意思是”会话“，所以该存储区域在页面会话期间可用，意思是它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在，但当页面关闭后，sessionStorage 中的数据就会被清空。]]></content>
       <categories>
         <category>前端</category>
       </categories>
@@ -115,15 +115,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Rax(2)-关于JSX]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
-    <content type="text"><![CDATA[介绍JSX考虑这个变量的声明：1const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。12345678910111213141516171819function formatName(user) &#123; return user.firstname + ' ' + user.lastname;&#125;const user = &#123; firstName: 'Harper', lastName: 'Perez'&#125;;const element = ( &lt;h1&gt; Hello, &#123;formatName(user)&#125;! &lt;/h1&gt;);ReactDOM.render( element, document.getElementById('root')); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 123456function getGreeting(user) &#123; if (user) &#123; return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;; &#125; return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;&#125; JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： 123456// Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import &#123; createElement &#125; from 'rax'; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
+    <title><![CDATA[Rax(1)-入门]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：1$ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。12345678910111213141516rax init hello-worldCreating a new Rax project in /Users/anonymous/hello-worldInstall dependencies:...To run your app: cd hello-world npm run start```$ cd hello-world/Users/anonymous/hello-world|-- README.md|-- node_modules|-- package.json|-- public|-- src`-- webpack.config.js改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World1234567891011121314151617181920212223242526272829//顶层APIimport &#123;createElement, Component&#125; from 'rax';//元件引用import View from 'rax-view';import Text from 'rax-text';//import &#123;View, Text&#125; from 'rax-components';//rax-components需要自行安装//引用样式import styles from './App.css';//定义组件class App extends Component &#123; render() &#123; return ( &lt;View style=&#123;styles.app&#125;&gt; &lt;View style=&#123;styles.appHeader&#125;&gt; &lt;Text style=&#123;styles.appBanner&#125;&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style=&#123;styles.appIntro&#125;&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); &#125;&#125;//渲染export default App; 参考资料Rax Github]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>Rax</tag>
-        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
@@ -138,14 +137,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Rax(1)-入门]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(1)-%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[初步了解 Weex是什么 官方描述：一个构建移动端跨平台（Web/IOS/Android）UI框架。 Weex官网 Rax是什么 官方描述：一个通用的跨容器（Browser/Native/Node）的渲染引擎 Rax官网 工具安装创建和管理一个Rax apps，你得安装：Node.js, Rax CLI 和 Weex Playground App. node：版本号至少为4.0 Weex Playground App : Weex Native 运行时实例 &amp; Weex 文件预览工具，这里下载。 Rax CLI：Rax提供的脚手架工具，在终端执行如下命令安装：1$ npm install -g rax-cli 开始第一个项目创建一个名为hello-world的文件夹，利用Rax CLI工具创建一个新的application，安装需要的依赖。12345678910111213141516rax init hello-worldCreating a new Rax project in /Users/anonymous/hello-worldInstall dependencies:...To run your app: cd hello-world npm run start```$ cd hello-world/Users/anonymous/hello-world|-- README.md|-- node_modules|-- package.json|-- public|-- src`-- webpack.config.js改变路径到你的新项目 跑rax init之后，会自动在项目路径当中创建一系列文件： src/index.js 是Rax app的入口。 package.json定义了项目所需要的各种模块，它告诉npm如何安装外部依赖，比如rax和rax-component库。 使用npm run start命令开启本地预览，终端会显示两个二维码，通过weex playground app扫描第二个可以访问该地址。 Hello World1234567891011121314151617181920212223242526272829//顶层APIimport &#123;createElement, Component&#125; from 'rax';//元件引用import View from 'rax-view';import Text from 'rax-text';//import &#123;View, Text&#125; from 'rax-components';//rax-components需要自行安装//引用样式import styles from './App.css';//定义组件class App extends Component &#123; render() &#123; return ( &lt;View style=&#123;styles.app&#125;&gt; &lt;View style=&#123;styles.appHeader&#125;&gt; &lt;Text style=&#123;styles.appBanner&#125;&gt;Welcome to Rax&lt;/Text&gt; &lt;/View&gt; &lt;Text style=&#123;styles.appIntro&#125;&gt; To get started, edit src/App.js and save to reload. &lt;/Text&gt; &lt;/View&gt; ); &#125;&#125;//渲染export default App; 参考资料Rax Github]]></content>
+    <title><![CDATA[Rax(2)-关于JSX]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
+    <content type="text"><![CDATA[介绍JSX考虑这个变量的声明：1const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。12345678910111213141516171819function formatName(user) &#123; return user.firstname + ' ' + user.lastname;&#125;const user = &#123; firstName: 'Harper', lastName: 'Perez'&#125;;const element = ( &lt;h1&gt; Hello, &#123;formatName(user)&#125;! &lt;/h1&gt;);ReactDOM.render( element, document.getElementById('root')); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 123456function getGreeting(user) &#123; if (user) &#123; return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;; &#125; return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;&#125; JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： 123456// Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import &#123; createElement &#125; from 'rax'; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>Rax</tag>
+        <tag>JSX</tag>
       </tags>
   </entry>
   <entry>
@@ -241,8 +241,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>堆栈</tag>
         <tag>数据结构</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
