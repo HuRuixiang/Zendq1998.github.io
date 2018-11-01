@@ -113,7 +113,7 @@
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebStorage">
-<meta property="og:url" content="http://yoursite.com/2018/10/31/WebStorageAPI/index.html">
+<meta property="og:url" content="https://zendq1998.github.io/2018/10/31/WebStorageAPI/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="本文主要浅析Cookie, LocalStorage, SessionStorage 以及三者的异同">
 <meta property="og:locale" content="zh-Hans">
@@ -122,9 +122,9 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsf2j5w6qj312k0gmq4v.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsf5bngcfj31a00ya7az.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfe5103hj31c80ciq7h.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfwuztosj31cq0nw480.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwst8bheyrj318u0n4jzo.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsq6f4pd1j31ma0istda.jpg">
-<meta property="og:updated_time" content="2018-11-01T10:27:41.449Z">
+<meta property="og:updated_time" content="2018-11-01T11:58:49.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebStorage">
 <meta name="twitter:description" content="本文主要浅析Cookie, LocalStorage, SessionStorage 以及三者的异同">
@@ -158,7 +158,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/31/WebStorageAPI/"/>
+  <link rel="canonical" href="https://zendq1998.github.io/2018/10/31/WebStorageAPI/"/>
 
 
 
@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/WebStorageAPI/">
+    <link itemprop="mainEntityOfPage" href="https://zendq1998.github.io/2018/10/31/WebStorageAPI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zendeqin">
@@ -470,7 +470,7 @@
 <p>进入浏览器的开发者选项–&gt;Application–&gt;Storage–&gt;Cookie，可以看到我们存储的每个Cookie都是由属性和值的形式组成，其中包括<code>name=dotcom_user;value=Zendq1998</code>和<code>name=logged_in;value=yes</code>, 这些都是我的个人用户登陆信息。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfe5103hj31c80ciq7h.jpg" alt=""></p>
 <p>再看我们向github个人主页发送的第一个请求，在<code>request header</code>中有一个<code>Cookie</code>的属性，这是一堆字符串，正是<code>storage</code>中<code>domain</code>为<code>github.com的</code>所有Cookie通过<code>name=value;</code>组成的(中间有空格)。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwsfwuztosj31cq0nw480.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006GC8NZgy1fwst8bheyrj318u0n4jzo.jpg" alt=""></p>
 <p>有了这样的机制，我们可以将我们的用户信息保存在Cookie内，每次访问对应的网站会自动携带这些信息，这样就避免重复验证身份了。</p>
 <h4 id="JavaScript操作Cookie"><a href="#JavaScript操作Cookie" class="headerlink" title="JavaScript操作Cookie"></a>JavaScript操作Cookie</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie" target="_blank" rel="external">MDN</a></p>
 <h4 id="Cookie与token"><a href="#Cookie与token" class="headerlink" title="Cookie与token"></a>Cookie与token</h4><p>这两者都可以用作用户身份验证，发送请求时一般都放在headers中。</p>
