@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,模块化,ES6," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ES6在语言规格的层面上实现了模块功能，而且实现的相当简单，完全可以成为浏览器和服务器通用的模块解决方案">
+<meta name="keywords" content="前端,模块化,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6模块化">
+<meta property="og:url" content="https://zendq1998.github.io/2018/03/15/ES6模块化/index.html">
+<meta property="og:site_name" content="Zendq&#39;s blog">
+<meta property="og:description" content="ES6在语言规格的层面上实现了模块功能，而且实现的相当简单，完全可以成为浏览器和服务器通用的模块解决方案">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-14T16:13:03.930Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6模块化">
+<meta name="twitter:description" content="ES6在语言规格的层面上实现了模块功能，而且实现的相当简单，完全可以成为浏览器和服务器通用的模块解决方案">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zendq1998.github.io/2018/03/15/ES6模块化/"/>
+
+
+
+
+
+  <title>ES6模块化 | Zendq's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdaf8a30f85728351873e45d9fe93d8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Zendq1998"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zendq's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">from CCNU</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zendq1998.github.io/2018/03/15/ES6模块化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6模块化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T00:00:00+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,190
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  ES6在语言规格的层面上实现了模块功能，而且实现的相当简单，完全可以成为浏览器和服务器通用的模块解决方案
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Modules-in-JavaScript"><a href="#Modules-in-JavaScript" class="headerlink" title="Modules in JavaScript "></a>Modules in JavaScript </h2><p>模块化是指将一个复杂的系统分解为多个模块以方便编码。当项目变大时，需要用模块化的思想来组织代码。</p>
+<p>在ES6之前，对于模块（module）系统是没有明确的语言支持的，无法将一个大程序拆分成互相依赖的小文件。令人印象深刻的是社区制定了两种主要的模块化规范：<a href="http://addyosmani.com/writing-modular-js/" target="_blank" rel="external">CommonJS和AMD</a>，前者用于服务器，后者用于浏览器。</p>
+<p>ES6模块化提出之后，实现了模块功能而起相当简单，逐渐取代之前的两种规范，因为它同时具有CommonJS简练的语法（for single exports and support for cyclic dependencies）和AMD的可异步加载依赖。并且具有在语法上比CommonJS更简练、更支持循环依赖等优点。</p>
+<h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><p>export的具体用法参照<a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export" target="_blank" rel="external">这里</a>，其实就两种export：named exports (several per module) and default exports (one per module)，从一个模块里可以有多个不同命名的exports输出，但是只有一个default export。</p>
+<h3 id="Named-export-several-per-module"><a href="#Named-export-several-per-module" class="headerlink" title="Named export (several per module)"></a>Named export (several per module)</h3><p>一个模块输出多个exports</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ lib.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> sqrt = <span class="built_in">Math</span>.sqrt;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x * x;</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">diag</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> sqrt(square(x) + square(y));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//------ main.js ------</span></div><div class="line"><span class="keyword">import</span> &#123; square, diag &#125; <span class="keyword">from</span> <span class="string">'lib'</span>;</div><div class="line"><span class="built_in">console</span>.log(square(<span class="number">11</span>)); <span class="comment">// 121</span></div><div class="line"><span class="built_in">console</span>.log(diag(<span class="number">4</span>, <span class="number">3</span>)); <span class="comment">// 5</span></div></pre></td></tr></table></figure>
+<p>符号*代表所有模块所以main.js也可以改成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------- main.js -----</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> lib <span class="keyword">from</span> <span class="string">'lib'</span>;</div><div class="line"><span class="built_in">console</span>.log(lib.square(<span class="number">11</span>)); <span class="comment">// 121</span></div><div class="line"><span class="built_in">console</span>.log(lib.diag(<span class="number">4</span>, <span class="number">3</span>)); <span class="comment">// 5</span></div></pre></td></tr></table></figure></p>
+<h3 id="Default-exports-one-per-module"><a href="#Default-exports-one-per-module" class="headerlink" title="Default exports (one per module)"></a>Default exports (one per module)</h3><p>export default命令用于制定模块的默认输出，一个模块只能有一个默认输出，因此export default只能使用一次。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ myFunc.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"></div><div class="line"><span class="comment">//------ main1.js ------</span></div><div class="line"><span class="keyword">import</span> myFunc <span class="keyword">from</span> <span class="string">'myFunc'</span>;</div><div class="line">myFunc();</div><div class="line"></div><div class="line"><span class="comment">//------ MyClass.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"></div><div class="line"><span class="comment">//------ main2.js ------</span></div><div class="line"><span class="keyword">import</span> MyClass <span class="keyword">from</span> <span class="string">'MyClass'</span>;</div><div class="line"><span class="keyword">const</span> inst = <span class="keyword">new</span> MyClass();</div></pre></td></tr></table></figure></p>
+<p><em>要注意:export default…后面没有分号！</em></p>
+<p><strong>原理</strong>：默认导出可以理解为宁一种形式的命名导出，它使用的名称叫default。</p>
+<h3 id="export-default主要的两种风格"><a href="#export-default主要的两种风格" class="headerlink" title="export default主要的两种风格"></a>export default主要的两种风格</h3><pre><code>1.元素声明（Labeling declarations）
+
+2.直接输出值（Default-exporting values directly）
+</code></pre><h4 id="第一种风格：边声明边输出"><a href="#第一种风格：边声明边输出" class="headerlink" title="第一种风格：边声明边输出"></a>第一种风格：边声明边输出</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="comment">// 加载时都视为匿名函数</span></div><div class="line"></div><div class="line"><span class="comment">//或者使用匿名函数</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="comment">// no semicolon!</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123;&#125; <span class="comment">// no semicolon!</span></div></pre></td></tr></table></figure>
+<h4 id="第二种风格：直接输出值"><a href="#第二种风格：直接输出值" class="headerlink" title="第二种风格：直接输出值"></a>第二种风格：直接输出值</h4><p>（这些值都是经由表达式产生）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'abc'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> foo();</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> /^xyz$/;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">5</span> * <span class="number">7</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; <span class="attr">no</span>: <span class="literal">false</span>, <span class="attr">yes</span>: <span class="literal">true</span> &#125;;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 格式：</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> «expression»;</div></pre></td></tr></table></figure>
+<h2 id="import"><a href="#import" class="headerlink" title="import"></a>import</h2><p>使用export命令定义了模块的对外接口之后，其他js文件就可以通过import命令加载这个模块。</p>
+<h3 id="命名式输入"><a href="#命名式输入" class="headerlink" title="命名式输入"></a>命名式输入</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;变量<span class="number">1</span>, 变量<span class="number">2</span>, ...&#125; <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="keyword">import</span> &#123;变量名 <span class="keyword">as</span> 重命名&#125; <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="comment">// 变量名必须和被导入的变量名相同</span></div></pre></td></tr></table></figure>
+<h3 id="默认输入"><a href="#默认输入" class="headerlink" title="默认输入"></a>默认输入</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> 任意变量名 <span class="keyword">from</span> <span class="string">'url'</span>;</div><div class="line"><span class="comment">// 因为只可能有一个默认输出，所以不需要知道原模型输出的函数名或变量名，而且不使用大括号</span></div></pre></td></tr></table></figure>
+<h3 id="同时存在命名式和默认式"><a href="#同时存在命名式和默认式" class="headerlink" title="同时存在命名式和默认式"></a>同时存在命名式和默认式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> defaultName, &#123;otherName&#125; <span class="keyword">from</span> <span class="string">'url'</span></div></pre></td></tr></table></figure>
+<p><strong>必须在模块的最高作用域imports或者export</strong><br>ES6的模块是静态结构，它的模块思想是尽量静态化，使得在编译时就能确定模块的依赖关系以及输入和输出的变量。所以不能在if语句后面export或者import东西，否则会报错，所以你必须在一个模块的最外层作用于使用export或者import。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">Math</span>.random()) &#123;</div><div class="line">    <span class="keyword">import</span> <span class="string">'foo'</span>; <span class="comment">// SyntaxError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// You can’t even nest `import` and `export`</span></div><div class="line"><span class="comment">// inside a simple block:</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">import</span> <span class="string">'foo'</span>; <span class="comment">// SyntaxError</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果你在{}内引用了import或者export，经测试,报错结果是”You can’t even nest <code>import</code> and <code>export</code>“</p>
+<h2 id="Overview-of-ES6-modules-syntax"><a href="#Overview-of-ES6-modules-syntax" class="headerlink" title="Overview of ES6 modules syntax"></a>Overview of ES6 modules syntax</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">code</th>
+<th style="text-align:center">meaning</th>
+<th style="text-align:center">code</th>
+<th style="text-align:center">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">export const ninja = “yoshi”;</td>
+<td style="text-align:center">命名式导出变量</td>
+<td style="text-align:center">import ninja from “ninja.js”</td>
+<td style="text-align:center">导入一个默认命名的变量</td>
+</tr>
+<tr>
+<td style="text-align:center">export function compare(){}</td>
+<td style="text-align:center">命名式导出函数</td>
+<td style="text-align:center">import {ninja, Ninja} from “ninja.js”</td>
+<td style="text-align:center">导入命名式导出的变量</td>
+</tr>
+<tr>
+<td style="text-align:center">export class Ninja{}</td>
+<td style="text-align:center">命名式导出类</td>
+<td style="text-align:center">import * as Ninja from “ninja.js”</td>
+<td style="text-align:center">导入模块中所有的命名式导出的变量</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">import {ninja as iNinja} from “ninja.js”</td>
+<td style="text-align:center">导入一个命名式变量并重新命名</td>
+</tr>
+<tr>
+<td style="text-align:center">export default class Ninja{}</td>
+<td style="text-align:center">默认导出类</td>
+<td style="text-align:center">import ninja, {otherNinja} from “ninja.js”</td>
+<td style="text-align:center">同时导入默认和命名式变量</td>
+</tr>
+<tr>
+<td style="text-align:center">export default function Ninja(){}</td>
+<td style="text-align:center">默认导出函数</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">export ninja = “yoshi”; function compare(){}; export {ninja, compare};</td>
+<td style="text-align:center">导出存在的变量</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">export {ninja as samurai, compare}</td>
+<td style="text-align:center">利用as关键字给变量重新命名</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="模块输出方式"><a href="#模块输出方式" class="headerlink" title="模块输出方式"></a>模块输出方式</h2><p>CS6的模块加载机制和CommonJS模块完全不同。CommomJS模块输出的式一个值的拷贝，而ES6模块输入是export的动态只读视图（live read-only views）。<del>这句话有点难以理解，反正就记住它是动态的引用，而且不可修改</del></p>
+<h3 id="CommonJS模块输入的是被输出值的拷贝"><a href="#CommonJS模块输入的是被输出值的拷贝" class="headerlink" title="CommonJS模块输入的是被输出值的拷贝"></a>CommonJS模块输入的是被输出值的拷贝</h3><p>如果你输入一个值赋给一个变量，这个值会拷贝两次：export一次(A)，import一次(B)。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ lib.js ------</span></div><div class="line"><span class="keyword">var</span> counter = <span class="number">3</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    counter++;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    counter: counter, <span class="comment">// (A)</span></div><div class="line">    incCounter: incCounter,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面代码输出内部变量counter和改写这个变量的内部方法incCounter。然后，在main.js里面加载这个模块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ main1.js ------</span></div><div class="line"><span class="keyword">var</span> counter = <span class="built_in">require</span>(<span class="string">'./lib'</span>).counter; <span class="comment">// (B)</span></div><div class="line"><span class="keyword">var</span> incCounter = <span class="built_in">require</span>(<span class="string">'./lib'</span>).incCounter;</div><div class="line"></div><div class="line"><span class="comment">// The imported value is a (disconnected) copy of a copy</span></div><div class="line"><span class="built_in">console</span>.log(counter); <span class="comment">// 3</span></div><div class="line">incCounter();</div><div class="line"><span class="built_in">console</span>.log(counter); <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="comment">// The imported value can be changed</span></div><div class="line">counter++;</div><div class="line"><span class="built_in">console</span>.log(counter); <span class="comment">// 4</span></div></pre></td></tr></table></figure>
+<p>上面代码说明，lib.js模块加载以后，它的内部变化就影响不到输出的mod.counter了。这是因为counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。</p>
+<p><strong>小练习</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"0ms——我是a.js,我的foo="</span>+b.foo);</div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"1000ms——我是a.js,我的foo="</span>+b.foo);</div><div class="line">  <span class="keyword">var</span> b1 = <span class="built_in">require</span>(<span class="string">'./b'</span>)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"1000ms——我是a.js,当我再次require后,我的foo="</span>+b.foo);</div><div class="line">&#125;, <span class="number">1000</span>);</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">let</span> foo = <span class="number">1</span>;</div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  foo = <span class="number">2</span>;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"500ms——我是b.js,我还没有执行完，现在我的foo="</span>+foo)</div><div class="line">&#125;, <span class="number">500</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  foo: foo,</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"0ms——我是b.js,我开始执行了，现在我的foo="</span>+foo)</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/Zendq1998/es6/tree/master/module/src/CommonJS/valueCopy" target="_blank" rel="external">解答过程</a></p>
+<h3 id="ES6的输入是export的动态可读引用"><a href="#ES6的输入是export的动态可读引用" class="headerlink" title="ES6的输入是export的动态可读引用"></a>ES6的输入是export的动态可读引用</h3><p>ES6的模块运行机制是：遇到import命令不会去执行模块，只会生成一个动态的只读引用(不能被修改)，等到真的需要了再到模块中取值。因此，他是动态引用并且不会缓存值，模块里面的变量绑定其所在的模块。<br>这里说的引用该如何理解，个人认为可以参考下面的连接（有相似之处）：</p>
+<ul>
+<li><a href="https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0" target="_blank" rel="external">Explaining Value vs. Reference in Javascript</a></li>
+<li><a href="https://blog.fundebug.com/2017/08/09/explain_value_reference_in_js/" target="_blank" rel="external">JavaScript的值传递和引用传递</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ lib.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> counter = <span class="number">3</span>;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    counter++;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//------ main1.js ------</span></div><div class="line"><span class="keyword">import</span> &#123; counter, incCounter &#125; <span class="keyword">from</span> <span class="string">'./lib'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The imported value `counter` is live</span></div><div class="line"><span class="built_in">console</span>.log(counter); <span class="comment">// 3</span></div><div class="line">incCounter();</div><div class="line"><span class="built_in">console</span>.log(counter); <span class="comment">// 4</span></div><div class="line"></div><div class="line"><span class="comment">// The imported value can’t be changed</span></div><div class="line">counter++; <span class="comment">// TypeError</span></div></pre></td></tr></table></figure>
+<p>由于 ES6 输入的模块变量，只是一个“符号连接”，所以这个变量是只读的，对它进行重新赋值会报错。<br><strong>注意</strong>：尽管不能改变输入进来的值，但是可以改变他们所引用的对象。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//------ lib.js ------</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> obj = &#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">//------ main.js ------</span></div><div class="line"><span class="keyword">import</span> &#123; obj &#125; <span class="keyword">from</span> <span class="string">'./lib'</span>;</div><div class="line"></div><div class="line">obj.prop = <span class="number">123</span>; <span class="comment">// OK</span></div><div class="line">obj = &#123;&#125;; <span class="comment">// TypeError</span></div></pre></td></tr></table></figure></p>
+<p>ES6 模块不会缓存运行结果，而是动态地去被加载的模块取值，并且变量总是绑定其所在的模块。</p>
+<p><strong>小练习</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">import</span> &#123;foo&#125; <span class="keyword">from</span> <span class="string">'./b.js'</span></div><div class="line"><span class="built_in">console</span>.log(foo)</div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(foo)</div><div class="line">&#125;,<span class="number">1000</span>)</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> foo = <span class="string">'bar'</span></div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    foo = <span class="string">'baz'</span></div><div class="line">&#125;,<span class="number">500</span>)</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/Zendq1998/es6/tree/master/module/src/ES6/valueRef" target="_blank" rel="external">解答</a></p>
+<h2 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h2><p>如果模块A引入了模块B而且B也引入了A，那么就称这两个模块互相循环依赖<br>通常，“循环加载”表示存在强耦合，如果处理不好，还可能导致递归加载，使得程序无法执行，因此应该避免出现。</p>
+<p>但是实际上，这是很难避免的，尤其是依赖关系复杂的大项目，很容易出现a依赖b，b依赖c，c又依赖a这样的情况。这意味着，模块加载机制必须考虑“循环加载”的情况。</p>
+<p>对于 JavaScript 语言来说，目前最常见的两种模块格式 CommonJS 和 ES6，处理“循环加载”的方法是不一样的，返回的结果也不一样。</p>
+<p>要搞清楚CommonJS 和 ES6怎么处理“循环加载”，就得先弄理解他们的加载原理和特性。之后根据这些特性可以推导出循环加载的过程。</p>
+<h3 id="模块特性"><a href="#模块特性" class="headerlink" title="模块特性"></a>模块特性</h3><p>ES6 模块跟 CommonJS 模块的不同，主要有以下两个方面：</p>
+<ul>
+<li>ES6 模块输出的是值的引用，输出接口动态绑定，而 CommonJS 输出的是值的拷贝</li>
+<li>ES6 模块编译时执行，而 CommonJS 模块总是在运行时加载</li>
+</ul>
+<p>相同之处是：</p>
+<ul>
+<li>模块不会重复执行</li>
+</ul>
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><h4 id="加载原理"><a href="#加载原理" class="headerlink" title="加载原理"></a>加载原理</h4><p>CommonJS 的一个模块，就是一个脚本文件。require命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  id: <span class="string">'...'</span>,</div><div class="line">  exports: &#123; ... &#125;,</div><div class="line">  loaded: <span class="literal">true</span>,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码就是 Node 内部加载模块后生成的一个对象。该对象的id属性是模块名，exports属性是模块输出的各个接口，loaded属性是一个布尔值，表示该模块的脚本是否执行完毕。其他还有很多属性，这里都省略了。</p>
+<p>以后需要用到这个模块的时候，就会到exports属性上面取值。即使再次执行require命令，也不会再次执行该模块，而是到缓存之中取值。也就是说，CommonJS 模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</p>
+<h4 id="CommonJS-模块的循环加载"><a href="#CommonJS-模块的循环加载" class="headerlink" title="CommonJS 模块的循环加载"></a>CommonJS 模块的循环加载</h4><p>CommonJS 模块的重要特性是加载时执行，即脚本代码在require的时候，就会全部执行。一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。</p>
+<p>看一个来自<a href="https://nodejs.org/api/modules.html#modules_cycles" target="_blank" rel="external">node官方文档</a>的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 脚本a.js</span></div><div class="line">exports.done = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b.js'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'在 a.js 之中，b.done = %j'</span>, b.done);</div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a.js 执行完毕'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 脚本b.js</span></div><div class="line">exports.done = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a.js'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'在 b.js 之中，a.done = %j'</span>, a.done);</div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b.js 执行完毕'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a.js'</span>);</div><div class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b.js'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'在 main.js 之中, a.done=%j, b.done=%j'</span>, a.done, b.done);</div></pre></td></tr></table></figure>
+<p>有点绕，这里我列了一个表。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">执行步骤</th>
+<th style="text-align:center">main.js</th>
+<th style="text-align:center">a.js</th>
+<th style="text-align:center">b.js</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">var a = require(‘./a.js’);</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">出现reauire， 开始执行全部的a.js</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">exports.done = false; var b = require(‘./b.js’);</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">a.js脚本先输出一个done变量， 然后加载另一个脚本文件b.js。 注意，此时a.js代码就停在这里， 等待b.js执行完毕，再往下执行。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">exports.done = false;  var a = require(‘./a.js’);</td>
+<td style="text-align:center">b.js执行到第二行，require(‘./a.js’)，这时，b模块想引入a模块，因为 node 之前已经加载过 a 模块了，所以它不会再去重复执行 a 模块，而是直接去生成当前 a 模块吐出的 module.exports 对象。因为a.js还没有执行完，从exports属性只能取回已经执行的部分，而不是最后的值。这个值就是false。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">console.log(‘在 b.js 之中，a.done = %j’, a.done); exports.done = true; console.log(‘b.js 执行完毕’);</td>
+<td style="text-align:center">b.js接着往下执行，（a.done值为false）等到全部执行完毕，再把执行权交还给a.js。</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">console.log(‘在 a.js 之中，b.done = %j’, b.done); exports.done = true; console.log(‘a.js 执行完毕’);</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">b已经执行完，且最后输出的值是true。 所以这时输出的b.done=true a也执行完毕，对外输出的值是true，接下来到main.js</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">var b = require(‘./b.js’);</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">因为模块不会重复执行。 main.js执行到第二行时，不会再次执行b.js，而是输出缓存的b.js的执行结果，即它的第四行。</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">console.log(‘在 main.js 之中, a.done=%j, b.done=%j’, a.done, b.done);</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">a.done和b.done均为true</td>
+</tr>
+</tbody>
+</table>
+<h4 id="小练习"><a href="#小练习" class="headerlink" title="小练习"></a>小练习</h4><p>执行a.js后的结果？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a starting'</span>);</div><div class="line">exports.done = <span class="literal">false</span>;</div><div class="line"><span class="keyword">const</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'in a, b.done ='</span>, b.done);</div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a done'</span>);</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b starting'</span>);</div><div class="line">exports.done = <span class="literal">false</span>;</div><div class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'in b, a.done ='</span>, a.done);</div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b done'</span>);</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/Zendq1998/es6/tree/master/module/src/CommonJS/cycle2" target="_blank" rel="external">具体解答</a></p>
+<p>从上面的执行过程中，我们可以看到，在 CommonJS 规范中，当遇到 require() 语句时，会执行 require 模块中的代码，并缓存执行的结果，当下次再次加载时不会重复执行，而是直接取缓存的结果。正因为此，出现循环依赖时才不会出现无限循环调用的情况。虽然这种模块加载机制可以避免出现循环依赖时报错的情况，但稍不注意就很可能使得代码并不是像我们想象的那样去执行。因此在写代码时还是需要仔细的规划，以保证循环模块的依赖能正确工作。</p>
+<p>所以有什么办法可以出现循环依赖的时候避免自己出现混乱呢？一种解决方式便是将每个模块先写 exports 语法，再写 requre 语句，利用 CommonJS 的缓存机制，在 require() 其他模块之前先把自身要导出的内容导出，这样就能保证其他模块在使用时可以取到正确的值。比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="keyword">let</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);</div><div class="line"><span class="built_in">console</span>.log(b.done)</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="keyword">let</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line"><span class="built_in">console</span>.log(a.done)</div></pre></td></tr></table></figure>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h4 id="加载原理-1"><a href="#加载原理-1" class="headerlink" title="加载原理"></a>加载原理</h4><ul>
+<li><p>ES6 模块是动态引用，如果使用import从一个模块加载变量，那些变量不会被缓存，而是成为一个指向被加载模块的引用。</p>
+</li>
+<li><p>ES6 模块静态编译，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。</p>
+</li>
+<li><p>模块不会重复执行</p>
+</li>
+</ul>
+<h5 id="关于静态编译，会导致以下两个特点"><a href="#关于静态编译，会导致以下两个特点" class="headerlink" title="关于静态编译，会导致以下两个特点"></a>关于静态编译，会导致以下两个特点</h5><ol>
+<li>import 命令会被 JavaScript 引擎静态分析，优先于模块内的其他内容执行。</li>
+<li>export 命令会有变量声明提前的效果。</li>
+</ol>
+<p><strong>import 优先执行:</strong></p>
+<p>从第一条来看，在文件中的任何位置引入 import 模块都会被提前到文件顶部。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a.js'</span>)</div><div class="line"><span class="keyword">import</span> &#123; foo &#125; <span class="keyword">from</span> <span class="string">'./b'</span>;</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b.js 先执行'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 执行结果:</span></div><div class="line"><span class="comment">// b.js 先执行</span></div><div class="line"><span class="comment">// a.js</span></div></pre></td></tr></table></figure>
+<p>从执行结果我们可以很直观地看出，虽然 a 模块中 import 引入晚于 console.log(‘a’)，但是它被 JS 引擎通过静态分析，提到模块执行的最前面，优于模块中的其他部分的执行。</p>
+<p><strong>export 变量声明提升:</strong></p>
+<p>正常的引入模块是没办法看出变量声明提升的特性，需要通过循环依赖加载才能看出。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">import</span> &#123; foo &#125; <span class="keyword">from</span> <span class="string">'./b'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a.js'</span>);</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> bar = <span class="number">1</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> bar2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar2'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">bar3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar3'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="number">1</span>;</div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> a <span class="keyword">from</span> <span class="string">'./a'</span>;</div><div class="line"><span class="built_in">console</span>.log(a);</div></pre></td></tr></table></figure>
+<p>静态编译后的a模块的执行顺序：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="comment">// export声明变量，先把接口都暴露出去，只声明的变量还是undefined</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> bar;</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> bar2;</div><div class="line"><span class="comment">// 函数的声明（边声明变赋值）</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">bar3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar3'</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// import会被提前</span></div><div class="line"><span class="keyword">import</span> &#123; foo &#125; <span class="keyword">from</span> <span class="string">'./b'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a.js'</span>);</div><div class="line"><span class="comment">// 具体对变量的赋值还需要等到相应代码执行</span></div><div class="line">bar = <span class="number">1</span>;</div><div class="line">bar2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar2'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>静态编译后的a模块的执行顺序：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="comment">// export先声明变量</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo；</div><div class="line"><span class="comment">// import被提前</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> a <span class="keyword">from</span> <span class="string">'./a'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log(a);</div></pre></td></tr></table></figure>
+<p>按照编译后的执行顺序，可以很简单地判断输出结果了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 执行结果:</span></div><div class="line"><span class="comment">// &#123; bar: undefined, bar2: undefined, bar3: [Function: bar3] &#125;</span></div><div class="line"><span class="comment">// a.js</span></div></pre></td></tr></table></figure>
+<p>从上面的例子可以很直观地看出，a 模块引用了 b 模块，b 模块也引用了 a 模块，export 声明的变量也是优于模块其它内容的执行的，但是具体对变量赋值需要等到执行到相应代码的时候。(当然函数声明和表达式声明不一样，这一点跟 JS 函数性质一样，这里就不过多解释)</p>
+<h5 id="关于模块不会重复执行，ES6和commonJS是一样的"><a href="#关于模块不会重复执行，ES6和commonJS是一样的" class="headerlink" title="关于模块不会重复执行，ES6和commonJS是一样的"></a>关于模块不会重复执行，ES6和commonJS是一样的</h5><p>当你重复引入某个相同的模块时，模块只会执行一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">import</span> <span class="string">'./b'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./b'</span>;</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'只会执行一次'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 执行结果：</span></div><div class="line"><span class="comment">// 只会执行一次</span></div></pre></td></tr></table></figure>
+<h4 id="ES6-模块的循环依赖"><a href="#ES6-模块的循环依赖" class="headerlink" title="ES6 模块的循环依赖"></a>ES6 模块的循环依赖</h4><p>熟悉了加载特性之后，再遇到循环依赖就很好理解了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a starting'</span>)</div><div class="line"><span class="keyword">import</span> &#123;foo&#125; <span class="keyword">from</span> <span class="string">'./b'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'in b, foo:'</span>, foo);</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> bar = <span class="number">2</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a done'</span>);</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b starting'</span>);</div><div class="line"><span class="keyword">import</span> &#123;bar&#125; <span class="keyword">from</span> <span class="string">'./a'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> foo = <span class="string">'foo'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'in a, bar:'</span>, bar);</div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'in a, setTimeout bar:'</span>, bar);</div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b done'</span>);</div></pre></td></tr></table></figure>
+<p>a模块和b模块是循环依赖的，思考一下执行a模块的结果吧！<a href="https://github.com/Zendq1998/es6/tree/master/module/src/ES6/cycle2" target="_blank" rel="external">具体解答</a></p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="external">exploringjs</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">阮一峰</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/33843378?group_id=947910345524752384" target="_blank" rel="external">知乎–深入理解 ES6 模块机制</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/tags/模块化/" rel="tag"><i class="fa fa-tag"></i> 模块化</a>
+          
+            <a href="/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/08/未知宽高图片的水平垂直居中/" rel="next" title="未知宽高图片的水平垂直居中">
+                <i class="fa fa-chevron-left"></i> 未知宽高图片的水平垂直居中
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/18/Rax(3)-关于样式/" rel="prev" title="Rax(3)-关于样式">
+                Rax(3)-关于样式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mao.jpg"
+                alt="Zendeqin" />
+            
+              <p class="site-author-name" itemprop="name">Zendeqin</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Zendq1998" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zendq1998@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zxc0328.github.io/" title="Zindex's blog" target="_blank">Zindex's blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modules-in-JavaScript"><span class="nav-number">1.</span> <span class="nav-text">Modules in JavaScript </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">2.</span> <span class="nav-text">export</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Named-export-several-per-module"><span class="nav-number">2.1.</span> <span class="nav-text">Named export (several per module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Default-exports-one-per-module"><span class="nav-number">2.2.</span> <span class="nav-text">Default exports (one per module)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#export-default主要的两种风格"><span class="nav-number">2.3.</span> <span class="nav-text">export default主要的两种风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种风格：边声明边输出"><span class="nav-number">2.3.1.</span> <span class="nav-text">第一种风格：边声明边输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种风格：直接输出值"><span class="nav-number">2.3.2.</span> <span class="nav-text">第二种风格：直接输出值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import"><span class="nav-number">3.</span> <span class="nav-text">import</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名式输入"><span class="nav-number">3.1.</span> <span class="nav-text">命名式输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认输入"><span class="nav-number">3.2.</span> <span class="nav-text">默认输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同时存在命名式和默认式"><span class="nav-number">3.3.</span> <span class="nav-text">同时存在命名式和默认式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview-of-ES6-modules-syntax"><span class="nav-number">4.</span> <span class="nav-text">Overview of ES6 modules syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块输出方式"><span class="nav-number">5.</span> <span class="nav-text">模块输出方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS模块输入的是被输出值的拷贝"><span class="nav-number">5.1.</span> <span class="nav-text">CommonJS模块输入的是被输出值的拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6的输入是export的动态可读引用"><span class="nav-number">5.2.</span> <span class="nav-text">ES6的输入是export的动态可读引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环依赖"><span class="nav-number">6.</span> <span class="nav-text">循环依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块特性"><span class="nav-number">6.1.</span> <span class="nav-text">模块特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS"><span class="nav-number">6.2.</span> <span class="nav-text">CommonJS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载原理"><span class="nav-number">6.2.1.</span> <span class="nav-text">加载原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonJS-模块的循环加载"><span class="nav-number">6.2.2.</span> <span class="nav-text">CommonJS 模块的循环加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小练习"><span class="nav-number">6.2.3.</span> <span class="nav-text">小练习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6"><span class="nav-number">6.3.</span> <span class="nav-text">ES6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载原理-1"><span class="nav-number">6.3.1.</span> <span class="nav-text">加载原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关于静态编译，会导致以下两个特点"><span class="nav-number">6.3.1.1.</span> <span class="nav-text">关于静态编译，会导致以下两个特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于模块不会重复执行，ES6和commonJS是一样的"><span class="nav-number">6.3.1.2.</span> <span class="nav-text">关于模块不会重复执行，ES6和commonJS是一样的</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-模块的循环依赖"><span class="nav-number">6.3.2.</span> <span class="nav-text">ES6 模块的循环依赖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-number">7.</span> <span class="nav-text">相关资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zendeqin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">32.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共32.2k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  undefined
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-50},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"tagMode":false});</script></body>
+</html>

@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CSAPP," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、计算机系统概述">
+<meta name="keywords" content="CSAPP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统概述">
+<meta property="og:url" content="https://zendq1998.github.io/2018/05/11/计算机系统概述/index.html">
+<meta property="og:site_name" content="Zendq&#39;s blog">
+<meta property="og:description" content="一、计算机系统概述">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/871732/201704/871732-20170428222014475-840962539.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0617/191334_cu3J_1017135.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0617/192544_75Ig_1017135.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2015/0617/222111_FpDq_1017135.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20171002202141505?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171002202552293?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171002203435465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171002203922831?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-05-18T02:17:53.349Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机系统概述">
+<meta name="twitter:description" content="一、计算机系统概述">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/871732/201704/871732-20170428222014475-840962539.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zendq1998.github.io/2018/05/11/计算机系统概述/"/>
+
+
+
+
+
+  <title>计算机系统概述 | Zendq's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdaf8a30f85728351873e45d9fe93d8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Zendq1998"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zendq's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">from CCNU</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zendq1998.github.io/2018/05/11/计算机系统概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zendeqin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zendq's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机系统概述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T00:00:00+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSAPP/" itemprop="url" rel="index">
+                    <span itemprop="name">CSAPP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,844
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  一、计算机系统概述
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="计算机系统基本组成与基本功能"><a href="#计算机系统基本组成与基本功能" class="headerlink" title="计算机系统基本组成与基本功能"></a>计算机系统基本组成与基本功能</h2><h3 id="冯·诺依曼结构主要思想"><a href="#冯·诺依曼结构主要思想" class="headerlink" title="冯·诺依曼结构主要思想"></a>冯·诺依曼结构主要思想</h3><ol>
+<li><p>计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成</p>
+</li>
+<li><p>各个部件的功能：</p>
+<ul>
+<li><strong>存储器</strong>：不仅能存放数据，而且能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令；</li>
+<li><strong>控制器</strong>：应能够自动取出指令来执行；</li>
+<li><strong>运算器</strong>：应能进行加/减/乘/出四种基本算术运算，并且也能进行一些逻辑运算和附加运算；</li>
+<li>操作人员可以通过输入<strong>设备</strong>、<strong>输出设备</strong>和主机进行通信；</li>
+</ul>
+</li>
+<li><p>内部以二进制表示指令和数据。每条指令由<strong>操作码</strong>和<strong>地址码</strong>两部分组成。操作码指出操作类型，地址码指出操作数的地址。由一串指令组成程序。</p>
+</li>
+<li><p>采用“存储程序”工作方式。</p>
+</li>
+</ol>
+<h3 id="现代计算机结构模型及工作原理"><a href="#现代计算机结构模型及工作原理" class="headerlink" title="现代计算机结构模型及工作原理"></a>现代计算机结构模型及工作原理</h3><p><img src="https://images2015.cnblogs.com/blog/871732/201704/871732-20170428222014475-840962539.png" alt="工作原理图"></p>
+<p>计算机执行程序，和它的内部结构是紧密关联的。</p>
+<h4 id="计算机是如何工作的"><a href="#计算机是如何工作的" class="headerlink" title="计算机是如何工作的"></a>计算机是如何工作的</h4><p>把计算机执行程序比做你妈在厨房做菜～</p>
+<ul>
+<li><p>做菜前</p>
+<p>原材料（<strong>数据</strong>）和菜谱（<strong>指令</strong>）都按序放在厨房（<strong>CPU</strong>）外的架子（<strong>存储器</strong>）上，每个架子都有编号（<strong>存储单元地址</strong>）。</p>
+<p><strong>菜谱的内容</strong>：原料位置、做法、做好的菜放哪等。<br>例如：把10、11号架子上的原料一起炒，并装入3号盘。</p>
+<p>然后，你告诉你妈：从第5个架子上（起始PC=5）指定菜谱开始做</p>
+</li>
+<li><p>开始做菜</p>
+<p>第一步：从5号架子上取菜谱（<strong>根据PC取指令</strong>）</p>
+<p>第二步：看菜谱（<strong>指令译码</strong>）</p>
+<p>第三步：从架子上或盘中取原材料（<strong>取操作数</strong>）</p>
+<p>第四步：根据菜谱规定洗、切、炒等具体操作（<strong>执行指令</strong>）</p>
+<p>第五步：装盘或者直接送桌（<strong>回写结果</strong>）</p>
+<p>第六步：算出下一菜谱所在架子编号6=5+1（<strong>修改PC的值</strong>）</p>
+<p>继续做下一道菜（<strong>执行下一条指令</strong>）</p>
+</li>
+</ul>
+<ul>
+<li><p>程序执行前</p>
+<p>数据和指令事先放在存储器中，每条指令和每个数据都有地址，指令按序存放，指令由OP、ADDR字段组成，程序起始地址置PC。</p>
+</li>
+<li><p>开始执行程序</p>
+<p>第一步：根据PC取指令</p>
+<p>第二部：指令译码</p>
+<p>第三步：取操作数</p>
+<p>第四步：指令执行</p>
+<p>第五步：回写结果</p>
+<p>第六步：修改PC的值</p>
+<p>继续执行下一条指令</p>
+</li>
+</ul>
+<h4 id="指令和数据"><a href="#指令和数据" class="headerlink" title="指令和数据"></a>指令和数据</h4><ul>
+<li><p>程序启动之前，指令和数据都存放在存储器中，形式上没有差别，都是0/1序列。</p>
+</li>
+<li><p>采用“ <strong>存储程序</strong> ”工作方式：</p>
+<ul>
+<li>程序由指令组成，程序被启动后，计算机只能自动取出一条一条指令执行，在执行过程中无需人的干预。</li>
+</ul>
+</li>
+<li><p>指令中需给出的信息：</p>
+<ul>
+<li>操作性质（操作码）</li>
+<li>源操作数1或/和源操作数2 （立即数、寄存器编号、<strong>存储地址</strong>）</li>
+<li>目的操作数地址（寄存器编号、<strong>存储地址</strong>）</li>
+<li>存储地址的描述与<strong>操作数的数据结构</strong>有关！</li>
+</ul>
+</li>
+</ul>
+<h2 id="程序开发和执行过程"><a href="#程序开发和执行过程" class="headerlink" title="程序开发和执行过程"></a>程序开发和执行过程</h2><h3 id="从机器语言到高级语言"><a href="#从机器语言到高级语言" class="headerlink" title="从机器语言到高级语言"></a>从机器语言到高级语言</h3><h4 id="最早的程序开发过程"><a href="#最早的程序开发过程" class="headerlink" title="最早的程序开发过程"></a>最早的程序开发过程</h4><p><strong>用机器语言编写程序</strong>，并记录在纸带或卡片上。</p>
+<p>输入：按钮、开关</p>
+<p>输出：指示灯等</p>
+<p>所有的信息都是0/1序列！</p>
+<p>其执行速度快，但是书写、阅读及其困难。</p>
+<h4 id="汇编语言开发程序"><a href="#汇编语言开发程序" class="headerlink" title="汇编语言开发程序"></a>汇编语言开发程序</h4><ul>
+<li><p>汇编语言程序由<strong>汇编指令</strong>构成，汇编指令是用<strong>助记符</strong>和<strong>标号</strong>来表示的指令。</p>
+<ul>
+<li>用<strong>助记符</strong>表示操作码</li>
+<li>用<strong>标号</strong>表示位置</li>
+<li>用助记符表示寄存器</li>
+</ul>
+</li>
+<li><p>指令：</p>
+<ul>
+<li>包含<strong>操作码</strong>和<strong>操作数</strong>或其<strong>地址码</strong>（机器指令用二进制表示，汇编指令用符号表示）。</li>
+<li>只能描述：<ul>
+<li>取（或存一个数）</li>
+<li>两个数加（或减、乘、除、与、或等）</li>
+<li>根据运算结果判断是否转移执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>通过<strong>汇编程序</strong>用来把汇编程序写的程序转化成<strong>机器语言</strong>写的程序。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>不会因为增减指令而需要修改其他指令</li>
+<li>不需记忆指令编码，编写方便</li>
+<li>可读性比机器语言强</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>程序会很长：需要描述的细节太多，程序会很长很长。</li>
+<li>不可移植：在不同结构的机器上就不能运行。</li>
+</ul>
+<p><strong>结论</strong>：机器语言和汇编语言都是面向机器结构的语言，与机器的结构相关。用汇编语言比机器语言好，但是，还是很麻烦。</p>
+<h4 id="高级语言开发程序"><a href="#高级语言开发程序" class="headerlink" title="高级语言开发程序"></a>高级语言开发程序</h4><ul>
+<li><p>随着技术的发展，出现了许多高级编程语言</p>
+<ul>
+<li>它们与具体机器结构无关</li>
+<li>面向算法描述，比机器级语言描述能力强得多</li>
+<li>有“ 面向过程 ”和“ 面向对象 ”等语言之分</li>
+<li>处理逻辑分为三种结构：顺序结构、选择结构、循环结构</li>
+<li><p>最终要将高级语言转化为机器语言，有两种转换方式：</p>
+<ul>
+<li>编译程序（Complier）：将高级语言源程序转换为机器级目标程序（机器语言或者汇编语言），执行时只要启动目标程序即可。</li>
+<li>解释程序（Interpreter）：将高级语言语句逐条翻译成机器指令并立即执行，不生成目标文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3><h4 id="hello-c程序的转换处理过程"><a href="#hello-c程序的转换处理过程" class="headerlink" title="hello.c程序的转换处理过程"></a>hello.c程序的转换处理过程</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// hello.c</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"hello world\n"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>hello.c的ascii文本表示<br><img src="http://static.oschina.net/uploads/space/2015/0617/191334_cu3J_1017135.png" alt="hello.c的ascii"><br>源程序中其实存放的是程序的ascii文本表示。显然计算机是不能执行hello.c。</p>
+<p>以下是gcc+Linux平台中的处理过程：</p>
+<p><img src="http://static.oschina.net/uploads/space/2015/0617/192544_75Ig_1017135.png" alt="处理过程"></p>
+<p>源程序hello.c（文本）——预处理(cpp)——&gt;源程序hello.i（文本）——编译(cc1)——&gt; 汇编语言程序hello.s（文本）——汇编(as)——&gt;可重定位目标程序hello.o（二进制）——print.o连接(Id)——&gt;可执行目标程序hello（二进制）</p>
+<h4 id="hello程序的数据流动过程"><a href="#hello程序的数据流动过程" class="headerlink" title="hello程序的数据流动过程"></a>hello程序的数据流动过程</h4><p><img src="http://static.oschina.net/uploads/space/2015/0617/222111_FpDq_1017135.png" alt="数据流动过程"></p>
+<p>数据经常在各存储部件间传递，现代计算机大多采用“缓存技术”。</p>
+<p>所有过程都是在CPU执行指令所产生的控制信号的作用下进行的。</p>
+<h3 id="开发和运行程序需要什么支撑？"><a href="#开发和运行程序需要什么支撑？" class="headerlink" title="开发和运行程序需要什么支撑？"></a>开发和运行程序需要什么支撑？</h3><ul>
+<li><p>最早的程序开发很简单</p>
+<ul>
+<li>直接输入指令和数据，启动后把第一条指令地址送PC开始执行</li>
+</ul>
+</li>
+<li><p>用高级语言开发需要复杂的支撑环境</p>
+<ul>
+<li>编辑器编写源程序（语言处理系统）</li>
+<li>一套翻译转换软件处理各类源程序（语言处理系统）<ul>
+<li>编译方式：预处理程序、编译器、汇编器、连接器</li>
+<li>解释方式：解释程序</li>
+</ul>
+</li>
+<li>需要一个可以执行程序的界面（环境）——人机接口（操作系统）<ul>
+<li>GUI：图形用户界面</li>
+<li>CUI：命令行用户界面</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>支撑程序开发和运行的环境由<strong>系统软件</strong>提供，最重要的系统软件是<strong>操作系统</strong>和<strong>语言处理系统</strong></p>
+<h2 id="计算机系统层次结构"><a href="#计算机系统层次结构" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h2><h3 id="早期计算机系统的层次"><a href="#早期计算机系统的层次" class="headerlink" title="早期计算机系统的层次"></a>早期计算机系统的层次</h3><p><img src="https://img-blog.csdn.net/20171002202141505?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="早期"></p>
+<h3 id="现代（传统）计算机系统的层次"><a href="#现代（传统）计算机系统的层次" class="headerlink" title="现代（传统）计算机系统的层次"></a>现代（传统）计算机系统的层次</h3><p><img src="https://img-blog.csdn.net/20171002202552293?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="现代"></p>
+<h3 id="计算机系统抽象层次的转换"><a href="#计算机系统抽象层次的转换" class="headerlink" title="计算机系统抽象层次的转换"></a>计算机系统抽象层次的转换</h3><p><img src="https://img-blog.csdn.net/20171002203435465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="转换"></p>
+<h3 id="计算机系统的不同用户"><a href="#计算机系统的不同用户" class="headerlink" title="计算机系统的不同用户"></a>计算机系统的不同用户</h3><p><img src="https://img-blog.csdn.net/20171002203922831?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW9uZ2NoYW9jc2Ru/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="用户"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSAPP/" rel="tag"><i class="fa fa-tag"></i> CSAPP</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/23/状态管理与vuex/" rel="next" title="状态管理与vuex">
+                <i class="fa fa-chevron-left"></i> 状态管理与vuex
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/15/微信小程序上手/" rel="prev" title="微信小程序上手">
+                微信小程序上手 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mao.jpg"
+                alt="Zendeqin" />
+            
+              <p class="site-author-name" itemprop="name">Zendeqin</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry, stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Zendq1998" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zendq1998@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zxc0328.github.io/" title="Zindex's blog" target="_blank">Zindex's blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机系统基本组成与基本功能"><span class="nav-number">1.</span> <span class="nav-text">计算机系统基本组成与基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冯·诺依曼结构主要思想"><span class="nav-number">1.1.</span> <span class="nav-text">冯·诺依曼结构主要思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现代计算机结构模型及工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">现代计算机结构模型及工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计算机是如何工作的"><span class="nav-number">1.2.1.</span> <span class="nav-text">计算机是如何工作的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指令和数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">指令和数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序开发和执行过程"><span class="nav-number">2.</span> <span class="nav-text">程序开发和执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从机器语言到高级语言"><span class="nav-number">2.1.</span> <span class="nav-text">从机器语言到高级语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最早的程序开发过程"><span class="nav-number">2.1.1.</span> <span class="nav-text">最早的程序开发过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#汇编语言开发程序"><span class="nav-number">2.1.2.</span> <span class="nav-text">汇编语言开发程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级语言开发程序"><span class="nav-number">2.1.3.</span> <span class="nav-text">高级语言开发程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hello-world"><span class="nav-number">2.2.</span> <span class="nav-text">hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hello-c程序的转换处理过程"><span class="nav-number">2.2.1.</span> <span class="nav-text">hello.c程序的转换处理过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hello程序的数据流动过程"><span class="nav-number">2.2.2.</span> <span class="nav-text">hello程序的数据流动过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发和运行程序需要什么支撑？"><span class="nav-number">2.3.</span> <span class="nav-text">开发和运行程序需要什么支撑？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机系统层次结构"><span class="nav-number">3.</span> <span class="nav-text">计算机系统层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#早期计算机系统的层次"><span class="nav-number">3.1.</span> <span class="nav-text">早期计算机系统的层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现代（传统）计算机系统的层次"><span class="nav-number">3.2.</span> <span class="nav-text">现代（传统）计算机系统的层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统抽象层次的转换"><span class="nav-number">3.3.</span> <span class="nav-text">计算机系统抽象层次的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统的不同用户"><span class="nav-number">3.4.</span> <span class="nav-text">计算机系统的不同用户</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zendeqin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">32.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共32.2k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  undefined
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-50},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"tagMode":false});</script></body>
+</html>
