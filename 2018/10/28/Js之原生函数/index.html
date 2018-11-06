@@ -118,7 +118,7 @@
 <meta property="og:description" content="整理JavaScript的原生函数, 主要是平时不常用的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006GC8NZgy1fwo0xt9031j30k40buq4b.jpg">
-<meta property="og:updated_time" content="2018-10-31T07:53:22.725Z">
+<meta property="og:updated_time" content="2018-11-06T09:29:30.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之原生函数">
 <meta name="twitter:description" content="整理JavaScript的原生函数, 主要是平时不常用的。">
@@ -467,7 +467,7 @@
 </li>
 </ul>
 <p>另一种创建正则表达式的方式是使用RegExp构造函数，它接收两个参数：一个是要匹配的字符串模式，另一个是可选的标志字符串。可以使用字面量定义的任何表达式，都可以使用构造函数来定义，如下面的例子所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * 匹配第一个&quot;bat&quot;或&quot;cat&quot;，不区分大小写</div><div class="line"> */</div><div class="line">var pattern1 = /[bc]at/i;</div><div class="line"></div><div class="line">/*</div><div class="line"> * 与pattern1相同，只不过是使用构造函数创建的</div><div class="line"> */</div><div class="line">var pattern2 = new RegExp(&quot;[bc]at&quot;, &quot;i&quot;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 匹配第一个"bat"或"cat"，不区分大小写</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/[bc]at/i</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 与pattern1相同，只不过是使用构造函数创建的</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">var</span> pattern2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"[bc]at"</span>, <span class="string">"i"</span>);</div></pre></td></tr></table></figure>
 <h4 id="RegExp模式参数元字符的双重转义"><a href="#RegExp模式参数元字符的双重转义" class="headerlink" title="RegExp模式参数元字符的双重转义"></a>RegExp模式参数元字符的双重转义</h4><p>传递给RegExp构造函数的两个参数都是字符串（不能把正则表达式字面量传递给RegExp构造函数）。由于RegExp构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此，例如\n（字符\在字符串中通常被转义为\，而在正则表达式字符串中就会变成\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用RegExp构造函数定义相同模式时使用的字符串。</p>
 <p><img src="http://ww1.sinaimg.cn/large/006GC8NZgy1fwo0xt9031j30k40buq4b.jpg" alt=""></p>
 <h3 id="RegExpshi-li"><a href="#RegExpshi-li" class="headerlink" title="RegExpshi li"></a>RegExpshi li</h3>

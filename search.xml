@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[JavaScript之原生函数]]></title>
     <url>%2F2018%2F10%2F28%2FJs%E4%B9%8B%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[常用的原生函数 String() Number() Boolean() Array() Object() Function() RegExp() Date() Error() Symbol() –ES6新加入的 DateECMAScript中的Date类型是在早期Java中的java.util.Date类基础上构建的。为此，Date类型使用自UTC（Coordinated Universal Time，国际协调时间）1970年1月1日午夜（零时）开始经过的毫秒数来保存日期。 在调用Date构造函数而不传递参数的情况下，新创建的对象自动获得当前日期和时间。如果想根据特定的日期和时间创建日期对象，必须传入表示该日期的毫秒数（即从UTC时间1970年1月1日午夜起至该日期止经过的毫秒数）。为了简化这一计算过程，ECMAScript提供了两个方法：Date.parse()和Date.UTC()。 其中，Date.parse()方法接收一个表示日期的字符串参数，然后尝试根据这个字符串返回相应日期的毫秒数。ECMA-262没有定义Date.parse()应该支持哪种日期格式，因此这个方法的行为因实现而异，而且通常是因地区而异。将地区设置为美国的浏览器通常都接受下列日期格式： “月/日/年”，如6/13/2004； “英文月名 日,年”，如January 12,2004； 例如，要为2004年5月25日创建一个日期对象，可以使用下面的代码： 1var someDate = new Date(Date.parse(&quot;May 25, 2004&quot;)); 如果传入Date.parse()方法的字符串不能表示日期，那么它会返回NaN。实际上，如果直接将表示日期的字符串传递给Date构造函数，也会在后台调用Date.parse()。换句话说，下面的代码与前面的例子是等价的： 1var someDate = new Date(&quot;May 25, 2004&quot;); 这行代码将会得到与前面相同的日期对象。 RegExp下面先说用字面量模式创建一个正则表达式： 1var expression = / pattern / flags ; 其中的模式（pattern）部分可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。每个正则表达式都可带有一或多个标志（flags），用以标明正则表达式的行为。正则表达式的匹配模式支持下列3个标志。 g：表示全局（global）模式，即模式将被应用于所有字符串，而非在发现第一个匹配项时立即停止； i：表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写； m：表示多行（multiline）模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项。 另一种创建正则表达式的方式是使用RegExp构造函数，它接收两个参数：一个是要匹配的字符串模式，另一个是可选的标志字符串。可以使用字面量定义的任何表达式，都可以使用构造函数来定义，如下面的例子所示。 123456789/* * 匹配第一个&quot;bat&quot;或&quot;cat&quot;，不区分大小写 */var pattern1 = /[bc]at/i;/* * 与pattern1相同，只不过是使用构造函数创建的 */var pattern2 = new RegExp(&quot;[bc]at&quot;, &quot;i&quot;); RegExp模式参数元字符的双重转义传递给RegExp构造函数的两个参数都是字符串（不能把正则表达式字面量传递给RegExp构造函数）。由于RegExp构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此，例如\n（字符\在字符串中通常被转义为\，而在正则表达式字符串中就会变成\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用RegExp构造函数定义相同模式时使用的字符串。 RegExpshi li]]></content>
+    <content type="text"><![CDATA[常用的原生函数 String() Number() Boolean() Array() Object() Function() RegExp() Date() Error() Symbol() –ES6新加入的 DateECMAScript中的Date类型是在早期Java中的java.util.Date类基础上构建的。为此，Date类型使用自UTC（Coordinated Universal Time，国际协调时间）1970年1月1日午夜（零时）开始经过的毫秒数来保存日期。 在调用Date构造函数而不传递参数的情况下，新创建的对象自动获得当前日期和时间。如果想根据特定的日期和时间创建日期对象，必须传入表示该日期的毫秒数（即从UTC时间1970年1月1日午夜起至该日期止经过的毫秒数）。为了简化这一计算过程，ECMAScript提供了两个方法：Date.parse()和Date.UTC()。 其中，Date.parse()方法接收一个表示日期的字符串参数，然后尝试根据这个字符串返回相应日期的毫秒数。ECMA-262没有定义Date.parse()应该支持哪种日期格式，因此这个方法的行为因实现而异，而且通常是因地区而异。将地区设置为美国的浏览器通常都接受下列日期格式： “月/日/年”，如6/13/2004； “英文月名 日,年”，如January 12,2004； 例如，要为2004年5月25日创建一个日期对象，可以使用下面的代码： 1var someDate = new Date(Date.parse(&quot;May 25, 2004&quot;)); 如果传入Date.parse()方法的字符串不能表示日期，那么它会返回NaN。实际上，如果直接将表示日期的字符串传递给Date构造函数，也会在后台调用Date.parse()。换句话说，下面的代码与前面的例子是等价的： 1var someDate = new Date(&quot;May 25, 2004&quot;); 这行代码将会得到与前面相同的日期对象。 RegExp下面先说用字面量模式创建一个正则表达式： 1var expression = / pattern / flags ; 其中的模式（pattern）部分可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。每个正则表达式都可带有一或多个标志（flags），用以标明正则表达式的行为。正则表达式的匹配模式支持下列3个标志。 g：表示全局（global）模式，即模式将被应用于所有字符串，而非在发现第一个匹配项时立即停止； i：表示不区分大小写（case-insensitive）模式，即在确定匹配项时忽略模式与字符串的大小写； m：表示多行（multiline）模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项。 另一种创建正则表达式的方式是使用RegExp构造函数，它接收两个参数：一个是要匹配的字符串模式，另一个是可选的标志字符串。可以使用字面量定义的任何表达式，都可以使用构造函数来定义，如下面的例子所示。 123456789/* * 匹配第一个"bat"或"cat"，不区分大小写 */var pattern1 = /[bc]at/i;/* * 与pattern1相同，只不过是使用构造函数创建的 */var pattern2 = new RegExp("[bc]at", "i"); RegExp模式参数元字符的双重转义传递给RegExp构造函数的两个参数都是字符串（不能把正则表达式字面量传递给RegExp构造函数）。由于RegExp构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此，例如\n（字符\在字符串中通常被转义为\，而在正则表达式字符串中就会变成\\）。下表给出了一些模式，左边是这些模式的字面量形式，右边是使用RegExp构造函数定义相同模式时使用的字符串。 RegExpshi li]]></content>
       <categories>
         <category>前端</category>
       </categories>
@@ -137,6 +137,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Rax(3)-关于样式]]></title>
+    <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如：12345678910111213141516171819202122// 定义样式集合const styles = &#123; container: &#123; padding: '20rem', height: '300rem', fontSize: '28rem', backgroundColor: 'red' &#125;, container_title: &#123; color: '#fff', fontSize: '32rem' // font-size不会继承父或祖先元素，需重新定义 &#125;&#125;;// 应用样式const App = (props) =&gt; &#123; return ( &lt;View style=&#123;styles.container&#125;&gt; &lt;Text style=&#123;styles.container_title&#125;&gt;Hello World&lt;/Text&gt; &lt;/View&gt; );&#125;; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法：12345678910&lt;View style=&#123;styles.container&#125;&gt; &lt;Text&gt;hello world&lt;/Text&gt;&lt;/View&gt;const styles = &#123; container: &#123; background: 'grey', width: 375 &#125;&#125;; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 12345678910111213/* hello-world.css */.container &#123; padding: 20rem; height: 300rem; background-color: red;&#125;.container_title &#123; color: #fff; font-size: 32rem; border-width: 1px;&#125; 引入12/* hello-world.js */import styles from './hello-world.css'; webpack配置1234&#123; test: /\.css$/, loader: 'stylesheet'&#125; 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Rax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Rax(2)-关于JSX]]></title>
     <url>%2F2018%2F03%2F18%2FRax(2)-%E5%85%B3%E4%BA%8EJSX%2F</url>
     <content type="text"><![CDATA[介绍JSX考虑这个变量的声明：1const element = &lt;h1&gt;Hello, world!&lt;/h1&gt; 这种有趣的标签语法既不是一个字符串也不是html。它叫JSX，是JavaScript扩展的语法。 在JSX中嵌入表达式可以将任何JavaScript表达式放在大括号内嵌入进JSX。12345678910111213141516171819function formatName(user) &#123; return user.firstname + ' ' + user.lastname;&#125;const user = &#123; firstName: 'Harper', lastName: 'Perez'&#125;;const element = ( &lt;h1&gt; Hello, &#123;formatName(user)&#125;! &lt;/h1&gt;);ReactDOM.render( element, document.getElementById('root')); JSX也是一个表达式编译之后，JSX表达式变成常规的JavaScript函数调用为对象。 这就意味着，你可以在if语句、for循环中使用JSX，可以把它分配给变量、让它成为参数传递、或者是函数的返回值。 123456function getGreeting(user) &#123; if (user) &#123; return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;; &#125; return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;&#125; JSX的含义JSX只是JavaScript语法的一个语法映射。JSX表达式执行函数调用，我们可以看成他就是调用 createElement() 方法的快捷方式。 Babel 内置的支持 JSX 语法的编译。在代码中声明 @jsx可以定制相应的函数调用： 123456// Tell Babel to transform JSX into createElement() calls: /* @jsx createElement */ import &#123; createElement &#125; from 'rax'; &lt;View /&gt; // =&gt; createElement(View) 参考资料learn-jsx]]></content>
@@ -146,17 +157,6 @@
       <tags>
         <tag>Rax</tag>
         <tag>JSX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Rax(3)-关于样式]]></title>
-    <url>%2F2018%2F03%2F18%2FRax(3)-%E5%85%B3%E4%BA%8E%E6%A0%B7%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[基础在Rax中，我们可以利用js定义样式，与原生的html的style标签不同，Rax元件接收的style属性类型是一个对象。比如：12345678910111213141516171819202122// 定义样式集合const styles = &#123; container: &#123; padding: '20rem', height: '300rem', fontSize: '28rem', backgroundColor: 'red' &#125;, container_title: &#123; color: '#fff', fontSize: '32rem' // font-size不会继承父或祖先元素，需重新定义 &#125;&#125;;// 应用样式const App = (props) =&gt; &#123; return ( &lt;View style=&#123;styles.container&#125;&gt; &lt;Text style=&#123;styles.container_title&#125;&gt;Hello World&lt;/Text&gt; &lt;/View&gt; );&#125;; 受于Native元素渲染方式，元件之间的嵌套关系并不会带来样式继承的效果，因此需要格子描述对应元素的样式。 单位规范我们推荐使用不加单位的写法：12345678910&lt;View style=&#123;styles.container&#125;&gt; &lt;Text&gt;hello world&lt;/Text&gt;&lt;/View&gt;const styles = &#123; container: &#123; background: 'grey', width: 375 &#125;&#125;; 1个单位的大小为屏幕宽度的1/750，这样做的好处是当你拿到一份750px宽的视觉稿，你再也不需要去做人工换算。 布局在Weex/Rax中，不再支持float布局，取而代之的是flexbox布局 分离式代码Rax提供了一个Webpack插件——stylesheet-loader，让我们能够在Rax应用中通过CSS写样式。 12345678910111213/* hello-world.css */.container &#123; padding: 20rem; height: 300rem; background-color: red;&#125;.container_title &#123; color: #fff; font-size: 32rem; border-width: 1px;&#125; 引入12/* hello-world.js */import styles from './hello-world.css'; webpack配置1234&#123; test: /\.css$/, loader: 'stylesheet'&#125; 除了样式代码的分离，少写几个引号之外，stylesheet-loader的好处还在于： 对于Wexx不支持的样式，能快速的给予友好的warning提示 可以跟sass/less-loader结合，使用变量、mixin、嵌套等预编译功能 warning提示：比如：Weex不支持float、z-index样式，那么stylesheet-loader会提示。 参考资料Rax深入浅出 – 样式编写]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Rax</tag>
       </tags>
   </entry>
   <entry>
@@ -252,8 +252,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>堆栈</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>

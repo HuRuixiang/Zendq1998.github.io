@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="Zendq&#39;s blog">
 <meta property="og:description" content="关于typeof和instanceof，我们都会用，不就是判断变量的类型嘛，但是一旦问到到他们的实现原理，就有点懵圈，下面着重介绍和整理一下他们的实现原理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-02T12:54:23.053Z">
+<meta property="og:updated_time" content="2018-11-06T09:28:51.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typeof、instanceof的实现原理">
 <meta name="twitter:description" content="关于typeof和instanceof，我们都会用，不就是判断变量的类型嘛，但是一旦问到到他们的实现原理，就有点懵圈，下面着重介绍和整理一下他们的实现原理。">
@@ -448,7 +448,7 @@
 <p><code>instanceof</code>是一个二元运算符，如<code>a instanceof b</code>，其中<code>a</code>必须是一个合法的JavaScript对象，<code>b</code>必须是一个合法的JavaScript函数。</p>
 <p>至于实现原理，用mdn的话来说：<code>instance</code>运算符用于测试构造函数的<code>prototype</code>属性是否出现在对象原型链中的任何位置。</p>
 <p>用代码表示它的实现原理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function my_instanceof(obj, constructor) &#123;</div><div class="line">  let constuctProto = constructor.prototype</div><div class="line">  while (true) &#123;</div><div class="line">    if (obj.__protp__ === null) &#123;</div><div class="line">      // 遍历完对象的原型链</div><div class="line">      return false</div><div class="line">    &#125;</div><div class="line">    if (obj.__proto__ === constuctProto) &#123;</div><div class="line">      return true</div><div class="line">    &#125;</div><div class="line">    obj = obj.__proto__</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_instanceof</span>(<span class="params">obj, constructor</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> constuctProto = <span class="keyword">constructor</span>.prototype</div><div class="line">  while (true) &#123;</div><div class="line">    <span class="keyword">if</span> (obj.__protp__ === <span class="literal">null</span>) &#123;</div><div class="line">      <span class="comment">// 遍历完对象的原型链</span></div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (obj.__proto__ === constuctProto) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">    obj = obj.__proto__</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下面举几个例子</p>
 <ul>
 <li><p><code>Object instanceof Object === true</code></p>
