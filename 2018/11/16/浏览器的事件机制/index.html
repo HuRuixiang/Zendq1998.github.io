@@ -98,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript," />
+  <meta name="keywords" content="JavaScript,Browser,DOM," />
 
 
 
@@ -109,18 +109,18 @@
 
 
 
-<meta name="description" content="总结关于前端的性能优化，这里暂时分为三个大类，分别是网络、渲染、图片以及其他文件。">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="关于事件机制的总结。">
+<meta name="keywords" content="JavaScript,Browser,DOM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端的性能优化">
-<meta property="og:url" content="https://zendq1998.github.io/2018/11/16/前端的性能优化/index.html">
+<meta property="og:title" content="浏览器事件机制">
+<meta property="og:url" content="https://zendq1998.github.io/2018/11/16/浏览器的事件机制/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="总结关于前端的性能优化，这里暂时分为三个大类，分别是网络、渲染、图片以及其他文件。">
+<meta property="og:description" content="关于事件机制的总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-25T04:08:35.277Z">
+<meta property="og:updated_time" content="2018-11-29T07:33:31.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端的性能优化">
-<meta name="twitter:description" content="总结关于前端的性能优化，这里暂时分为三个大类，分别是网络、渲染、图片以及其他文件。">
+<meta name="twitter:title" content="浏览器事件机制">
+<meta name="twitter:description" content="关于事件机制的总结。">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://zendq1998.github.io/2018/11/16/前端的性能优化/"/>
+  <link rel="canonical" href="https://zendq1998.github.io/2018/11/16/浏览器的事件机制/"/>
 
 
 
 
 
-  <title>前端的性能优化 | Zendq's blog</title>
+  <title>浏览器事件机制 | Zendq's blog</title>
   
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zendq1998.github.io/2018/11/16/前端的性能优化/">
+    <link itemprop="mainEntityOfPage" href="https://zendq1998.github.io/2018/11/16/浏览器的事件机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zendeqin">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端的性能优化</h1>
+          <h1 class="post-title" itemprop="name headline">浏览器事件机制</h1>
         
 
         <div class="post-meta">
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,435
+                  1,634
                 </span>
               
 
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -410,7 +410,7 @@
 
           
               <div class="post-description">
-                  总结关于前端的性能优化，这里暂时分为三个大类，分别是网络、渲染、图片以及其他文件。
+                  关于事件机制的总结。
               </div>
           
 
@@ -427,55 +427,70 @@
       
 
       
-        <h2 id="从浏览器发起请求到页面能正常浏览的阶段"><a href="#从浏览器发起请求到页面能正常浏览的阶段" class="headerlink" title="从浏览器发起请求到页面能正常浏览的阶段"></a>从浏览器发起请求到页面能正常浏览的阶段</h2><p>预处理——&gt;DNS解析——&gt;建立连接——&gt;发起请求——&gt;等待响应——&gt;接受数据——&gt;处理元素——&gt;布局渲染</p>
-<h3 id="浏览器端"><a href="#浏览器端" class="headerlink" title="浏览器端"></a>浏览器端</h3><ol>
-<li><p>输入提示</p>
-<p>从浏览器地址框输入一个 g ，浏览器会根据你的历史访问，书签等，给出输入建议，假如说我以前打开过 google.com，浏览器就会根据它的算法匹配并给出几条建议地址。</p>
-</li>
-<li><p>url 解析</p>
-<p> 当协议或主机名不合法时，也就是不符合 URL 格式，比如输入几个单词，中文等。浏览器会将地址栏中输入的文字传给默认的搜索引擎。</p>
-<p> 合法的 URL 格式:</p>
-<p> <code>&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</code></p>
-</li>
+        <h3 id="事件触发三阶段"><a href="#事件触发三阶段" class="headerlink" title="事件触发三阶段"></a>事件触发三阶段</h3><p>事件触发有三个阶段</p>
+<ul>
+<li><strong>捕获阶段</strong>:<code>window</code>往事件触发处传播，遇到注册的捕获会触发</li>
+<li>传播到事件触发处时触发注册的事件</li>
+<li><strong>冒泡阶段</strong>从事件触发处往<code>window</code>传播，遇到注册的冒泡事件会触发</li>
+</ul>
+<h3 id="事件冒泡与事件捕获"><a href="#事件冒泡与事件捕获" class="headerlink" title="事件冒泡与事件捕获"></a>事件冒泡与事件捕获</h3><p>事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流（事件发生顺序）的问题。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？</p>
+<h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><p>浏览器检查实际点击的元素是否在冒泡阶段中注册了一个事件处理程序，如果是，则运行它 然后它移动到下一个直接的祖先元素，并做同样的事情，然后是下一个，等等，直到它到达最外层祖先元素。</p>
+<p>因此在事件冒泡的概念下在p元素上发生click事件的顺序应该是<code>p -&gt; div -&gt; body -&gt; html -&gt; document</code></p>
+<h4 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h4><p>浏览器检查元素的最外层祖先，是否在捕获阶段中注册了一个事件处理程序，如果是，则运行它。 然后，它移动到最外层祖先中的下一个元素，并执行相同的操作，然后是下一个元素，依此类推，直到到达实际点击的元素。因此在事件捕获的概念下在p元素上发生click事件的顺序应该是<code>document -&gt; html -&gt; body -&gt; div -&gt; p</code></p>
+<h4 id="事件监听器"><a href="#事件监听器" class="headerlink" title="事件监听器"></a>事件监听器</h4><p>事件监听函数 <code>element.addEventListener(&lt;event-name&gt;, &lt;callback&gt;, &lt;use-capture&gt;)</code>。在 element 这个对象上面添加一个事件监听器，当监听到有 事件发生的时候，调用 这个回调函数。至于 这个参数，表示该事件监听是在“捕获”阶段中监听（设置为 true）还是在“冒泡”阶段中监听（设置为 false）。 如果没有指定， useCapture 默认为 false 。</p>
+<h5 id="其他事件监听方式"><a href="#其他事件监听方式" class="headerlink" title="其他事件监听方式"></a>其他事件监听方式</h5><ol>
+<li>HTML内联属性</li>
 </ol>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><h4 id="什么是DNS解析"><a href="#什么是DNS解析" class="headerlink" title="什么是DNS解析"></a>什么是DNS解析</h4><p>简单来说，就是域名转换成ip地址的过程</p>
-<h4 id="为什么要DNS解析"><a href="#为什么要DNS解析" class="headerlink" title="为什么要DNS解析"></a>为什么要DNS解析</h4><p>因为 http 是基于 tcp 连接的，而 tcp 则是通过 ip 地址去识别访问的。所以一定要找到服务器的ip地址。</p>
-<h4 id="DNS域名解析过程"><a href="#DNS域名解析过程" class="headerlink" title="DNS域名解析过程"></a>DNS域名解析过程</h4><ol>
-<li><p>查找浏览器缓存</p>
-<p>浏览器会检查缓存中有没有这个域名对应的解析过的IP地址，如果缓存中有，这个解析过程就将结束，没有则下一步。浏览器缓存域名也是有限制的，不仅浏览器缓存大小有限制，而且缓存的时间也有限制，通常情况下为几分钟到几小时不等。这个缓存时间太长和太短都不好，如果缓存时间太长，一旦域名被解析到的IP有变化，会导致被客户端缓存的域名无法解析到变化后的IP地址，以致该域名不能正常解析，这段时间内有可能会有一部分用户无法访问网站。如果时间设置太短，会导致用户每次访问网站都要重新解析一次域名。</p>
-<p>打开 <code>chrome://net-internals/#dns</code> 即可查看本机浏览器的 dns 缓存。</p>
-</li>
-<li><p>查找系统缓存</p>
-<p> 如果用户的浏览器缓存中没有，浏览器会查找操作系统缓存中是否有这个域名对应的DNS解析结果,浏览器会调用一个类似 gethostbyname 的库函数，此函数会先去检测本地 hosts 文件，查看是否有对应 ip。例如，<code>localhost</code> 默认 ip 是 <code>172.0.0.1</code>。</p>
-</li>
-<li><p>路由器缓存、ISP 缓存</p>
-<p>如果浏览器和系统缓存都没有，系统的 gethostname 函数就会像 DNS 服务器发送请求。而网络服务一般都会先经过路由器以及网络服务商（电信），所以会先查询路由器缓存，然后再查询 ISP 的 DNS 缓存。也就是本地区的域名服务器，通常是提供给你接入互联网的应用提供商。这个专门的域名解析服务器性能都会很好，它们一般都会缓存域名解析结果，当然缓存时间是受域名的失效时间控制的，一般缓存空间不是影响域名失效的主要因素。</p>
-</li>
-<li><p>递归搜索</p>
-<p> 最无奈的情况发生了, 在前面都没有办法命中的DNS缓存的情况下,(1)本地 DNS服务器即将该请求转发到互联网上的根域(.)，通常省略不写。(2)根域将所要查询域名中的顶级域（.com, .org）的服务器IP地址返回到本地DNS。(3) 本地DNS根据返回的IP地址，再向顶级域（就是com域）发送请求。(4) com域服务器再将域名中的二级域（google.com）的IP地址返回给本地DNS。(5) 本地DNS再向二级域发送请求进行查询。(6) 之后不断重复这样的过程，直到本地DNS服务器得到最终的查询结果，并返回到主机。这时候主机才能通过域名访问该网站。</p>
-<p> 如果域名正常，应该就会返回 IP 地址，如果没有浏览器就会提示找不到服务器地址。</p>
-</li>
-</ol>
-<h4 id="DNS有关的性能优化"><a href="#DNS有关的性能优化" class="headerlink" title="DNS有关的性能优化"></a>DNS有关的性能优化</h4><p>DNS 查询的过程经历了很多的步骤，如果每次都如此，是不是会耗费太多的时间，资源。所以我们应该尽早的返回真实的 IP 地址，减少查询过程，也就是 DNS 缓存。浏览器获取到 IP 地址后，一般都会加到浏览器的缓存中，本地的 DNS 缓存服务器，也可以去记录。</p>
+<p>类似<code>&lt;button onclick=&quot;alert(&#39;你点击了这个按钮&#39;);&quot;&gt;点击这个按钮&lt;/button&gt;</code>的方式，这种方式会使 JS 与 HTML 高度耦合，不利于开发和维护，不推荐使用。</p>
 <ol>
-<li><p>减少DNS查找，避免重定向</p>
-<ul>
-<li>服务器可以设置TTL值表示DNS记录的存活时间。本机DNS缓存将根据这个TTL值判断DNS记录什么时候被抛弃，这个TTL值一般都不会设置很大，主要是考虑到快速故障转移的问题。</li>
-<li>浏览器DNS缓存也有自己的过期时间，这个时间是独立于本机DNS缓存的，相对也比较短，例如chrome只有1分钟左右。</li>
-<li>浏览器DNS记录的数量也有限制，如果短时间内访问了大量不同域名的网站，则较早的DNS记录将被抛弃，必须重新查找。不过即使浏览器丢弃了DNS记录，操作系统的DNS缓存也有很大机率保留着该记录，这样可以避免通过网络查询而带来的延迟。</li>
-</ul>
-</li>
-<li><p>DNS的预解析</p>
-<ul>
-<li><p>可以通过用meta信息来告知浏览器, 我这页面要做DNS预解析</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=&quot;x-dns-prefetch-control&quot; content=&quot;on&quot; /&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用link标签来强制对DNS做预解析:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;http://ke.qq.com/&quot; /&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
+<li>DOM属性绑定</li>
 </ol>
+<p>使用DOM元素的onXXX属性设置，简单易懂，兼容性好。确定是只能绑定一个处理函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;alert(<span class="string">'Hello world'</span>);&#125;;</div></pre></td></tr></table></figure>
+<h4 id="事件捕获和事件冒泡同时存在的情况"><a href="#事件捕获和事件冒泡同时存在的情况" class="headerlink" title="事件捕获和事件冒泡同时存在的情况"></a>事件捕获和事件冒泡同时存在的情况</h4><p>事件按照什么样的顺序触发的，按照事件触发的三个阶段依次分析就行。但是也有特例，如果给一个目标节点同时注册冒泡和捕获事件，事件触发会按照注册的顺序执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 以下会先打印冒泡然后是捕获</span></div><div class="line">node.addEventListener(<span class="string">'click'</span>,(event) =&gt;&#123;</div><div class="line">true<span class="built_in">console</span>.log(<span class="string">'冒泡'</span>)</div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line">node.addEventListener(<span class="string">'click'</span>,(event) =&gt;&#123;</div><div class="line">true<span class="built_in">console</span>.log(<span class="string">'捕获 '</span>)</div><div class="line">&#125;,<span class="literal">true</span>)</div></pre></td></tr></table></figure>
+<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><p>事件处理函数可以附加在各种对象上，包括 DOM元素，window 对象 等。当事件发生时， event 对象就会被创建并依次传递给事件监听器。</p>
+<p>在处理函数中，将event对象作为第一个参数参数，可以访问 DOM Event 接口。下面简单的实例则简单说明了 event对象是如何传入事件处理函数，在函数中是如何被使用的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">evt</span>) </span>&#123;</div><div class="line">  <span class="comment">// the evt parameter is automatically assigned the event object</span></div><div class="line">  alert(evt);</div><div class="line">&#125;</div><div class="line">table_el.onclick = foo;</div></pre></td></tr></table></figure>
+<p><code>event</code>比较常用的属性和方法：</p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li><p><code>event.bubbles</code>（只读）：</p>
+<p>  返回一个布尔值，表明当前事件是否会向DOM树上层元素冒泡</p>
+</li>
+<li><p><code>event.cancelable</code>(只读)：</p>
+<p>事件的 <code>cancelable</code> 属性表明该事件是否可以被取消默认行为, 如果该事件可以用 <code>preventDefault()</code> 可以阻止与事件关联的默认行为，则返回 <code>true</code>，否则为 <code>false</code>。如果该事件的 <code>cancelable</code> 属性为 <code>false</code>, 则该事件的监听器无法阻止默认行为, 调用<code>preventDefault()</code> 将产生错误.</p>
+</li>
+<li><p><code>event.currentTarget</code>：</p>
+<p>  当事件遍历DOM时，标识事件的当前目标。它总是引用事件处理程序附加到的元素，而不是event.target，event.target标识事件发生的元素。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">e.currentTarget.style.visibility = <span class="string">"hidden"</span>;</div><div class="line"><span class="built_in">console</span>.log(e.currentTarget);</div><div class="line"><span class="comment">// 该函数用作事件处理器时: this === e.currentTarget</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ps = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ps.length; i++)&#123;</div><div class="line"><span class="comment">// console: 打印被点击的p元素</span></div><div class="line">ps[i].addEventListener(<span class="string">'click'</span>, hide, <span class="literal">false</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// console: 打印body元素</span></div><div class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'click'</span>, hide, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<p>  上述代码运行后，点击网页中的<code>p</code>节点，由于注册的事件监听器都是冒泡属性，所以会依次打印点击的<code>p</code>节点、和<code>body</code>节点。</p>
+</li>
+<li><p><code>event.target</code>：</p>
+<p>  一个触发事件的对象的引用。</p>
+</li>
+</ul>
+<ul>
+<li><p><code>event.defaultPrevented</code>(只读)：</p>
+<p>  返回一个布尔值，表明当前事件是否调用了 event.preventDefault()方法。</p>
+</li>
+<li><p><code>event.type</code>(只读)：</p>
+<p>  只读属性 Event.type 会返回一个字符串, 表示该事件对象的事件类型。</p>
+</li>
+</ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li><p><code>preventDefault()</code>：</p>
+<p>  这个方法可以禁止一切默认的行为，例如点击 a 标签时，会打开一个新页面，如果为 a 标签监听事件 click 同时调用该方法，则不会打开新页面。</p>
+</li>
+<li><p><code>event.stopPropagation()</code>：</p>
+<p>  阻止捕获和冒泡阶段中当前事件的进一步传播。</p>
+</li>
+</ul>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>事件监听后，检测顺序就会从被绑定的DOM下滑到触发的元素，再冒泡会绑定的DOM上。也就是说，如果你监听了一个DOM节点，那也就等于你监听了其所有的后代节点。</p>
+<p>使用事件委托能够避免对特定的每个节点添加事件监听器；事件监听器是被添加到它们的父元素上。事件监听器会分析从子元素冒泡上来的事件，找到是哪个子元素的事件。利用事件冒泡的特性，将里层的事件委托给外层事件，根据event对象的属性进行事件委托，改善性能。</p>
+<p>要用到<code>e.target</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Make a list</span></div><div class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.createElement(<span class="string">'ul'</span>);</div><div class="line"><span class="built_in">document</span>.body.appendChild(ul);</div><div class="line"></div><div class="line"><span class="keyword">var</span> li1 = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line"><span class="keyword">var</span> li2 = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">ul.appendChild(li1);</div><div class="line">ul.appendChild(li2);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">  <span class="comment">// e.target refers to the clicked &lt;li&gt; element</span></div><div class="line">  <span class="comment">// This is different than e.currentTarget which would refer to the parent &lt;ul&gt; in this context</span></div><div class="line">  e.target.style.visibility = <span class="string">'hidden'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Attach the listener to the list</span></div><div class="line"><span class="comment">// It will fire when each &lt;li&gt; is clicked</span></div><div class="line">ul.addEventListener(<span class="string">'click'</span>, hide, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -494,6 +509,10 @@
         <div class="post-tags">
           
             <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/Browser/" rel="tag"><i class="fa fa-tag"></i> Browser</a>
+          
+            <a href="/tags/DOM/" rel="tag"><i class="fa fa-tag"></i> DOM</a>
           
         </div>
       
@@ -521,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/02/typeof和instanceof的实现原理/" rel="next" title="typeof、instanceof的实现原理">
-                <i class="fa fa-chevron-left"></i> typeof、instanceof的实现原理
+              <a href="/2018/11/16/前端的性能优化/" rel="next" title="前端的性能优化">
+                <i class="fa fa-chevron-left"></i> 前端的性能优化
               </a>
             
           </div>
@@ -530,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/16/浏览器的事件机制/" rel="prev" title="浏览器事件机制">
-                浏览器事件机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -699,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从浏览器发起请求到页面能正常浏览的阶段"><span class="nav-number">1.</span> <span class="nav-text">从浏览器发起请求到页面能正常浏览的阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器端"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS解析"><span class="nav-number">1.2.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是DNS解析"><span class="nav-number">1.2.1.</span> <span class="nav-text">什么是DNS解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要DNS解析"><span class="nav-number">1.2.2.</span> <span class="nav-text">为什么要DNS解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS域名解析过程"><span class="nav-number">1.2.3.</span> <span class="nav-text">DNS域名解析过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS有关的性能优化"><span class="nav-number">1.2.4.</span> <span class="nav-text">DNS有关的性能优化</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件触发三阶段"><span class="nav-number">1.</span> <span class="nav-text">事件触发三阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件冒泡与事件捕获"><span class="nav-number">2.</span> <span class="nav-text">事件冒泡与事件捕获</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件冒泡"><span class="nav-number">2.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件捕获"><span class="nav-number">2.2.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件监听器"><span class="nav-number">2.3.</span> <span class="nav-text">事件监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#其他事件监听方式"><span class="nav-number">2.3.1.</span> <span class="nav-text">其他事件监听方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件捕获和事件冒泡同时存在的情况"><span class="nav-number">2.4.</span> <span class="nav-text">事件捕获和事件冒泡同时存在的情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件对象"><span class="nav-number">3.</span> <span class="nav-text">事件对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性"><span class="nav-number">3.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件委托"><span class="nav-number">4.</span> <span class="nav-text">事件委托</span></a></li></ol></div>
             
 
           </div>
