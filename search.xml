@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2018%2F11%2F29%2Fjs%E4%B9%8B%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[js防抖与节流]]></title>
+    <url>%2F2018%2F11%2F19%2Fjs%E4%B9%8B%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81%2F</url>
+    <content type="text"><![CDATA[为什么要防抖在前端开发中会遇到一些频繁的事件触发，比如： window 的 resize、scroll mousedown、mousemove keyup、keydown…… 123456789101112&lt;!-- index.html --&gt;...&lt;style&gt; #container&#123; width: 100%; height: 200px; line-height: 200px; text-align: center; color: #fff; background-color: #444; font-size: 30px; &#125;&lt;/style&gt;...&lt;body&gt; &lt;div id="container"&gt;&lt;/div&gt; &lt;script src="debounce.js"&gt;&lt;/script&gt;&lt;/body&gt; 12345678var count = 1;var container = document.getElementById('container');function getUserAction() &#123; container.innerHTML = count++;&#125;;container.onmousemove = getUserAction; 因为这个例子很简单，所以浏览器完全反应的过来，可是如果是复杂的回调函数或是 ajax 请求呢？假设 1 秒触发了 60 次，每个回调就必须在 1000 / 60 = 16.67ms 内完成，否则就会有卡顿出现。 为了解决这个问题，一般有两种解决方案： debounce 防抖 throttle 节流 防抖原理是什么防抖的原理就是：你尽管触发事件，但是我一定在事件触发n秒后才执行，如果你在一个事件触发的n秒内又触发了这个事件，那我就以新的事件的时间为准，n秒后才执行，总之，就是要等你触发完事件n秒内不再触发事件，我才执行。 防抖的实现第一版1234567function debounce(func, wait) &#123; var timeout return function() &#123; clearTimeout(timeout) timeout = setTimeout(func, wait) &#125;&#125; 还是开始的例子测试： 1container.onmousemove = debounce(getUserAction, 1000) 现在是移动完1000ms之后才执行getUserAction事件： 绑定this如果我们在getUserAction函数中打印this，在不使用防抖的时候，this的值为： 1&lt;div id="container"&gt;&lt;/div&gt; 但是用了刚才实现的防抖函数之后，因为setTimeout是挂载在window对象上的，所以getUserAction中的this会指向Window对象。所以我们需要将this指向正确的对象。 1234567891011// 第二版function debounce(func, wait) &#123; var timeout return function() &#123; var context = this clearTimeout(timeout) timeout = setTimeout(function() &#123; func.apply(context) &#125;, wait) &#125;&#125; 现在this已经可以正确指向了。 event对象事件监听的回调函数的第一个参数是事件对象，现在我们要把这个对象传给防抖函数中的func： 123456789101112// 第三版function debounce(func, wait) &#123; var timeout return function() &#123; var context = this var args = arguments clearTimeout(timeout) timeout = setTimeout(function() &#123; func.apply(this, args) &#125;, wait) &#125;&#125; 立即执行上面封装的防抖函数属于延迟执行的防抖函数，只在事件结束后最后调用。比如使用搜索引擎输入问题的时候，我们希望用户输入完最后一个字才调用查询接口，这个时候适用延迟执行的防抖函数。 考虑一个新的需求：需要事件触发后立刻执行函数，然后停止触发事件n秒后才能重新触发。 加一个immediate参数判断是否立刻执行： 1234567891011121314151617181920212223// 第四版function debounce(func, wait, immediate) &#123; var timeout = null return function() &#123; var context = this var args = arguments if (timeout) clearTimeout(timeout) if (immediate) &#123; // 立即执行 if (!timeout) func.apply(context, args) timeout = setTimeout(function()&#123; timeout = null &#125;, wait) &#125; else &#123; // 延迟执行 timeout = setTimeout(function() &#123; func.apply(context, args) &#125;, waite) &#125; &#125;&#125; 返回值getUserAction可能是有返回值的，所以我们也要返回函数的执行结果，但是当防抖函数是延迟执行的时候，因为使用了setTimeout，我们return的结果会一直是undefined，所以我们只在立即执行的防抖函数下返回函数的执行结果。 12345678910111213141516171819202122// 第五版function debounce(func, wait, immediate) &#123; var timeout = null, result = null return function() &#123; var context = this var args = arguments if (timeout) clearTimeout(timeout) if (immediate) &#123; // 立即执行 if (!timeout) result = func.apply(context, args) timeout = setTineout(function() &#123; timeout = null &#125;, wait) &#125; else &#123; // 延迟执行 timeout = setTimeout(function() &#123; func.apply(this, args) &#125;, wait) &#125; return reult &#125;&#125; 取消最后我们希望增加一个能取消防抖，可以立刻重置延迟时间，初始化防抖函数的功能。 123456789101112131415161718192021222324252627// 第六版function debounce(func, wait, immediate) &#123; var timeout = null, result = null var debounced = function() &#123; var context = this var args = this if (timeout) clearTimeout(timeout) if (immediate) &#123; // 立即执行 if (!timeout) result = func.aplly(context, args) timeout = setTimeout(function() &#123; timeout = null &#125;, wait) &#125; else &#123; // 延迟执行 timeout = setTimeout(function() &#123; func.apply(context, args) &#125;, wait) &#125; return result &#125; debounced.cancel = function() &#123; clearTimeout(timeout) timeout = null &#125; return debounced&#125; 防抖的出处JavaScript专题之跟着underscore学防抖 节流节流的原理节流的原理很简单：如果你持续触发事件，每隔一段时间，只执行一次事件。 根据首次是否执行以及结束后是否执行，效果有所不同，实现的方式也有所不同。我们用leading代表首次是否执行，trailing代表结束后是否再执行一次。 使用时间戳123456789101112131415// 第一版function throttle(func, wait) &#123; var context, args; var previous = 0; return function() &#123; var now = +new Date(); context = this; args = arguments; if (now - previous &gt; wait) &#123; func.apply(context, args); previous = now; &#125; &#125;&#125; 使用定时器12345678910111213141516// 第二版function throttle(func, wait) &#123; var timeout; var previous = 0; return function() &#123; context = this; args = arguments; if (!timeout) &#123; timeout = setTimeout(function()&#123; timeout = null; func.apply(context, args) &#125;, wait) &#125; &#125;&#125; 节流的出处JavaScript专题之跟着 underscore 学节流]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Browser</tag>
+        <tag>DOM</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[浏览器事件机制]]></title>
@@ -70,8 +78,8 @@
         <category>CSAPP</category>
       </categories>
       <tags>
-        <tag>HTTP协议</tag>
         <tag>CSAPP</tag>
+        <tag>HTTP协议</tag>
       </tags>
   </entry>
   <entry>
@@ -281,8 +289,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>堆栈</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
