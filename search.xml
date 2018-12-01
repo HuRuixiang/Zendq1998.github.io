@@ -27,17 +27,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[前端的性能优化]]></title>
-    <url>%2F2018%2F11%2F16%2F%E5%89%8D%E7%AB%AF%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%2F</url>
-    <content type="text"><![CDATA[从浏览器发起请求到页面能正常浏览的阶段预处理——&gt;DNS解析——&gt;建立连接——&gt;发起请求——&gt;等待响应——&gt;接受数据——&gt;处理元素——&gt;布局渲染 浏览器端 输入提示 从浏览器地址框输入一个 g ，浏览器会根据你的历史访问，书签等，给出输入建议，假如说我以前打开过 google.com，浏览器就会根据它的算法匹配并给出几条建议地址。 url 解析 当协议或主机名不合法时，也就是不符合 URL 格式，比如输入几个单词，中文等。浏览器会将地址栏中输入的文字传给默认的搜索引擎。 合法的 URL 格式: &lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt; DNS解析什么是DNS解析简单来说，就是域名转换成ip地址的过程 为什么要DNS解析因为 http 是基于 tcp 连接的，而 tcp 则是通过 ip 地址去识别访问的。所以一定要找到服务器的ip地址。 DNS域名解析过程 查找浏览器缓存 浏览器会检查缓存中有没有这个域名对应的解析过的IP地址，如果缓存中有，这个解析过程就将结束，没有则下一步。浏览器缓存域名也是有限制的，不仅浏览器缓存大小有限制，而且缓存的时间也有限制，通常情况下为几分钟到几小时不等。这个缓存时间太长和太短都不好，如果缓存时间太长，一旦域名被解析到的IP有变化，会导致被客户端缓存的域名无法解析到变化后的IP地址，以致该域名不能正常解析，这段时间内有可能会有一部分用户无法访问网站。如果时间设置太短，会导致用户每次访问网站都要重新解析一次域名。 打开 chrome://net-internals/#dns 即可查看本机浏览器的 dns 缓存。 查找系统缓存 如果用户的浏览器缓存中没有，浏览器会查找操作系统缓存中是否有这个域名对应的DNS解析结果,浏览器会调用一个类似 gethostbyname 的库函数，此函数会先去检测本地 hosts 文件，查看是否有对应 ip。例如，localhost 默认 ip 是 172.0.0.1。 路由器缓存、ISP 缓存 如果浏览器和系统缓存都没有，系统的 gethostname 函数就会像 DNS 服务器发送请求。而网络服务一般都会先经过路由器以及网络服务商（电信），所以会先查询路由器缓存，然后再查询 ISP 的 DNS 缓存。也就是本地区的域名服务器，通常是提供给你接入互联网的应用提供商。这个专门的域名解析服务器性能都会很好，它们一般都会缓存域名解析结果，当然缓存时间是受域名的失效时间控制的，一般缓存空间不是影响域名失效的主要因素。 递归搜索 最无奈的情况发生了, 在前面都没有办法命中的DNS缓存的情况下,(1)本地 DNS服务器即将该请求转发到互联网上的根域(.)，通常省略不写。(2)根域将所要查询域名中的顶级域（.com, .org）的服务器IP地址返回到本地DNS。(3) 本地DNS根据返回的IP地址，再向顶级域（就是com域）发送请求。(4) com域服务器再将域名中的二级域（google.com）的IP地址返回给本地DNS。(5) 本地DNS再向二级域发送请求进行查询。(6) 之后不断重复这样的过程，直到本地DNS服务器得到最终的查询结果，并返回到主机。这时候主机才能通过域名访问该网站。 如果域名正常，应该就会返回 IP 地址，如果没有浏览器就会提示找不到服务器地址。 DNS有关的性能优化DNS 查询的过程经历了很多的步骤，如果每次都如此，是不是会耗费太多的时间，资源。所以我们应该尽早的返回真实的 IP 地址，减少查询过程，也就是 DNS 缓存。浏览器获取到 IP 地址后，一般都会加到浏览器的缓存中，本地的 DNS 缓存服务器，也可以去记录。 减少DNS查找，避免重定向 服务器可以设置TTL值表示DNS记录的存活时间。本机DNS缓存将根据这个TTL值判断DNS记录什么时候被抛弃，这个TTL值一般都不会设置很大，主要是考虑到快速故障转移的问题。 浏览器DNS缓存也有自己的过期时间，这个时间是独立于本机DNS缓存的，相对也比较短，例如chrome只有1分钟左右。 浏览器DNS记录的数量也有限制，如果短时间内访问了大量不同域名的网站，则较早的DNS记录将被抛弃，必须重新查找。不过即使浏览器丢弃了DNS记录，操作系统的DNS缓存也有很大机率保留着该记录，这样可以避免通过网络查询而带来的延迟。 DNS的预解析 可以通过用meta信息来告知浏览器, 我这页面要做DNS预解析 1&lt;meta http-equiv=&quot;x-dns-prefetch-control&quot; content=&quot;on&quot; /&gt; 使用link标签来强制对DNS做预解析: 1&lt;link rel=&quot;dns-prefetch&quot; href=&quot;http://ke.qq.com/&quot; /&gt;]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[typeof、instanceof的实现原理]]></title>
     <url>%2F2018%2F11%2F02%2Ftypeof%E5%92%8Cinstanceof%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%2F</url>
     <content type="text"><![CDATA[typeof参考 typeof操作符返回一个字符串，表示未经计算的操作数的类型。 JavaScript底层在存储变量时，变量的值是由一个表示类型的标签和实际数据值表示的（都是二进制）。 在JavaScript最初的版本中，使用的时32位系统，为了性能考虑使用低位（前三位）存储了变量的类型信息： 000: 对象 001: 整数 010: 浮点数 100: 字符串 110: 布尔 undefined和null的机器码比较特殊： undefined: -2^30 null: 全0 typeof会根据值的类型信息返回的对应的字符串，而代表空指针的null的机器码是全0，它的类型标签自然就是000，所以typeof null返回&quot;object&quot;。 instanceof参考 instanceof是一个二元运算符，如a instanceof b，其中a必须是一个合法的JavaScript对象，b必须是一个合法的JavaScript函数。 至于实现原理，用mdn的话来说：instance运算符用于测试构造函数的prototype属性是否出现在对象原型链中的任何位置。 用代码表示它的实现原理： 12345678910111213function my_instanceof(obj, constructor) &#123; let constuctProto = constructor.prototype while (true) &#123; if (obj.__protp__ === null) &#123; // 遍历完对象的原型链 return false &#125; if (obj.__proto__ === constuctProto) &#123; return true &#125; obj = obj.__proto__ &#125;&#125; 下面举几个例子 Object instanceof Object === true 右边的Object被看作是一个构造函数 构造函数的prototype属性是Object.prototype 左边的Object被看作是一个对象，接下来遍历一下这个对象的原型链 Object是一个构造函数，那么他的构造函数是Function,Object.__proto__ === Function.prototype，而Function.prototype又是一个普通的对象，他的构造函数是Object，即Object.__proto__.__proto__ === Object.prototype，现在找到构造函数的prototype属性出现在对象原型链了。 两个方法的比较以上，当我们需要判断变量类型的时候，如果是基本数据类型，可以用typeof,不过需要注意null这个特殊情况。instanceof主要是判断对象的原型链上有没有测试构造函数的prototype属性，偏向寻找构造原型。要想更精确地判断对象实例的类型时，可以采用Object.prototype.toString.call方法]]></content>
@@ -78,8 +67,8 @@
         <category>CSAPP</category>
       </categories>
       <tags>
+        <tag>网络</tag>
         <tag>CSAPP</tag>
-        <tag>HTTP协议</tag>
       </tags>
   </entry>
   <entry>
@@ -289,8 +278,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>堆栈</tag>
         <tag>数据结构</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
