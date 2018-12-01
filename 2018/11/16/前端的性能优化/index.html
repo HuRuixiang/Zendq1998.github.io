@@ -98,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="网络,JavaScript,Browser,DOM," />
+  <meta name="keywords" content="JavaScript,网络,Browser,DOM," />
 
 
 
@@ -110,7 +110,7 @@
 
 
 <meta name="description" content="详解web前端性能优化（从请求到渲染）">
-<meta name="keywords" content="网络,JavaScript,Browser,DOM">
+<meta name="keywords" content="JavaScript,网络,Browser,DOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端的渲染过程及其性能优化">
 <meta property="og:url" content="https://zendq1998.github.io/2018/11/16/前端的性能优化/index.html">
@@ -131,7 +131,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdn61k7mj30ob069gm7.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdquu5pxj30o707074z.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdvnykc5j30o707074z.jpg">
-<meta property="og:updated_time" content="2018-12-01T10:17:11.731Z">
+<meta property="og:updated_time" content="2018-12-01T10:19:46.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端的渲染过程及其性能优化">
 <meta name="twitter:description" content="详解web前端性能优化（从请求到渲染）">
@@ -401,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,670
+                  5,682
                 </span>
               
 
@@ -497,8 +497,8 @@
 </ul>
 </li>
 </ol>
-<!-- # TCP连接 -->
-<!-- # HTTP请求 -->
+<h1 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h1><p>待总结~~</p>
+<h1 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h1><p>待总结~~</p>
 <h1 id="浏览器的渲染"><a href="#浏览器的渲染" class="headerlink" title="浏览器的渲染"></a>浏览器的渲染</h1><h2 id="渲染引擎"><a href="#渲染引擎" class="headerlink" title="渲染引擎"></a>渲染引擎</h2><p><a href="浏览器的工作原理">参考文章</a></p>
 <h2 id="浏览器的主要组件"><a href="#浏览器的主要组件" class="headerlink" title="浏览器的主要组件"></a>浏览器的主要组件</h2><ol>
 <li>用户界面：除了浏览器主窗口显示的你请求的页面之外，其他的各个部分都属于用户界面。</li>
@@ -701,9 +701,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
-          
             <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
           
             <a href="/tags/Browser/" rel="tag"><i class="fa fa-tag"></i> Browser</a>
           
@@ -735,8 +735,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/02/typeof和instanceof的实现原理/" rel="next" title="typeof、instanceof的实现原理">
-                <i class="fa fa-chevron-left"></i> typeof、instanceof的实现原理
+              <a href="/2018/11/16/浏览器的事件机制/" rel="next" title="浏览器事件机制">
+                <i class="fa fa-chevron-left"></i> 浏览器事件机制
               </a>
             
           </div>
@@ -745,8 +745,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/16/浏览器的事件机制/" rel="prev" title="浏览器事件机制">
-                浏览器事件机制 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/19/js之防抖与节流/" rel="prev" title="js防抖与节流">
+                js防抖与节流 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -913,7 +913,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从浏览器发起请求到页面渲染出来的五个主要阶段"><span class="nav-number">1.</span> <span class="nav-text">从浏览器发起请求到页面渲染出来的五个主要阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS解析"><span class="nav-number">2.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器端开始请求"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器端开始请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是DNS解析"><span class="nav-number">2.2.</span> <span class="nav-text">什么是DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要DNS解析"><span class="nav-number">2.3.</span> <span class="nav-text">为什么要DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS域名解析过程"><span class="nav-number">2.4.</span> <span class="nav-text">DNS域名解析过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS有关的性能优化"><span class="nav-number">2.5.</span> <span class="nav-text">DNS有关的性能优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器的渲染"><span class="nav-number">3.</span> <span class="nav-text">浏览器的渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染引擎"><span class="nav-number">3.1.</span> <span class="nav-text">渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的主要组件"><span class="nav-number">3.2.</span> <span class="nav-text">浏览器的主要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种渲染引擎"><span class="nav-number">3.3.</span> <span class="nav-text">两种渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键渲染路径"><span class="nav-number">3.4.</span> <span class="nav-text">关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建对象模型（Constructing-the-Object-Model）"><span class="nav-number">3.5.</span> <span class="nav-text">构建对象模型（Constructing the Object Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染树（Render-Tree）构建、布局及绘制"><span class="nav-number">3.6.</span> <span class="nav-text">渲染树（Render-Tree）构建、布局及绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞渲染的CSS（Render-Blocking-CSS）"><span class="nav-number">3.7.</span> <span class="nav-text">阻塞渲染的CSS（Render-Blocking CSS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JavaScript添加交互"><span class="nav-number">3.8.</span> <span class="nav-text">使用JavaScript添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步脚本"><span class="nav-number">3.8.1.</span> <span class="nav-text">异步脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估关键渲染路径"><span class="nav-number">3.9.</span> <span class="nav-text">评估关键渲染路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Navigation-Timing-API与页面加载时触发的浏览器事件"><span class="nav-number">3.9.1.</span> <span class="nav-text">使用 Navigation Timing API与页面加载时触发的浏览器事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析关键渲染路径"><span class="nav-number">3.10.</span> <span class="nav-text">分析关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化关键路径"><span class="nav-number">3.11.</span> <span class="nav-text">优化关键路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化关键渲染路径的常规步骤如下"><span class="nav-number">3.11.1.</span> <span class="nav-text">优化关键渲染路径的常规步骤如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PageSpeed-规则和建议"><span class="nav-number">3.12.</span> <span class="nav-text">PageSpeed 规则和建议</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从浏览器发起请求到页面渲染出来的五个主要阶段"><span class="nav-number">1.</span> <span class="nav-text">从浏览器发起请求到页面渲染出来的五个主要阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS解析"><span class="nav-number">2.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器端开始请求"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器端开始请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是DNS解析"><span class="nav-number">2.2.</span> <span class="nav-text">什么是DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要DNS解析"><span class="nav-number">2.3.</span> <span class="nav-text">为什么要DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS域名解析过程"><span class="nav-number">2.4.</span> <span class="nav-text">DNS域名解析过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS有关的性能优化"><span class="nav-number">2.5.</span> <span class="nav-text">DNS有关的性能优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP连接"><span class="nav-number">3.</span> <span class="nav-text">TCP连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求"><span class="nav-number">4.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器的渲染"><span class="nav-number">5.</span> <span class="nav-text">浏览器的渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染引擎"><span class="nav-number">5.1.</span> <span class="nav-text">渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的主要组件"><span class="nav-number">5.2.</span> <span class="nav-text">浏览器的主要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种渲染引擎"><span class="nav-number">5.3.</span> <span class="nav-text">两种渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键渲染路径"><span class="nav-number">5.4.</span> <span class="nav-text">关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建对象模型（Constructing-the-Object-Model）"><span class="nav-number">5.5.</span> <span class="nav-text">构建对象模型（Constructing the Object Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染树（Render-Tree）构建、布局及绘制"><span class="nav-number">5.6.</span> <span class="nav-text">渲染树（Render-Tree）构建、布局及绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞渲染的CSS（Render-Blocking-CSS）"><span class="nav-number">5.7.</span> <span class="nav-text">阻塞渲染的CSS（Render-Blocking CSS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JavaScript添加交互"><span class="nav-number">5.8.</span> <span class="nav-text">使用JavaScript添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步脚本"><span class="nav-number">5.8.1.</span> <span class="nav-text">异步脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估关键渲染路径"><span class="nav-number">5.9.</span> <span class="nav-text">评估关键渲染路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Navigation-Timing-API与页面加载时触发的浏览器事件"><span class="nav-number">5.9.1.</span> <span class="nav-text">使用 Navigation Timing API与页面加载时触发的浏览器事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析关键渲染路径"><span class="nav-number">5.10.</span> <span class="nav-text">分析关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化关键路径"><span class="nav-number">5.11.</span> <span class="nav-text">优化关键路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化关键渲染路径的常规步骤如下"><span class="nav-number">5.11.1.</span> <span class="nav-text">优化关键渲染路径的常规步骤如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PageSpeed-规则和建议"><span class="nav-number">5.12.</span> <span class="nav-text">PageSpeed 规则和建议</span></a></li></ol></li></ol></div>
             
 
           </div>
