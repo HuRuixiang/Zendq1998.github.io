@@ -131,7 +131,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdn61k7mj30ob069gm7.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdquu5pxj30o707074z.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdvnykc5j30o707074z.jpg">
-<meta property="og:updated_time" content="2018-12-01T10:19:46.525Z">
+<meta property="og:updated_time" content="2018-12-01T15:34:31.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端的渲染过程及其性能优化">
 <meta name="twitter:description" content="详解web前端性能优化（从请求到渲染）">
@@ -401,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,682
+                  7,021
                 </span>
               
 
@@ -417,7 +417,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  21
+                  26
                 </span>
               
             </div>
@@ -684,6 +684,79 @@
 </ul>
 </li>
 </ul>
+<h1 id="静态文件优化"><a href="#静态文件优化" class="headerlink" title="静态文件优化"></a>静态文件优化</h1><h2 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h2><p><a href="https://www.jianshu.com/p/55e48032b30e" target="_blank" rel="external">参考1</a><br><a href="https://juejin.im/post/59a7725b6fb9a02497170459" target="_blank" rel="external">参考2</a></p>
+<ol>
+<li><p>使用base64编码代替图片</p>
+<p> 将图片转换为base64编码字符串inline到页面或css中，适用于图片大小小于2KB，页面上引用图片总数不多的情况。</p>
+</li>
+<li><p>合并图片sprite</p>
+<p> 将多个页面上用到的背景图片合并成一个大的图片在页面中引用 ，可以有效的减少请求个数，兼容性很好，但是增加开发时间、增加维护成本。</p>
+</li>
+<li><p>图片延迟加载（懒加载）</p>
+<p> 对应图片比较多的页面，可以考虑通过js来实现图片的延迟加载，先让一部分图片优先请求下来，当用户滚动页面的时候进一步加载图片。<br> 页面中的img元素，如果没有src属性，浏览器就不会发出请求去下载图片，只有通过javascript设置了图片路径，浏览器才会发送请求。<br> 懒加载的原理就是先在页面中把所有的图片统一使用一张占位图进行占位，把正真的路径存在元素的“data-url”（这个名字起个自己认识好记的就行）属性里，要用的时候就取出来，再设置。</p>
+<p> 实现步骤：</p>
+<ol>
+<li>首先，不要将图片地址放到src属性中，而是放到其他地方存着。</li>
+<li>页面加载完成后，根据<code>scroolTop</code>判断图片是否在用户视野内，如果在，则将图片地址存放到src属性中</li>
+<li><p>在滚动事件中执行第二步</p>
+<p>补充：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 屏幕可视窗口大小</span></div><div class="line"><span class="built_in">window</span>.innerHeight</div><div class="line"><span class="comment">// 浏览器窗口顶部与文档顶部之间的距离</span></div><div class="line"><span class="built_in">window</span>.pageYoffset</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>使用css、svg、canvas或iconfont代替图片</p>
+<p> css方式可以用来绘制相对简单的图案来代替图片，一般使用before或者after伪元素来丰富图案的复杂度。使用css,svg,iconfont减少图片尺寸，请求数据少。</p>
+</li>
+<li><p>响应式图片</p>
+<ul>
+<li><p>通过服务器图片资源配置命名规则来获取图片</p>
+<p>  <code>&lt;img src=&quot;bgimg-320.jpg&quot; /&gt;或&lt;img src=&quot;bgimg-480.jpg&quot; /&gt;</code></p>
+</li>
+<li><p>通过css定义来加载不同的背景bg图片</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> only screen and (max-width : <span class="number">480px</span>) &#123;</div><div class="line"><span class="selector-class">.img</span> &#123;<span class="attribute">background-image</span>: <span class="built_in">url</span>(bg-480.jpg);&#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">media</span> only screen and (max-width : <span class="number">360px</span>) &#123;</div><div class="line"><span class="selector-class">.img</span> &#123;<span class="attribute">background-image</span>: <span class="built_in">url</span>(bg-360.jpg);&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Img的srcset和sizes的方法</p>
+<p>  这两个img属性是html5的属性，有浏览器的兼容问题</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> </span></div><div class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"img"</span>  </span></div><div class="line"><span class="tag">    <span class="attr">src</span>=<span class="string">"imgbg-320.jpg"</span></span></div><div class="line"><span class="tag">    <span class="attr">srcset</span>=<span class="string">"imgbg-320.jpg 320w, imgbg-360.jpg 360w, imgbg-480px.jpg 480w"</span></span></div><div class="line"><span class="tag">    <span class="attr">sizes</span>=<span class="string">"(max-width: 480px) 480px, 320px"</span> </span></div><div class="line"><span class="tag">/&gt;</span></div></pre></td></tr></table></figure>
+<p>  <code>src</code>:当设备不支持srcset，sizes属性时，使用这个图片<br>srcset指定图片的地址和对应的图片质量。sizes用来设置图片的尺寸零界点</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>    [响应式图片srcset](https://www.zhangxinxu.com/wordpress/2014/10/responsive-images-srcset-size-w-descriptor/)
+- picture标签实现
+
+    通过媒体查询的方式，根据页面宽度（当然也可以添加其他参考项）加载不同图片
+
+    <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"3.jpg"</span> <span class="attr">media</span>=<span class="string">"(min-width: 320px)"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"2.jpg"</span> <span class="attr">media</span>=<span class="string">"(min-width: 480px)"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"1.jpg"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></div></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>预加载</p>
+<p> 和图片的懒加载相反，图片预加载说白了就是将所有所需的图片提前请求加载到本地，这样后面在需要用到时就直接从缓存取图片。图片预加载的JavaScript实现原理很简单：new Image()，然后使用onload方法回调预加载完成事件，当浏览器把图片下载到本地后，之后同样的src就直接使用缓存。</p>
+<p> <a href="http://web.jobbole.com/86785/" target="_blank" rel="external">实现图片预加载的三种方法</a></p>
+</li>
+</ol>
+<h2 id="提升静态文件的加载速度"><a href="#提升静态文件的加载速度" class="headerlink" title="提升静态文件的加载速度"></a>提升静态文件的加载速度</h2><p><a href="https://wetest.qq.com/lab/view/345.html" target="_blank" rel="external">参考</a></p>
+<ul>
+<li><p>减少请求数——文件合并</p>
+<ol>
+<li>合并js脚本文件</li>
+<li>合并css样式文件</li>
+<li>合并css引用的图片(使用sprite雪碧图)</li>
+</ol>
+</li>
+<li><p>减少静态文件大小——代码压缩</p>
+<p>  我们在平时开发的时候，JS脚本文件和CSS样式文件中的代码，都会依据一定的代码规范（比如javascript-standard-style）来提高项目的可维护性，以及团队之间合作的效率。</p>
+<p>  但是在项目发布后， 这些代码是给客户端（浏览器）识别的，此时代码的命名规范、空格缩进都已没有必要，我们可以使用工具将这些代码进行混淆和压缩，减少静态文件的大小。</p>
+<p>  比如用 <code>webpack</code> 打包。</p>
+</li>
+<li><p>gzip</p>
+<p>  <a href="https://segmentfault.com/a/1190000012571492" target="_blank" rel="external">参考</a></p>
+</li>
+<li><p>CDN和缓存</p>
+<p>  CDN 是一个全球（或者只有国内，具体看供应商）分布式网络，它把网站内容更快地传递给服务范围内的一个具体位置，而往往这个具体的位置离实际的内容服务器距离很远。举个极端点的例子，你的网站主机在爱尔兰（海南），而你的用户则在澳大利亚（漠河）访问。这时当你的用户访问你的网站的时候，延迟会很大，把你的（静态）数据用 CDN 放到澳大利亚（漠河）则会很大程度上提高用户访问网站的体验。</p>
+<p>  静态资源尽量使用 CDN 加载，由于浏览器对于单个域名有并发请求上限，可以考虑使用多个 CDN 域名。对于 CDN 加载静态资源需要注意 CDN 域名要与主站不同，否则每次请求都会带上主站的 Cookie。</p>
+</li>
+</ul>
 
       
     </div>
@@ -735,8 +808,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/16/浏览器的事件机制/" rel="next" title="浏览器事件机制">
-                <i class="fa fa-chevron-left"></i> 浏览器事件机制
+              <a href="/2018/11/02/typeof和instanceof的实现原理/" rel="next" title="typeof、instanceof的实现原理">
+                <i class="fa fa-chevron-left"></i> typeof、instanceof的实现原理
               </a>
             
           </div>
@@ -745,8 +818,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/19/js之防抖与节流/" rel="prev" title="js防抖与节流">
-                js防抖与节流 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/16/浏览器的事件机制/" rel="prev" title="浏览器事件机制">
+                浏览器事件机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -913,7 +986,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从浏览器发起请求到页面渲染出来的五个主要阶段"><span class="nav-number">1.</span> <span class="nav-text">从浏览器发起请求到页面渲染出来的五个主要阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS解析"><span class="nav-number">2.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器端开始请求"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器端开始请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是DNS解析"><span class="nav-number">2.2.</span> <span class="nav-text">什么是DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要DNS解析"><span class="nav-number">2.3.</span> <span class="nav-text">为什么要DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS域名解析过程"><span class="nav-number">2.4.</span> <span class="nav-text">DNS域名解析过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS有关的性能优化"><span class="nav-number">2.5.</span> <span class="nav-text">DNS有关的性能优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP连接"><span class="nav-number">3.</span> <span class="nav-text">TCP连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求"><span class="nav-number">4.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器的渲染"><span class="nav-number">5.</span> <span class="nav-text">浏览器的渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染引擎"><span class="nav-number">5.1.</span> <span class="nav-text">渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的主要组件"><span class="nav-number">5.2.</span> <span class="nav-text">浏览器的主要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种渲染引擎"><span class="nav-number">5.3.</span> <span class="nav-text">两种渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键渲染路径"><span class="nav-number">5.4.</span> <span class="nav-text">关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建对象模型（Constructing-the-Object-Model）"><span class="nav-number">5.5.</span> <span class="nav-text">构建对象模型（Constructing the Object Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染树（Render-Tree）构建、布局及绘制"><span class="nav-number">5.6.</span> <span class="nav-text">渲染树（Render-Tree）构建、布局及绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞渲染的CSS（Render-Blocking-CSS）"><span class="nav-number">5.7.</span> <span class="nav-text">阻塞渲染的CSS（Render-Blocking CSS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JavaScript添加交互"><span class="nav-number">5.8.</span> <span class="nav-text">使用JavaScript添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步脚本"><span class="nav-number">5.8.1.</span> <span class="nav-text">异步脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估关键渲染路径"><span class="nav-number">5.9.</span> <span class="nav-text">评估关键渲染路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Navigation-Timing-API与页面加载时触发的浏览器事件"><span class="nav-number">5.9.1.</span> <span class="nav-text">使用 Navigation Timing API与页面加载时触发的浏览器事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析关键渲染路径"><span class="nav-number">5.10.</span> <span class="nav-text">分析关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化关键路径"><span class="nav-number">5.11.</span> <span class="nav-text">优化关键路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化关键渲染路径的常规步骤如下"><span class="nav-number">5.11.1.</span> <span class="nav-text">优化关键渲染路径的常规步骤如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PageSpeed-规则和建议"><span class="nav-number">5.12.</span> <span class="nav-text">PageSpeed 规则和建议</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从浏览器发起请求到页面渲染出来的五个主要阶段"><span class="nav-number">1.</span> <span class="nav-text">从浏览器发起请求到页面渲染出来的五个主要阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS解析"><span class="nav-number">2.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器端开始请求"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器端开始请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是DNS解析"><span class="nav-number">2.2.</span> <span class="nav-text">什么是DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要DNS解析"><span class="nav-number">2.3.</span> <span class="nav-text">为什么要DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS域名解析过程"><span class="nav-number">2.4.</span> <span class="nav-text">DNS域名解析过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS有关的性能优化"><span class="nav-number">2.5.</span> <span class="nav-text">DNS有关的性能优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP连接"><span class="nav-number">3.</span> <span class="nav-text">TCP连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求"><span class="nav-number">4.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器的渲染"><span class="nav-number">5.</span> <span class="nav-text">浏览器的渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染引擎"><span class="nav-number">5.1.</span> <span class="nav-text">渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的主要组件"><span class="nav-number">5.2.</span> <span class="nav-text">浏览器的主要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种渲染引擎"><span class="nav-number">5.3.</span> <span class="nav-text">两种渲染引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键渲染路径"><span class="nav-number">5.4.</span> <span class="nav-text">关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建对象模型（Constructing-the-Object-Model）"><span class="nav-number">5.5.</span> <span class="nav-text">构建对象模型（Constructing the Object Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染树（Render-Tree）构建、布局及绘制"><span class="nav-number">5.6.</span> <span class="nav-text">渲染树（Render-Tree）构建、布局及绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞渲染的CSS（Render-Blocking-CSS）"><span class="nav-number">5.7.</span> <span class="nav-text">阻塞渲染的CSS（Render-Blocking CSS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JavaScript添加交互"><span class="nav-number">5.8.</span> <span class="nav-text">使用JavaScript添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步脚本"><span class="nav-number">5.8.1.</span> <span class="nav-text">异步脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估关键渲染路径"><span class="nav-number">5.9.</span> <span class="nav-text">评估关键渲染路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Navigation-Timing-API与页面加载时触发的浏览器事件"><span class="nav-number">5.9.1.</span> <span class="nav-text">使用 Navigation Timing API与页面加载时触发的浏览器事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析关键渲染路径"><span class="nav-number">5.10.</span> <span class="nav-text">分析关键渲染路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化关键路径"><span class="nav-number">5.11.</span> <span class="nav-text">优化关键路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化关键渲染路径的常规步骤如下"><span class="nav-number">5.11.1.</span> <span class="nav-text">优化关键渲染路径的常规步骤如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PageSpeed-规则和建议"><span class="nav-number">5.12.</span> <span class="nav-text">PageSpeed 规则和建议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态文件优化"><span class="nav-number">6.</span> <span class="nav-text">静态文件优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图片优化"><span class="nav-number">6.1.</span> <span class="nav-text">图片优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提升静态文件的加载速度"><span class="nav-number">6.2.</span> <span class="nav-text">提升静态文件的加载速度</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -947,7 +1020,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">41.4k</span>
+    <span title="Site words total count">42.7k</span>
   
 </div>
 
@@ -967,7 +1040,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共41.4k字</span>
+  <span class="post-count">博客全站共42.7k字</span>
 </div>
 
         
