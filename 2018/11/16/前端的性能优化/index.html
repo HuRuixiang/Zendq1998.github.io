@@ -98,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,网络,Browser,DOM," />
+  <meta name="keywords" content="网络,JavaScript,Browser,DOM," />
 
 
 
@@ -110,7 +110,7 @@
 
 
 <meta name="description" content="详解web前端性能优化（从请求到渲染）">
-<meta name="keywords" content="JavaScript,网络,Browser,DOM">
+<meta name="keywords" content="网络,JavaScript,Browser,DOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端的渲染过程及其性能优化">
 <meta property="og:url" content="https://zendq1998.github.io/2018/11/16/前端的性能优化/index.html">
@@ -131,7 +131,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdn61k7mj30ob069gm7.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdquu5pxj30o707074z.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006GC8NZgy1fxrdvnykc5j30o707074z.jpg">
-<meta property="og:updated_time" content="2018-12-01T15:34:31.263Z">
+<meta property="og:updated_time" content="2018-12-02T06:37:55.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端的渲染过程及其性能优化">
 <meta name="twitter:description" content="详解web前端性能优化（从请求到渲染）">
@@ -401,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  7,021
+                  7,069
                 </span>
               
 
@@ -699,8 +699,10 @@
 <li>首先，不要将图片地址放到src属性中，而是放到其他地方存着。</li>
 <li>页面加载完成后，根据<code>scroolTop</code>判断图片是否在用户视野内，如果在，则将图片地址存放到src属性中</li>
 <li><p>在滚动事件中执行第二步</p>
-<p>补充：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 屏幕可视窗口大小</span></div><div class="line"><span class="built_in">window</span>.innerHeight</div><div class="line"><span class="comment">// 浏览器窗口顶部与文档顶部之间的距离</span></div><div class="line"><span class="built_in">window</span>.pageYoffset</div></pre></td></tr></table></figure>
+<p>判断图片是否在用户视野内：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 屏幕可视窗口大小</span></div><div class="line"><span class="built_in">window</span>.innerHeight</div><div class="line"><span class="comment">// 浏览器窗口顶部与文档顶部之间的距离</span></div><div class="line"><span class="built_in">window</span>.pageYoffset</div><div class="line"><span class="comment">// 元素的大小及其相对于视口的位置</span></div><div class="line">Element.getBoundingClientRect()</div></pre></td></tr></table></figure>
+<p>注意：滚动事件中最好用到<a href="https://zendq1998.github.io/2018/11/19/js%E4%B9%8B%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">防抖或节流</a></p>
+<p><a href="https://github.com/mqyqingfeng/LazyLoad/blob/master/lazyload.js" target="_blank" rel="external">实现懒加载</a></p>
 </li>
 </ol>
 </li>
@@ -774,9 +776,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
-          
             <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
           
             <a href="/tags/Browser/" rel="tag"><i class="fa fa-tag"></i> Browser</a>
           
