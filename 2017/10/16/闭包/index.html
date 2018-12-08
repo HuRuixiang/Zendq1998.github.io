@@ -109,18 +109,18 @@
 
 
 
-<meta name="description" content="理解闭包">
+<meta name="description" content="重新总结闭包，总（co）结（py）mqyqingfeng大神博客中非常好的分享">
 <meta name="keywords" content="JavaScript,闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="闭包">
+<meta property="og:title" content="js深入理解闭包">
 <meta property="og:url" content="https://zendq1998.github.io/2017/10/16/闭包/index.html">
 <meta property="og:site_name" content="Zendq&#39;s blog">
-<meta property="og:description" content="理解闭包">
+<meta property="og:description" content="重新总结闭包，总（co）结（py）mqyqingfeng大神博客中非常好的分享">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T01:01:18.364Z">
+<meta property="og:updated_time" content="2018-12-08T03:15:51.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="闭包">
-<meta name="twitter:description" content="理解闭包">
+<meta name="twitter:title" content="js深入理解闭包">
+<meta name="twitter:description" content="重新总结闭包，总（co）结（py）mqyqingfeng大神博客中非常好的分享">
 
 
 
@@ -156,7 +156,7 @@
 
 
 
-  <title>闭包 | Zendq's blog</title>
+  <title>js深入理解闭包 | Zendq's blog</title>
   
 
 
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">闭包</h1>
+          <h1 class="post-title" itemprop="name headline">js深入理解闭包</h1>
         
 
         <div class="post-meta">
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  338
+                  27
                 </span>
               
 
@@ -410,7 +410,7 @@
 
           
               <div class="post-description">
-                  理解闭包
+                  重新总结闭包，总（co）结（py）mqyqingfeng大神博客中非常好的分享
               </div>
           
 
@@ -427,11 +427,7 @@
       
 
       
-        <p>函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？<br><a id="more"></a><br>下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapValue</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">true<span class="keyword">var</span> localVariable = n;</div><div class="line">true<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> localVariable;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> wrap1 = wrapValue(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> wrap2 = wrapValue(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(wrap1);</div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(wrap2);</div><div class="line"><span class="comment">//2</span></div></pre></td></tr></table></figure>
-<p>这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的，</p>
-<p>我们把这种引用特定的局部变量实例的功能称为闭包。一个包装了一些局部变量的函数是一个闭包。很多高级应用可以利用闭包的特性来实现。</p>
-<p>我们可以把关键字<em>function</em> 当作一种“冻结”代码并将其打包成函数值的模型。所以当你看到“<em>return function(…){…}</em>”这样的代码时，你可以将其理解为一个句柄，其中句柄指向一段包装好的计算代码。</p>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>MDN对闭包的定义为：闭包是指那些能够访问自由变量的函数。</p>
 
       
     </div>
@@ -543,8 +539,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -639,6 +644,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -666,7 +687,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">44.4k</span>
+    <span title="Site words total count">44.1k</span>
   
 </div>
 
@@ -686,7 +707,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.4k字</span>
+  <span class="post-count">博客全站共44.1k字</span>
 </div>
 
         

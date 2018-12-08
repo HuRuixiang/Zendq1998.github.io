@@ -45,8 +45,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>JavaScript</tag>
+        <tag>网络</tag>
         <tag>Browser</tag>
         <tag>DOM</tag>
       </tags>
@@ -284,9 +284,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[闭包]]></title>
+    <title><![CDATA[js深入理解闭包]]></title>
     <url>%2F2017%2F10%2F16%2F%E9%97%AD%E5%8C%85%2F</url>
-    <content type="text"><![CDATA[函数可以作为值使用，而且其局部变量会在每次函数调用时重新创建，由此引出一个值得我们探讨的问题：如果函数已经执行结束，那么这些有函数创建的局部变量会如何处理呢？下面的示例代码展示了这种情况。代码中定义了函数wrapValue，该函数创建了一个局部变量localVariable，并返回一个函数，用于访问并返回局部变量localVariable。 12345678910function wrapValue(n)&#123;truevar localVariable = n;truereturn function() &#123;return localVariable;&#125;;&#125;var wrap1 = wrapValue(1);var wrap2 = wrapValue(2);console.log(wrap1);//1console.log(wrap2);//2 这段代码印证了局部变量会在每次函数调用时重新创建，不同的函数调用是不会对其它函数内的局部变量产生任何影响的， 我们把这种引用特定的局部变量实例的功能称为闭包。一个包装了一些局部变量的函数是一个闭包。很多高级应用可以利用闭包的特性来实现。 我们可以把关键字function 当作一种“冻结”代码并将其打包成函数值的模型。所以当你看到“return function(…){…}”这样的代码时，你可以将其理解为一个句柄，其中句柄指向一段包装好的计算代码。]]></content>
+    <content type="text"><![CDATA[定义MDN对闭包的定义为：闭包是指那些能够访问自由变量的函数。]]></content>
       <categories>
         <category>前端</category>
       </categories>
