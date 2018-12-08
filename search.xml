@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JS之深浅拷贝]]></title>
+    <url>%2F2018%2F12%2F07%2F%08JS%E4%B9%8B%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%2F</url>
+    <content type="text"><![CDATA[浅拷贝对象 Object.assign 123456let a = &#123; age: 1&#125;let b = Object.assign(&#123;&#125;, a)a.age = 2console.log(b.age) // 1 展开运算符（…） 123456let a = &#123; age: 1&#125;let b = &#123;...a&#125;a.age = 2console.log(b.age) // 1 但是 123456789let a = &#123; age: 1, jobs: &#123; first: 'FE' &#125;&#125;let b = Object.assign(&#123;&#125;, a)a.jobs.first = 'native'console.log(b.jobs.first) // native 同样123456789let a = &#123; age: 1, jobs: &#123; first: 'FE' &#125;&#125;let b = &#123;...a&#125;a.jobs.first = 'native'console.log(b.jobs.first) // native 浅拷贝只解决了第一层的问题，如果接下去的值中还有对象的话，那么就又回到刚开始的话题了，两者享有相同的引用。要解决这个问题，我们需要引入深拷贝。 数组我们可以利用数组的一些方法比如：slice、concat 返回一个新数组的特性来实现拷贝。 12345678var arr = ['old', 1, true, null, undefined];var new_arr = arr.concat();new_arr[0] = 'new';console.log(arr) // ["old", 1, true, null, undefined]console.log(new_arr) // ["new", 1, true, null, undefined] 但是 123456789var arr = [&#123;old: 'old'&#125;, ['old']];var new_arr = arr.concat();arr[0].old = 'new';arr[1][0] = 'new';console.log(arr) // [&#123;old: 'new'&#125;, ['new']]console.log(new_arr) // [&#123;old: 'new'&#125;, ['new']] 同样，这两种方法也只能拷贝一层，克隆的并不彻底。 如果数组元素是基本类型，就会拷贝一份，互不影响，而如果是对象或者数组，就会只拷贝对象和数组的引用，这样我们无论在新旧数组进行了修改，两者都会发生变化。 我们把这种复制引用的拷贝方法称之为浅拷贝，与之对应的就是深拷贝，深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个。 浅拷贝的实现12345678910111213var shallowCopy = function(obj) &#123; // 只拷贝对象 if (typeof obj !== 'object') return; // 根据obj的类型判断是新建一个数组还是对象 var newObj = obj instanceof Array ? [] : &#123;&#125;; // 遍历obj，并且判断是obj的属性才拷贝 for (var key in obj) &#123; if (obj.hasOwnProperty(key)) &#123; newObj[key] = obj[key]; &#125; &#125; return newObj;&#125; 深拷贝使用JSON.parse(JSON.stringify(object))123456789let a = &#123; age: 1, jobs: &#123; first: 'FE' &#125;&#125;let b = JSON.parse(JSON.stringify(a))a.jobs.first = 'native'console.log(b.jobs.first) // FE 但是该方法也是有局限性的： 忽略 undefined 忽略 symbol 不能序列化函数 不能解决循环引用的对象 123456789101112131415let obj = &#123; a: 1, b: &#123; c: 2, d: 3, &#125;,&#125;obj.c = obj.bobj.e = obj.aobj.b.c = obj.cobj.b.d = obj.bobj.b.e = obj.b.clet newObj = JSON.parse(JSON.stringify(obj))console.log(newObj)// 因为JSON.stringify不能解决循环引用的问题，所以这里报错 123456789let a = &#123; age: undefined, sex: Symbol('male'), jobs: function() &#123;&#125;, name: 'yck'&#125;let b = JSON.parse(JSON.stringify(a))console.log(b) // &#123;name: "yck"&#125;// 忽略了 symbol、undefined、函数 递归实现深拷贝在拷贝的时候判断一下属性值的类型，如果是对象，就递归调用深拷贝函数. 12345678910var deepCopy = function(obj) &#123; if (typeof obj !== 'object') return; var newObj = obj instanceof Array ? [] : &#123;&#125;; for (var key in obj) &#123; if (obj.hasOwnProperty(key)) &#123; newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key]; &#125; &#125; return newObj;&#125;]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JS中的Event Loop机制]]></title>
     <url>%2F2018%2F12%2F01%2FJS%E4%B9%8BEventloop%2F</url>
     <content type="text"><![CDATA[浏览器环境执行栈与事件队列当一个脚本第一次执行的时候，js引擎会解析这段代码，并将其中的同步代码按照执行顺序加入执行栈中，然后从头开始执行。如果当前执行的是一个方法，那么js会向执行栈中添加这个方法的执行环境（context），然后进入这个执行环境继续执行其中的代码。当这个执行环境中的代码 执行完毕并返回结果后，js会退出这个执行环境并把这个执行环境销毁，回到上一个方法的执行环境。。这个过程反复进行，直到执行栈中的代码全部执行完毕。 js引擎遇到一个异步事件后并不会一直等待其返回结果，而是会将这个事件挂起，继续执行执行栈中的其他任务。当一个异步事件返回结果后，js会将这个事件加入与当前执行栈不同的另一个队列，我们称之为事件队列。被放入事件队列不会立刻执行其回调，而是等待当前执行栈中的所有任务都执行完毕， 主线程处于闲置状态时，主线程会去查找事件队列是否有任务。如果有，那么主线程会从中取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，然后执行其中的同步代码…，如此反复，这样就形成了一个无限的循环。这就是这个过程被称为“事件循环（Event Loop）”的原因。 macro task与micro task以上的事件循环过程是一个宏观的表述，实际上因为异步任务之间并不相同，因此他们的执行优先级也有区别。js 引擎并不只维护一个任务队列，总共有两种异步任务：微任务（micro task）和宏任务（macro task）。 宏任务（macroTask） setTimeout, setInterval, setImmediate,I/O, UI rendering 微任务（microTask） Promise, process.nextTick, Object.observe, MutationObserver, MutaionObserver 当前执行栈执行完毕时会立刻先处理所有微任务队列中的事件，然后再去宏任务队列中取出一个事件。同一次事件循环中，微任务永远在宏任务之前执行。 node环境与浏览器环境有何不同与浏览器中大致相同。不同的是node中有一套自己的模型。node中事件循环的实现是依靠的libuv引擎。我们知道node选择chrome v8引擎作为js解释器，v8引擎将js代码分析后去调用对应的node api，而这些api最后则由libuv引擎驱动，执行对应的任务，并把不同的事件放在不同的队列中等待主线程执行。 因此实际上node中的事件循环存在于libuv引擎中。 事件循环模型 外部输入数据–&gt;轮询阶段(poll)–&gt;检查阶段(check)–&gt;关闭事件回调阶段(close callback)–&gt;定时器检测阶段(timer)–&gt;I/O事件回调阶段(I/O callbacks)–&gt;闲置阶段(idle, prepare)–&gt;轮询阶段… Node 的 Event loop 分为6个阶段，它们会按照顺序反复运行 timers 阶段: 这个阶段执行setTimeout(callback) and setInterval(callback)预定的callback; I/O callbacks 阶段: 执行除了 close事件的callbacks、被timers(定时器，setTimeout、setInterval等)设定的callbacks、setImmediate()设定的callbacks之外的callbacks; idle, prepare 阶段: 仅node内部使用; poll 阶段: poll 阶段很重要，这一阶段中，系统会做两件事情 执行到点的定时器 执行 poll 队列中的事件 check 阶段: 执行setImmediate() 设定的callbacks; close callbacks 阶段: 比如socket.on(‘close’, callback)的callback会在这个阶段执行. 每一个阶段都有一个装有callbacks的fifo queue(队列)，当event loop运行到一个指定阶段时，node将执行该阶段的fifo queue(队列)，当队列callback执行完或者执行callbacks数量超过该阶段的上限时，event loop会转入下一下阶段. poll阶段当个v8引擎将js代码解析后传入libuv引擎后，循环首先进入poll阶段。poll阶段的执行逻辑如下： 先查看poll queue中是否有事件，有任务就按先进先出的顺序依次执行回调。 当queue为空时，会检查是否有setImmediate()的callback，如果有就进入check阶段执行这些callback。但同时也会检查是否有到期的timer，如果有，就把这些到期的timer的callback按照调用顺序放到timer queue中，之后循环会进入timer阶段执行queue中的 callback。 这两者的顺序是不固定的，受到代码运行的环境的影响。如果两者的queue都是空的，那么loop会在poll阶段停留，直到有一个i/o事件返回，循环会进入i/o callback阶段并立即执行这个事件的callback。 check阶段check阶段专门用来执行setImmediate()方法的回调，当poll阶段进入空闲状态，并且setImmediate queue中有callback时，事件循环进入这个阶段。 close阶段当一个socket连接或者一个handle被突然关闭时（例如调用了socket.destroy()方法），close事件会被发送到这个阶段执行回调。否则事件会用process.nextTick（）方法发送出去。 timer阶段这个阶段以先进先出的方式执行所有到期的timer加入timer队列里的callback，一个timer callback指得是一个通过setTimeout或者setInterval函数设置的回调函数。 I/O callback阶段这个阶段主要执行大部分I/O事件的回调，包括一些为操作系统执行的回调。 process.nextTick()node中存在着一个特殊的队列，即nextTick queue。这个队列中的回调执行虽然没有被表示为一个阶段，但是这些事件却会在每一个阶段执行完毕准备进入下一个阶段时优先执行。当事件循环准备进入下一个阶段之前，会先检查nextTick queue中是否有任务，如果有，那么会先清空这个队列。与执行poll queue中的任务不同的是，这个操作在队列清空前是不会停止的。这也就意味着，错误的使用process.nextTick()方法会导致node进入一个死循环，直到内存泄漏。 参考理解event loop（浏览器环境与nodejs环境） 详解JavaScript中的Event Loop（事件循环）机制]]></content>
@@ -45,10 +56,10 @@
         <category>前端</category>
       </categories>
       <tags>
+        <tag>网络</tag>
         <tag>JavaScript</tag>
         <tag>Browser</tag>
         <tag>DOM</tag>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -303,8 +314,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>堆栈</tag>
         <tag>数据结构</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
