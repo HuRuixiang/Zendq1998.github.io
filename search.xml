@@ -56,8 +56,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>网络</tag>
         <tag>JavaScript</tag>
+        <tag>网络</tag>
         <tag>Browser</tag>
         <tag>DOM</tag>
       </tags>
@@ -314,8 +314,8 @@
         <category>算法与数据结构</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>堆栈</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
